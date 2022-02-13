@@ -11,11 +11,9 @@ import {
 
 import {
   Colors,
-  DebugInstructions,
   Header,
-  LearnMoreLinks,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Login from './src/screens/Login/Login';
 
 const Section: React.FC<{
   title: string;
@@ -55,19 +53,8 @@ const App = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            que es un section
-          </Section>
-        </View>
-      </ScrollView>
+      <Login/>
+      <Text>Cambiar</Text>
     </SafeAreaView>
   );
 };
