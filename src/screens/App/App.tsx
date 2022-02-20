@@ -4,13 +4,17 @@ import {
   StatusBar,
   StyleSheet,
 } from 'react-native';
-import Login from './src/screens/Login/Login';
+// import Login from '../Login/Login';
+import Schedules from '../Schedules/Schedules';
+// import Navigation from '../../navigation';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.main}>
       <StatusBar barStyle={'light-content'} />
-      <Login/>
+      {/* <Login /> */}
+      <Schedules />
+      {/* <Navigation/> */}
     </SafeAreaView>
   );
 };

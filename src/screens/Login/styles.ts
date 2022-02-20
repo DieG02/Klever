@@ -1,13 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { Fonts, Colors } from '../../utils/stylers';
+import { Fonts, Colors, CustomStyles } from '../../utils/stylers';
+const { _container, _center } = CustomStyles;
 
 const styles: any = StyleSheet.create({
   view: {
-    backgroundColor: Colors.White,
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    ..._container,
   },
   background: {
     width: '100%',
@@ -19,39 +16,71 @@ const styles: any = StyleSheet.create({
 
   container: {
     width: '100%',
-    backgroundColor: Colors.Blue,
     paddingHorizontal: 20,
+    height: '75%',
+    marginTop: 'auto',
+    marginBottom: 15,
+    justifyContent: 'space-between',
   },
   header: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.Red,
+    ..._center,
+  },
+  imageContainer: {
+    width: 80,
+    height: 80,
+    marginBottom: 20,
+    zIndex: 3,
   },
   logo: {
-    width: 75,
-    height: 75,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
   },
   title: {
     color: Colors.Black,
     fontFamily: Fonts.Bold,
-    fontSize: 18,
+    fontSize: 19,
     textAlign: 'center'
   },
   
   btnGroup: {
-    backgroundColor: Colors.Green,
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    height: 160,
   },
-  google: {
+  btnRegister: {
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
     height: 50,
-    backgroundColor: Colors.Grey,
+    borderRadius: 25,
+  },
+  google: {
+    backgroundColor: '#EEEEEE',
+  },
+  facebook: {
+    // backgroundColor: '#1877F2',
+    backgroundColor: '#2c82f2',
+  },
+  guest: {
+    height: 20,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },  
 
+  footer: {
+    width: '100%',
+  },
+  termsAndConditions: {
+    fontFamily: Fonts.Regular,
+    textAlign: 'center',
+    color: '#AAA',
+    fontSize: 13,
+  },
+  underline: {
+    textDecorationLine: 'underline'
   }
 })
 

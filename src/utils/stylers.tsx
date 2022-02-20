@@ -1,3 +1,4 @@
+import { StyleSheet } from 'react-native';
 
 type Bold = 'Poppins-Bold';
 type SemiBold = 'Poppins-SemiBold';
@@ -19,7 +20,9 @@ export const Fonts: IFonts = {
 }
 
 export const Colors = {
-  Main: '#5C18ED',
+  // Main: '#5C18ED',
+  // Main: '#4E1EEB',
+  Main: '#4E42EB',
   Blue: '#0384FC',
   Green: '#17BD33',
   Yellow: '#F8E224',
@@ -30,3 +33,30 @@ export const Colors = {
   Dark: '#333333',
   Black: '#252525',
 } 
+
+export const CustomStyles = StyleSheet.create({
+  _container: {
+    display: 'flex',
+    backgroundColor: Colors.White,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  _center: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  _bold: {
+    fontFamily: Fonts.SemiBold
+  },
+  _black: {
+    color: Colors.Black,
+  },
+  _white: {
+    color: Colors.White,
+  },
+  _main: {
+    color: Colors.Main
+  },
+})
