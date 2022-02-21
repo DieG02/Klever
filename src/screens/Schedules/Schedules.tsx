@@ -1,22 +1,43 @@
 import React from 'react';
 import {
   View,
-  Text,
-  TouchableOpacity
+  ScrollView
 } from 'react-native';
-import Schedule from './Schedule';
+import ScheduleItem from '../../components/ScheduleItem/ScheduleItem';
+import FloatButton from '../../components/FloatButton/FloatButton';
 import styles from './styles';
+// import { ScrollView } from 'react-native-gesture-handler';
 
 const Schedules = () => {
   return(
     <View style={styles.view}>
-      <View style={styles.cardContainer}>
-        <Schedule />
-        <Schedule completed/>
-      </View>
-      <Text>
-        VIEW SCHEDULES
-      </Text>
+      <ScrollView
+        style={styles.cardContainer}
+        contentContainerStyle={{ paddingBottom: 20 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <ScheduleItem />
+        <ScheduleItem completed/>
+        <ScheduleItem />
+        <ScheduleItem completed/>
+        <ScheduleItem />
+        <ScheduleItem completed/>
+        <ScheduleItem />
+        <ScheduleItem completed/>
+        <ScheduleItem />
+        <ScheduleItem completed/>
+        <ScheduleItem />
+        <ScheduleItem completed/>
+        <ScheduleItem />
+        <ScheduleItem completed/>
+        <ScheduleItem />
+        <ScheduleItem completed/>
+        <ScheduleItem />
+        <ScheduleItem completed/>
+        <ScheduleItem />
+        <ScheduleItem completed/>
+      </ScrollView>
+      <FloatButton onPress={() => console.log('Add schedule')} />
     </View>
   )
 }

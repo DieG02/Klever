@@ -7,25 +7,24 @@ import {
   TouchableOpacity,
   Linking
 } from 'react-native';
-// import Logo from '../../assets/icons/Logo';
-import Logo from '../../assets/icons/LogoRounded';
+import Logo from '../../assets/icons/Logo';
+import Background from '../../assets/icons/BackgroundLogin';
 import styles from './styles';
 
 
 const Login = ({ navigation }: any) => {
-  const url = 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/frutas-1552246920.jpg?crop=1.00xw:0.753xh;0,0.105xh&resize=640:*';
-  const url2 = 'https://crudotransparente.com/wp-content/uploads/2020/04/spotify-logo.png';
-
+  
   return(
     <SafeAreaView style={styles.view}>
-      <Image 
-        source={{ uri: url }}
-        style={styles.background}
-      />
+      <View style={styles.background}>
+        <Background />
+      </View>
+
       <View style={styles.container}>
+
         <View style={styles.header}>
           <View style={styles.imageContainer}>
-            <Logo width={175} height={175} />
+            <Logo width={175} height={175}/>
           </View>
           <Text style={styles.title}>
             Organizá tus listas de manera fácil, rápida y sencilla
@@ -45,7 +44,7 @@ const Login = ({ navigation }: any) => {
           </TouchableOpacity>
           <TouchableOpacity 
             style={styles.guest}
-            onPress={() => navigation.navigate('Schedules')} 
+            onPress={() => navigation.navigate('MainStack')} 
           >
             <Text style={{ fontSize: 15, color: '#AAA' }}>
               Continuar como invitado

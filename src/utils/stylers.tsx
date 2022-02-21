@@ -28,7 +28,7 @@ export const Colors = {
   Yellow: '#F8E224',
   Red: '#F0362A',
   White: '#FEFEFE',
-  Light: '#EEEEEE',
+  Light: '#EAEAEA',
   Grey: '#666666',
   Dark: '#333333',
   Black: '#252525',

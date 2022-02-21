@@ -5,6 +5,7 @@ const { _container, _center } = CustomStyles;
 const styles: any = StyleSheet.create({
   view: {
     ..._container,
+    alignItems: 'flex-start',
   },
   background: {
     width: '100%',
@@ -17,7 +18,7 @@ const styles: any = StyleSheet.create({
   container: {
     width: '100%',
     paddingHorizontal: 20,
-    height: '75%',
+    height: '78%',
     marginTop: 'auto',
     marginBottom: 15,
     justifyContent: 'space-between',
@@ -26,10 +27,12 @@ const styles: any = StyleSheet.create({
     ..._center,
   },
   imageContainer: {
-    width: 80,
-    height: 80,
+    width: 81,
+    height: 81,
     marginBottom: 20,
-    zIndex: 3,
+    position: 'relative',
+    borderRadius: 40,
+    elevation: 2,
   },
   logo: {
     width: '100%',
