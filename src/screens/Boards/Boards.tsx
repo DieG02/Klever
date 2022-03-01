@@ -1,12 +1,13 @@
 import React from 'react';
 import {
   View,
-  ScrollView
+  ScrollView,
+  StatusBar
 } from 'react-native';
 import BoardItem from '../../components/BoardItem/BoardItem';
 import FloatButton from '../../components/FloatButton/FloatButton';
+import { Colors } from '../../utils/stylers';
 import styles from './styles';
-// import { ScrollView } from 'react-native-gesture-handler';
 
 const Boards = () => {
   const boardItems = [
@@ -69,6 +70,8 @@ const Boards = () => {
         ))}
       </ScrollView>
       <FloatButton onPress={() => console.log('Add Board')} />
+
+      <StatusBar barStyle='light-content' backgroundColor={Colors.Main} />
     </View>
   )
 }

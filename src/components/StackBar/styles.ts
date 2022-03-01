@@ -6,7 +6,7 @@ const { _center } = CustomStyles;
 const styles: any = StyleSheet.create({
   header: {
     width: '100%',
-    height: 75,
+    height: 60,
     backgroundColor: Colors.Main,
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,

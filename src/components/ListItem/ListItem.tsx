@@ -1,40 +1,39 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   TouchableOpacity
 } from 'react-native';
+import CheckSvg from '../../assets/icons/Check.svg';
+import { Colors } from '../../utils/stylers';
 import styles from './styles';
 
 const ListItem = ({ label, checked }: { label: string, checked: boolean }) => {
-
+  const [isChecked, setCheck] = useState<boolean>(checked);
+  
   return (
-    <TouchableOpacity
-      style={styles.card}
-      onPress={() => console.log('Do something')}
-    >
-      <View style={styles.count}>
-        {checked ? (
-          <View style={styles.listItemsCompleted}>
-            <Text style={styles.itemCountCompleted}>
-              ♪
-            </Text>
+    <View style={styles.card}>
+      <TouchableOpacity
+        style={styles.count}
+        onPress={() => setCheck(!isChecked)}
+      >
+        {isChecked ? (
+          <View style={styles.iconChecked}>
+            <CheckSvg color={Colors.White} width={13}/>
           </View>
         ) : (
-          <View style={styles.listItems}>
-            <Text style={styles.itemCount}>
-              ♪
-            </Text>
+          <View style={styles.icon}>
+            <CheckSvg color='#CCC' width={13} />
           </View>
         )}
-      </View>
+      </TouchableOpacity>
       
       <View style={styles.content}>
-        <Text style={styles.description}>
+        <Text style={[styles.label, isChecked && styles.labelChecked]}>
           {label}
         </Text>
       </View>
-    </TouchableOpacity>
+    </View>
   )
 }
 

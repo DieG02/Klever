@@ -3,7 +3,7 @@ import {
   SafeAreaView,
   View, 
   Text,
-  Image,
+  StatusBar,
   TouchableOpacity,
   Linking
 } from 'react-native';
@@ -69,6 +69,7 @@ const Login = ({ navigation }: any) => {
         </View>
       </View>
 
+      <StatusBar barStyle='dark-content' backgroundColor='white' />
     </SafeAreaView>
   )
 }

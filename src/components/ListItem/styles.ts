@@ -24,41 +24,38 @@ const styles: any = StyleSheet.create({
     fontFamily: Fonts.Bold,
     color: Colors.Dark,
   },
-  description: {
-    fontSize: 14,
+  label: {
+    fontSize: 15,
     fontFamily: Fonts.Medium,
     color: Colors.Grey,
   },
+  labelChecked: {
+    color: Colors.Dark,
+    textDecorationLine: 'line-through',
+  },
 
   count: {
-    marginRight: 20,
+    paddingRight: 10,
+    paddingVertical: 10,
+    marginRight: 10,
+    // backgroundColor: Colors.Black
   },
-  listItems: {
-    width: 30,
-    height: 30,
+  icon: {
+    width: 25,
+    height: 25,
     backgroundColor: Colors.White,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: '#CCC',
     ..._center,
   },
-  listItemsCompleted: {
-    width: 30,
-    height: 30,
+  iconChecked: {
+    width: 25,
+    height: 25,
     backgroundColor: Colors.Green,
     borderRadius: 20,
     ..._center,
   },
-  itemCount: {
-    color: '#CCC',
-    fontFamily: Fonts.Regular,
-    fontSize: 20,
-  },
-  itemCountCompleted: {
-    color: Colors.White,
-    fontFamily: Fonts.Regular,
-    fontSize: 20,
-  }
 });
 
 export default styles;

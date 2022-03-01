@@ -7,11 +7,47 @@ import List from '../screens/List/List';
 const Stack = createStackNavigator();
 
 export default function MyStackNavigator() {
+  const config: any = {
+    animation: 'spring',
+    config: {
+      stiffness: 1000,
+      damping: 500,
+      mass: 3,
+      overshootClamping: true,
+      restDisplacementThreshold: 2,
+      restSpeedThreshold: 0.8,
+    }
+  };
+
+  const horizontalAnimation = {
+    cardStyleInterpolator: ({ current, layouts }: any) => {
+      return {
+        cardStyle: {
+          transform: [
+            {
+              translateX: current.progress.interpolate({
+                inputRange: [0, 1],
+                outputRange: [layouts.screen.width, 0],
+              }),
+            },
+          ],
+        },
+      };
+    },
+  };
+
   return (
     <Stack.Navigator
       screenOptions={{
+        cardShadowEnabled: false,
         gestureEnabled: true,  // short animation to go Back
         animationTypeForReplace: 'pop',
+        gestureDirection: 'horizontal',
+        transitionSpec: {
+          open: config,
+          close: config
+        },
+        ...horizontalAnimation,
         header: StackBar,
         // headerMode: 'float', // keep the same StackBar, slow to dynamic title
       }}
