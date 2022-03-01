@@ -13,12 +13,6 @@ const ListItem = ({ label, checked }: { label: string, checked: boolean }) => {
       style={styles.card}
       onPress={() => console.log('Do something')}
     >
-      <View style={styles.content}>
-        <Text style={styles.description}>
-          {label}
-        </Text>
-      </View>
-
       <View style={styles.count}>
         {checked ? (
           <View style={styles.listItemsCompleted}>
@@ -29,10 +23,16 @@ const ListItem = ({ label, checked }: { label: string, checked: boolean }) => {
         ) : (
           <View style={styles.listItems}>
             <Text style={styles.itemCount}>
-                ♪
+              ♪
             </Text>
           </View>
         )}
+      </View>
+      
+      <View style={styles.content}>
+        <Text style={styles.description}>
+          {label}
+        </Text>
       </View>
     </TouchableOpacity>
   )

@@ -31,8 +31,7 @@ const styles: any = StyleSheet.create({
   },
 
   count: {
-    width: 55,
-    alignItems: 'flex-end',
+    marginRight: 20,
   },
   listItems: {
     width: 30,
@@ -40,7 +39,7 @@ const styles: any = StyleSheet.create({
     backgroundColor: Colors.White,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: Colors.Main,
+    borderColor: '#CCC',
     ..._center,
   },
   listItemsCompleted: {
@@ -51,7 +50,7 @@ const styles: any = StyleSheet.create({
     ..._center,
   },
   itemCount: {
-    color: Colors.Main,
+    color: '#CCC',
     fontFamily: Fonts.Regular,
     fontSize: 20,
   },

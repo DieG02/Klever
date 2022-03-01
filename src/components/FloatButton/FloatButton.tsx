@@ -22,7 +22,7 @@ const FloatButton = ({ onPress }: FloatButtonType) => {
       ]}
     >
       <View>
-        <Plus/>
+        <Plus color='#FFF'/>
       </View>
     </Pressable>
   )
