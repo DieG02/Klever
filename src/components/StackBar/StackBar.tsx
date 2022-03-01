@@ -7,8 +7,8 @@ import {
 import MenuIcon from '../../assets/icons/Menu';
 import styles from './styles';
 
-const StackHeader = ({ layout }: any) => {
-  console.log(layout)
+const StackHeader = ({ options, params, route }: any) => {
+  
   return (
     <View style={styles.header}>
       <TouchableOpacity
@@ -17,7 +17,7 @@ const StackHeader = ({ layout }: any) => {
       >
         <MenuIcon />
       </TouchableOpacity>
-      <Text style={styles.title}>Mis listas</Text>
+      <Text style={styles.title}>{options.title || 'Mis listas'}</Text>
     </View>
   )
 }

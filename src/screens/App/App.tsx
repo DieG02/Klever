@@ -5,13 +5,16 @@ import {
   StyleSheet,
 } from 'react-native';
 import Navigation from '../../navigation';
+import ListProvider from '../../context/ItemContext';
 
 
 const App = () => {
   return (
     <SafeAreaView style={styles.main}>
       <StatusBar barStyle={'light-content'} />
-      <Navigation/>
+      <ListProvider>
+        <Navigation/>
+      </ListProvider>
     </SafeAreaView>
   );
 };

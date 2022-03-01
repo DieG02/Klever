@@ -2,10 +2,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
-import StackBar from '../components/StackBar/StackBar';
+import MyStackNavigator from './BoardStack';
 
 import Login from '../screens/Login/Login';
-import Schedules from '../screens/Schedules/Schedules';
 
 const Stack = createStackNavigator();
 // const Drawer = createDrawerNavigator();
@@ -23,20 +22,7 @@ const Stack = createStackNavigator();
 //   );
 // }
 
-function MyStackNavigator() {
-  return (
-    <Stack.Navigator
-      screenOptions={{ 
-        // headerShown: false,
-        gestureEnabled: true,  // short animation to go Back
-        animationTypeForReplace: 'pop',
-        header: StackBar,
-      }}
-    >
-      <Stack.Screen name='Schedules' component={Schedules} />
-    </Stack.Navigator>
-  )
-}
+
 
 const Navigation = () => {
   return(

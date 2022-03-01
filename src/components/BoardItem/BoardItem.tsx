@@ -1,21 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   Text,
   TouchableOpacity
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { ListContext } from '../../context/ItemContext';
 import styles from './styles';
 
-const ScheduleItem = ({ completed }: { completed?: boolean }) => {
+const BoardItem = ({ title, items, completed }: { title: string, items: [], completed: boolean }) => {
+  const navigation = useNavigation<any>();
+
+  const { setListItems } = useContext<any>(ListContext);
+
   return (
-    <TouchableOpacity style={styles.card}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => {
+        setListItems(items);
+        navigation.navigate('List', { title })
+      }}
+    >
       <View style={styles.content}>
         <Text style={styles.cardTitle}>
-          Title Card
+         {title}
         </Text>
         <Text style={styles.description}>
-          Tomate, lechuga, leche, naranja,
-          sandia, albaca, rúcula, piña
+         {items.slice(0, 5).join(', ')}
         </Text>
       </View>
 
@@ -38,4 +49,4 @@ const ScheduleItem = ({ completed }: { completed?: boolean }) => {
   )
 }
 
-export default ScheduleItem;
+export default BoardItem;

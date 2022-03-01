@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   View,
-  Text,
   Pressable,
   GestureResponderEvent
 } from 'react-native';
@@ -15,7 +14,13 @@ type FloatButtonType = {
 const FloatButton = ({ onPress }: FloatButtonType) => {
 
   return (
-    <Pressable onPress={onPress} style={styles.size}>
+    <Pressable 
+      onPress={onPress}
+      style={({ pressed }) => [
+        styles.size,
+        { opacity: pressed ? 0.5 : 1.0 },
+      ]}
+    >
       <View>
         <Plus/>
       </View>

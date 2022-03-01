@@ -40,6 +40,7 @@ const styles: any = StyleSheet.create({
     fontSize: 14,
     fontFamily: Fonts.Medium,
     color: Colors.Grey,
+    flexWrap: 'wrap',
   },
 
   count: {
