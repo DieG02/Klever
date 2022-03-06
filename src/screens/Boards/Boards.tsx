@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   View,
   ScrollView,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 import BoardItem from '../../components/BoardItem/BoardItem';
 import FloatButton from '../../components/FloatButton/FloatButton';
+import { ModalContext } from '../../context/ModalContext';
 import { Colors } from '../../utils/stylers';
 import styles from './styles';
+
 
 const Boards = () => {
   const boardItems = [
@@ -52,6 +54,7 @@ const Boards = () => {
       completed: false,
     },
   ]
+  const { setVisible } = useContext<any>(ModalContext);
 
   return(
     <View style={styles.view}>
@@ -69,7 +72,7 @@ const Boards = () => {
           />
         ))}
       </ScrollView>
-      <FloatButton onPress={() => console.log('Add Board')} />
+      <FloatButton onPress={() => setVisible(true)} />
 
       <StatusBar barStyle='light-content' backgroundColor={Colors.Main} />
     </View>

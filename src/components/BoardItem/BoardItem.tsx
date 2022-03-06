@@ -6,11 +6,12 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ListContext } from '../../context/ItemContext';
+
 import styles from './styles';
 
 const BoardItem = ({ title, items, completed }: { title: string, items: [], completed: boolean }) => {
   const navigation = useNavigation<any>();
-
+  
   const { setListItems } = useContext<any>(ListContext);
 
   return (

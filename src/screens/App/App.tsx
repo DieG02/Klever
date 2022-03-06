@@ -5,13 +5,19 @@ import {
 } from 'react-native';
 import Navigation from '../../navigation';
 import ListProvider from '../../context/ItemContext';
+import ModalProvider from '../../context/ModalContext';
+import Modal from '../../components/Modal/Modal';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.main}>
-      <ListProvider>
-        <Navigation/>
-      </ListProvider>
+      <ModalProvider>
+        <ListProvider>
+          <Navigation/>
+        </ListProvider>
+
+        <Modal />
+      </ModalProvider>
     </SafeAreaView>
   );
 };
