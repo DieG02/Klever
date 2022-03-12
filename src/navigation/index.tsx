@@ -6,7 +6,7 @@ import MyStackNavigator from './BoardStack';
 
 import Login from '../screens/Login/Login';
 
-const Stack = createStackNavigator();
+const RootStack = createStackNavigator();
 // const Drawer = createDrawerNavigator();
 
 
@@ -42,13 +42,18 @@ const horizontalAnimation = {
 const Navigation = () => {
   return(
     <NavigationContainer>
-      <Stack.Navigator 
+      <RootStack.Navigator 
         screenOptions={{ headerShown: false }}
         initialRouteName='Login'
       >
-        <Stack.Screen name='Login' component={Login} />
-        <Stack.Screen name='MainStack' component={MyStackNavigator} />
-      </Stack.Navigator>
+        <RootStack.Group>
+          <RootStack.Screen name='Login' component={Login} />
+        </RootStack.Group>
+
+        <RootStack.Group>
+          <RootStack.Screen name='MainStack' component={MyStackNavigator} />
+        </RootStack.Group>
+      </RootStack.Navigator>
     </NavigationContainer>
   )
 }

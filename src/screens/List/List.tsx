@@ -5,12 +5,13 @@ import {
 } from 'react-native';
 import ListItem from '../../components/ListItem/ListItem';
 import FloatButton from '../../components/FloatButton/FloatButton';
-import { ListContext } from '../../context/ItemContext';
+import { DataContext } from '../../context/DataContext';
 import styles from './styles';
 
-const List = () => {
-  const { listItems } = useContext<any>(ListContext);
-  console.log(listItems);
+const List = ({ route }: any) => {
+  const { data } = useContext<any>(DataContext);
+  const index = route.params.index;
+  const listItems = data[index].items;
 
   return (
     <View style={styles.view}>

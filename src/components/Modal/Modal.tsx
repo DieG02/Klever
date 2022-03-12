@@ -1,55 +1,81 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   View,
   Text,
   TextInput,
   Pressable,
-  Platform,
   KeyboardAvoidingView,
 } from 'react-native';
 import Times from '../../assets/icons/Times.svg';
 import { CustomStyles } from '../../utils/stylers';
 import { ModalContext } from '../../context/ModalContext';
+import { DataContext } from '../../context/DataContext';
+import { Data, Schedule } from '../../utils/interfaces';
 import styles from './styles';
 
-const Modal = () => {
+const Modal = ({ navigation }: any) => {
   const { isVisible, setVisible } = useContext<any>(ModalContext);
+  const { data, setData } = useContext<any>(DataContext);
+  const [value, setValue] = useState<string>('');
+
+  const handleOnChange = (event: string): void => {
+    setValue(event)
+  }
+  const closeModal = () => {
+    setVisible(false)
+    setValue('')
+  }
+
+  const createBoard = () => {
+    const board: Schedule = {
+      title: value,
+      items: [],
+      completed: false,
+    };
+    setData((previous: Data): Data => {
+      return [board, ...previous]
+    });
+    closeModal();
+  }
+
   
   if(!isVisible) return null;
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      behavior='padding'
       style={styles.container}
       enabled
     >
-    {/* <View style={styles.container}> */}
       <View style={styles.modal}>
         <View style={styles.header}>
           <Text style={styles.label}>
             Nombre de la lista
           </Text>
           <Pressable
-            style={CustomStyles._center}
-            onPress={() => setVisible(false)}
+            onPress={closeModal}
+            hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
           >
-            <Times color='#AAA' />
+            <Times color='#AAA' width={18} height={18} />
           </Pressable>
         </View>
 
         <TextInput 
-          style={styles.input} 
-          placeholder='Ingrese el nombre'
           autoFocus
+          autoCapitalize='sentences'
+          placeholder='Ingrese el nombre'
+          style={styles.input} 
+          value={value}
+          onChangeText={handleOnChange}
+          onSubmitEditing={createBoard}
         />
 
         <Pressable 
           style={CustomStyles._center}
-          onPress={() => console.log('Crear lista')}
+          onPress={createBoard}
         >
           <Text style={styles.button}>Crear</Text>
         </Pressable>
       </View>
-    {/* </View> */}
     </KeyboardAvoidingView>
   )
 }

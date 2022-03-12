@@ -57,7 +57,7 @@ export default function MyStackNavigator() {
       <Stack.Screen 
         name='List' 
         component={List} 
-        options={({ route }: any): any => ({
+        options={({ route }: any): { title: string } => ({
           title: route.params.title
         })}
       />

@@ -7,10 +7,12 @@ const styles: any = StyleSheet.create({
   header: {
     width: '100%',
     height: 60,
+    paddingHorizontal: 20,
     backgroundColor: Colors.Main,
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
     display: 'flex',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
 
@@ -25,7 +27,7 @@ const styles: any = StyleSheet.create({
   },
   menuIcon: {
     backgroundColor: 'transparent',
-    padding: 20,
+    paddingRight: 15,
     ..._center,
   },
   title: {

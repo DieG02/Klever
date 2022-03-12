@@ -4,7 +4,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Navigation from '../../navigation';
-import ListProvider from '../../context/ItemContext';
+import DataProvider from '../../context/DataContext';
 import ModalProvider from '../../context/ModalContext';
 import Modal from '../../components/Modal/Modal';
 
@@ -12,11 +12,10 @@ const App = () => {
   return (
     <SafeAreaView style={styles.main}>
       <ModalProvider>
-        <ListProvider>
-          <Navigation/>
-        </ListProvider>
-
+      <DataProvider>
+        <Navigation/>
         <Modal />
+      </DataProvider>
       </ModalProvider>
     </SafeAreaView>
   );

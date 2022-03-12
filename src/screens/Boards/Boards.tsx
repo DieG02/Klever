@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import {
   View,
   ScrollView,
@@ -6,56 +6,35 @@ import {
 } from 'react-native';
 import BoardItem from '../../components/BoardItem/BoardItem';
 import FloatButton from '../../components/FloatButton/FloatButton';
+import EmptyMessage from '../../components/EmptyMessage/EmptyMessage';
 import { ModalContext } from '../../context/ModalContext';
+import { DataContext } from '../../context/DataContext';
+import { Schedule } from '../../utils/interfaces';
 import { Colors } from '../../utils/stylers';
 import styles from './styles';
 
 
-const Boards = () => {
-  const boardItems = [
-    {
-      title: 'Supermercado',
-      items: [
-        'Tomate',
-        'lechuga',
-        'leche',
-        'naranja',
-        'sandia',
-        'albaca',
-        'rúcula',
-        'piña'
-      ],
-      completed: false,
-    },
-    {
-      title: 'Trabajo',
-      items: [
-        'Medialuna',
-        'café',
-        'jugo de naranja',
-        'pan',
-        'alfajores',
-        'chocolate'
-      ],
-      completed: true,
-    },
-    {
-      title: 'Escuela',
-      items: [
-        'Regla',
-        'cartulina',
-        'escuadra',
-        'compás',
-        'cartuchera',
-        'hojas',
-        'lapices',
-        'estilografos'
-      ],
-      completed: false,
-    },
-  ]
+const Boards = ({ navigation }: any) => {
+  
   const { setVisible } = useContext<any>(ModalContext);
+  const { data } = useContext<any>(DataContext);
 
+  /**
+   * Effect for render the first board after create a new one
+   * It use the first element in 'data', may it's not the best solution
+   */
+  // useEffect(() => {
+  //   navigation.navigate('List', { title: data[0].title, index: 0})
+  // }, [data.length])
+
+  if(!data.length) {
+    return (
+      <EmptyMessage message='No hay listas agregadas'>
+        <FloatButton onPress={() => setVisible(true)} />
+      </EmptyMessage>
+    )
+  }
+  
   return(
     <View style={styles.view}>
       <ScrollView
@@ -63,11 +42,11 @@ const Boards = () => {
         contentContainerStyle={{ paddingBottom: 20 }}
         showsVerticalScrollIndicator={false}
       >
-        {boardItems.map(({ title, items, completed }: any, index) => (
+        {data.map(({ title, completed }: Schedule, index: number) => (
           <BoardItem
             key={index}
             title={title}
-            items={items}
+            index={index}
             completed={completed}
           />
         ))}

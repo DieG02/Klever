@@ -5,21 +5,19 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { ListContext } from '../../context/ItemContext';
+import { DataContext } from '../../context/DataContext';
 
 import styles from './styles';
 
-const BoardItem = ({ title, items, completed }: { title: string, items: [], completed: boolean }) => {
+const BoardItem = ({ title, completed, index }: any) => {
   const navigation = useNavigation<any>();
+  const { data } = useContext<any>(DataContext);
   
-  const { setListItems } = useContext<any>(ListContext);
-
   return (
     <TouchableOpacity
       style={styles.card}
       onPress={() => {
-        setListItems(items);
-        navigation.navigate('List', { title })
+        navigation.navigate('List', { title, index })
       }}
     >
       <View style={styles.content}>
@@ -27,7 +25,7 @@ const BoardItem = ({ title, items, completed }: { title: string, items: [], comp
          {title}
         </Text>
         <Text style={styles.description}>
-         {items.slice(0, 5).join(', ')}
+         {data[index].items.slice(0, 5).join(', ')}
         </Text>
       </View>
 
