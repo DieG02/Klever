@@ -17,7 +17,10 @@ const BoardItem = ({ title, completed, index }: any) => {
     <TouchableOpacity
       style={styles.card}
       onPress={() => {
-        navigation.navigate('List', { title, index })
+        navigation.navigate('List-Stack', {
+          screen: 'List',
+          params: { title, index }
+        })
       }}
     >
       <View style={styles.content}>
@@ -25,7 +28,8 @@ const BoardItem = ({ title, completed, index }: any) => {
          {title}
         </Text>
         <Text style={styles.description}>
-         {data[index].items.slice(0, 5).join(', ')}
+         {/* {data[index].items.slice(0, 5).join(', ')} */}
+         Description
         </Text>
       </View>
 

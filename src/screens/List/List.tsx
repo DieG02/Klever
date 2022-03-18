@@ -6,12 +6,14 @@ import {
 import ListItem from '../../components/ListItem/ListItem';
 import FloatButton from '../../components/FloatButton/FloatButton';
 import { DataContext } from '../../context/DataContext';
+import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 
 const List = ({ route }: any) => {
   const { data } = useContext<any>(DataContext);
   const index = route.params.index;
   const listItems = data[index].items;
+  const navigation = useNavigation<any>();
 
   return (
     <View style={styles.view}>
@@ -28,7 +30,12 @@ const List = ({ route }: any) => {
           />
         ))}
       </ScrollView>
-      <FloatButton onPress={() => console.log('List in Detail')} />
+      <FloatButton 
+        onPress={() => {
+          navigation.navigate('Add-Item');
+          // console.log('redirect to add-item screen')
+        }} 
+      />
     </View>
   )
 }

@@ -13,27 +13,36 @@ import { DataContext } from '../../context/DataContext';
 import { Data, Schedule } from '../../utils/interfaces';
 import styles from './styles';
 
+
 const Modal = ({ navigation }: any) => {
   const { isVisible, setVisible } = useContext<any>(ModalContext);
-  const { data, setData } = useContext<any>(DataContext);
-  const [value, setValue] = useState<string>('');
+  const { data, setData, storage } = useContext<any>(DataContext);
+  const [title, setTitle] = useState<string>('');
 
   const handleOnChange = (event: string): void => {
-    setValue(event)
+    setTitle(event)
   }
   const closeModal = () => {
     setVisible(false)
-    setValue('')
+    setTitle('')
   }
 
   const createBoard = () => {
     const board: Schedule = {
-      title: value,
+      title,
       items: [],
       completed: false,
     };
-    setData((previous: Data): Data => {
-      return [board, ...previous]
+    
+    const value = JSON.stringify(board);
+    storage.addBoard({ 
+      key: title, 
+      value, 
+      success: () => {
+        setData((previous: Data): Data => {
+          return [board, ...previous]
+        });
+      } 
     });
     closeModal();
   }
@@ -64,7 +73,7 @@ const Modal = ({ navigation }: any) => {
           autoCapitalize='sentences'
           placeholder='Ingrese el nombre'
           style={styles.input} 
-          value={value}
+          value={title}
           onChangeText={handleOnChange}
           onSubmitEditing={createBoard}
         />

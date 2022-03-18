@@ -2,6 +2,9 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import StackBar from '../components/StackBar/StackBar';
 import Boards from '../screens/Boards/Boards';
+import List from '../screens/List/List';
+import AddItem from '../screens/AddItem/AddItem';
+
 const Stack = createStackNavigator();
 
 export default function MyStackNavigator() {
@@ -49,9 +52,20 @@ export default function MyStackNavigator() {
         header: StackBar,
         // headerMode: 'float', // keep the same StackBar, slow to dynamic title
       }}
-      initialRouteName='Boards'
+      initialRouteName='List'
     >
-      <Stack.Screen name='Boards' component={Boards} />
+      <Stack.Screen
+        name='List'
+        component={List}
+        options={({ route }: any): { title: string } => ({
+          title: route.params.title
+        })}
+      />
+      <Stack.Screen
+        name='Add-Item'
+        component={AddItem}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   )
 }

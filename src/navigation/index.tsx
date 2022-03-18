@@ -2,7 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
-import MyStackNavigator from './BoardStack';
+import BoardStack from './BoardStack';
+import ListStack from './ListStack';
 
 import Login from '../screens/Login/Login';
 
@@ -51,7 +52,8 @@ const Navigation = () => {
         </RootStack.Group>
 
         <RootStack.Group>
-          <RootStack.Screen name='MainStack' component={MyStackNavigator} />
+          <RootStack.Screen name='Board-Stack' component={BoardStack} />
+          <RootStack.Screen name='List-Stack' component={ListStack} />
         </RootStack.Group>
       </RootStack.Navigator>
     </NavigationContainer>
