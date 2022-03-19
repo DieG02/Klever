@@ -9,17 +9,18 @@ import { DataContext } from '../../context/DataContext';
 
 import styles from './styles';
 
-const BoardItem = ({ title, completed, index }: any) => {
+const BoardItem = ({ title, completed }: any) => {
   const navigation = useNavigation<any>();
-  const { data } = useContext<any>(DataContext);
-  
+  const { name } = useContext<any>(DataContext);
+
   return (
     <TouchableOpacity
       style={styles.card}
       onPress={() => {
+        name.current = title;
         navigation.navigate('List-Stack', {
           screen: 'List',
-          params: { title, index }
+          params: { title }
         })
       }}
     >

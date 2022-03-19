@@ -11,32 +11,16 @@ import { ModalContext } from '../../context/ModalContext';
 import { DataContext } from '../../context/DataContext';
 import { Schedule } from '../../utils/interfaces';
 import { Colors } from '../../utils/stylers';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './styles';
 
 
-const Boards = ({ navigation }: any) => {
+const Boards = () => {
   
   const { setVisible } = useContext<any>(ModalContext);
-  const { data, setData, storage } = useContext<any>(DataContext);
-
-  /**
-   * Effect for render the first board after create a new one
-   * It use the first element in 'data', may it's not the best solution
-   */
-  // useEffect(() => {
-  //   navigation.navigate('List', { title: data[0].title, index: 0})
-  // }, [data.length])z
-
-
-  useEffect(() => {
-    (async () => {
-      const boards: any[] = await storage.getBoards();
-      setData(boards);
-    })();
-  }, []);
-
-  if (!data.length) {
+  const { store } = useContext<any>(DataContext);
+  const { boards } = store;
+  
+  if (!boards.length) {
     return (
       <EmptyMessage message='No hay listas agregadas'>
         <FloatButton onPress={() => setVisible(true)} />
@@ -51,12 +35,10 @@ const Boards = ({ navigation }: any) => {
         contentContainerStyle={{ paddingBottom: 20 }}
         showsVerticalScrollIndicator={false}
       >
-        {data.map(({ title, completed }: Schedule, index: number) => (
+        {boards.map(({ title }: Schedule, index: number) => (
           <BoardItem
             key={index}
             title={title}
-            index={index}
-            completed={completed}
           />
         ))}
       </ScrollView>

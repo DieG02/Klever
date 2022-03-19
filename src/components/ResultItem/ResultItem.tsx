@@ -7,12 +7,14 @@ import {
 import Plus from '../../assets/icons/Plus.svg';
 import Times from '../../assets/icons/Times.svg';
 import { Colors } from '../../utils/stylers';
+import useZustand from '../../store/store';
 import styles from './styles';
 
-const ResultItem = ({ name, selected }: {name: string, selected: boolean }) => {
+const ResultItem = ({ name, selected }: { name: string, selected: boolean }) => {
   const [value, setValue] = useState<boolean>(selected);
+  const { addItems } = useZustand();
   const onPress = () => {
-    console.log(name + ' has changed');
+    addItems('Escuela', name);
     setValue(!value);
   }
 
@@ -29,10 +31,9 @@ const ResultItem = ({ name, selected }: {name: string, selected: boolean }) => {
         hitSlop={{ top: 10, right: 15, bottom: 10, left: 15 }}
       >
         {value
-          ? <Times color={Colors.Red} width={15}/>
+          ? <Times color={Colors.Red} width={14}/>
           : <Plus color={Colors.Blue} width={18}/>
         }
-        
       </Pressable>
     </View>
   )

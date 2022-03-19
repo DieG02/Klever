@@ -1,19 +1,26 @@
 import React, { useContext } from 'react';
 import {
   View,
-  ScrollView
+  ScrollView,
+  Pressable,
+  Text,
 } from 'react-native';
 import ListItem from '../../components/ListItem/ListItem';
 import FloatButton from '../../components/FloatButton/FloatButton';
 import { DataContext } from '../../context/DataContext';
 import { useNavigation } from '@react-navigation/native';
+import useZustand from '../../store/store';
 import styles from './styles';
 
 const List = ({ route }: any) => {
-  const { data } = useContext<any>(DataContext);
-  const index = route.params.index;
-  const listItems = data[index].items;
+  const { name, store } = useContext<any>(DataContext);
+  
   const navigation = useNavigation<any>();
+  const getList = () => {
+    return store.boards.filter((list: any) => list.title === name.current)[0];
+  }
+  const list = getList();
+  
 
   return (
     <View style={styles.view}>
@@ -22,7 +29,7 @@ const List = ({ route }: any) => {
         contentContainerStyle={{ paddingBottom: 20 }}
         showsVerticalScrollIndicator={false}
       >
-        {listItems.map((label: string, index: number) => (
+        {list.items.map((label: string, index: number) => (
           <ListItem 
             key={index}
             label={label}
@@ -30,12 +37,7 @@ const List = ({ route }: any) => {
           />
         ))}
       </ScrollView>
-      <FloatButton 
-        onPress={() => {
-          navigation.navigate('Add-Item');
-          // console.log('redirect to add-item screen')
-        }} 
-      />
+      <FloatButton onPress={() => navigation.navigate('Add-Item')} />
     </View>
   )
 }

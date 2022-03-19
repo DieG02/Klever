@@ -12,6 +12,7 @@ import { ModalContext } from '../../context/ModalContext';
 import { DataContext } from '../../context/DataContext';
 import { Data, Schedule } from '../../utils/interfaces';
 import styles from './styles';
+import useZustand from '../../store/store';
 
 
 const Modal = ({ navigation }: any) => {
@@ -27,26 +28,31 @@ const Modal = ({ navigation }: any) => {
     setTitle('')
   }
 
-  const createBoard = () => {
-    const board: Schedule = {
-      title,
-      items: [],
-      completed: false,
-    };
+  // const createBoard = () => {
+  //   const board: Schedule = {
+  //     title,
+  //     items: [],
+  //     completed: false,
+  //   };
     
-    const value = JSON.stringify(board);
-    storage.addBoard({ 
-      key: title, 
-      value, 
-      success: () => {
-        setData((previous: Data): Data => {
-          return [board, ...previous]
-        });
-      } 
-    });
-    closeModal();
-  }
+  //   const value = JSON.stringify(board);
+  //   storage.addBoard({ 
+  //     key: title, 
+  //     value, 
+  //     success: () => {
+  //       setData((previous: Data): Data => {
+  //         return [board, ...previous]
+  //       });
+  //     } 
+  //   });
+  //   closeModal();
+  // }
 
+  const { addBoard } = useZustand();
+  const createBoard = () => {
+    addBoard(title);
+    closeModal()
+  }
   
   if(!isVisible) return null;
   return (
@@ -64,7 +70,7 @@ const Modal = ({ navigation }: any) => {
             onPress={closeModal}
             hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
           >
-            <Times color='#AAA' width={18} height={18} />
+            <Times color='#AAA' height={14} width={14}/>
           </Pressable>
         </View>
 
