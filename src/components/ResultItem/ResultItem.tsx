@@ -15,9 +15,13 @@ import styles from './styles';
 const ResultItem = ({ name, selected }: { name: string, selected: boolean }) => {
   const [value, setValue] = useState<boolean>();
   const { name: listName } = useContext<any>(DataContext);
-  const { addItems } = useZustand();
+  const { addItems, removeItems } = useZustand();
   const onPress = () => {
-    addItems(listName.current, name);
+    if(value) {
+      removeItems(listName.current, name);
+    } else {
+      addItems(listName.current, name);
+    }
     setValue(!value);
   }
 
