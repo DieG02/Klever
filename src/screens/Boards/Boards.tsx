@@ -4,6 +4,7 @@ import {
   ScrollView,
   StatusBar,
 } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import BoardItem from '../../components/BoardItem/BoardItem';
 import FloatButton from '../../components/FloatButton/FloatButton';
 import EmptyMessage from '../../components/EmptyMessage/EmptyMessage';
@@ -18,9 +19,14 @@ import styles from './styles';
 const Boards = () => {
   
   const { setVisible } = useContext<any>(ModalContext);
-  const { } = useContext<any>(DataContext);
+  const { name } = useContext<any>(DataContext);
   const store = useZustand();
   
+
+  useFocusEffect(() => {
+    name.current = 'Mis Listas';
+  })
+
   if (!store.boards.length) {
     return (
       <EmptyMessage message='No hay listas agregadas'>
@@ -28,7 +34,6 @@ const Boards = () => {
       </EmptyMessage>
     )
   }
-
   return(
     <View style={styles.view}>
       <ScrollView

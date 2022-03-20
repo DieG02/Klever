@@ -12,16 +12,16 @@ import styles from './styles';
 const BoardItem = ({ title, completed }: any) => {
   const navigation = useNavigation<any>();
   const { name } = useContext<any>(DataContext);
-
   return (
     <TouchableOpacity
       style={styles.card}
       onPress={() => {
         name.current = title;
-        navigation.navigate('List-Stack', {
-          screen: 'List',
-          params: { title }
-        })
+        // navigation.navigate('List-Stack', {
+        //   screen: 'List',
+        //   params: { title }
+        // })
+        navigation.navigate('list-detail', { title })
       }}
     >
       <View style={styles.content}>

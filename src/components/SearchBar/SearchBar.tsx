@@ -7,6 +7,7 @@ import {
 import { TextInput } from 'react-native-gesture-handler';
 import Microphone from '../../assets/icons/Microphone.svg';
 import LeftArrow from '../../assets/icons/Arrow.svg';
+import Times from '../../assets/icons/Times.svg';
 import styles from './styles';
 import { Colors } from '../../utils/stylers';
 
@@ -16,11 +17,11 @@ const SearchBar = () => {
   return (
     <View style={styles.view}>
       <Pressable 
-        hitSlop={{ top: 20, right: 0, bottom: 20, left: 15 }}
-        style={styles.left}
+        hitSlop={{ top: 20, right: 15, bottom: 20, left: 5 }}
         onPress={() => console.log('Back')}
+        style={styles.left}
       >
-        <LeftArrow width={20} color={Colors.Grey}/>
+        <LeftArrow width={18} color={Colors.Grey}/>
       </Pressable>
       <TextInput 
         style={styles.input}
@@ -32,10 +33,14 @@ const SearchBar = () => {
         }}
       />
       <Pressable
-        hitSlop={{ top: 20, right: 0, bottom: 20, left: 15 }}
+        hitSlop={{ top: 20, right: 5, bottom: 20, left: 15 }}
+        onPress={() => console.log('Microphone')}
         style={styles.right}
       >
-        <Microphone height={20}/>
+        {value 
+          ? <Times width={14} color={Colors.Grey} />
+          : <Microphone width={14} color={Colors.Main} />
+        }
       </Pressable>
     </View>
   )

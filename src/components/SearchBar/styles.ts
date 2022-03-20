@@ -20,8 +20,9 @@ const styles: any = StyleSheet.create({
     flex: 1,
     fontFamily: Fonts.Regular,
     fontSize: 15,
-    color: Colors.Grey,
-    paddingHorizontal: 10,
+    color: Colors.Dark,
+    paddingLeft: 5,
+    paddingRight: 10,
     paddingBottom: 5,
   },
   left: {
@@ -30,7 +31,7 @@ const styles: any = StyleSheet.create({
     ..._center,
   },
   right: {
-    width: 50,
+    paddingRight: 20,
     height: 50,
     ..._center,
   }

@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 import BoardStack from './BoardStack';
-import ListStack from './ListStack';
 
 import Login from '../screens/Login/Login';
 
@@ -47,14 +46,10 @@ const Navigation = () => {
         screenOptions={{ headerShown: false }}
         initialRouteName='Login'
       >
-        <RootStack.Group>
-          <RootStack.Screen name='Login' component={Login} />
-        </RootStack.Group>
+        <RootStack.Screen name='Login' component={Login} />
 
-        <RootStack.Group>
-          <RootStack.Screen name='Board-Stack' component={BoardStack} />
-          <RootStack.Screen name='List-Stack' component={ListStack} />
-        </RootStack.Group>
+        <RootStack.Screen name='Board-Stack' component={BoardStack} />
+          
       </RootStack.Navigator>
     </NavigationContainer>
   )

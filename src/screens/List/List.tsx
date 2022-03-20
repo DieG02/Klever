@@ -14,7 +14,8 @@ import styles from './styles';
 
 const List = ({ route }: any) => {
   const { name } = useContext<any>(DataContext);
-  
+    console.log('List', route.options);
+
   const navigation = useNavigation<any>();
   const store = useZustand();
   const getList = () => {
@@ -38,7 +39,7 @@ const List = ({ route }: any) => {
           />
         ))}
       </ScrollView>
-      <FloatButton onPress={() => navigation.navigate('Add-Item')} />
+      <FloatButton onPress={() => navigation.navigate('add-items')} />
     </View>
   )
 }

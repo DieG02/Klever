@@ -19,7 +19,6 @@ const useZustand = create((set: any) => ({
     const list = boards.filter((list: any) => list.title === title)[0];
     const aux: any = new Set(list.items);
     aux.delete(item);
-    console.log(Array.from(aux));
     return list.items = Array.from(aux);
   }),
   addBoard: (title: string, items?: any | any[]) => set(({ boards }: any) => {

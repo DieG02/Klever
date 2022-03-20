@@ -33,7 +33,7 @@ const styles: any = StyleSheet.create({
   title: {
     fontFamily: Fonts.Bold,
     color: Colors.White,
-    fontSize: 22,
+    fontSize: 20,
   }
 });
 
