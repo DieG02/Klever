@@ -25,7 +25,7 @@ const SearchBar = () => {
       <TextInput 
         style={styles.input}
         value={value}
-        autoFocus
+        // autoFocus
         placeholder='Añadir artículo'
         onChangeText={(text: string) => {
           setValue(text)

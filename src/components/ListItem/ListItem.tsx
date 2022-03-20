@@ -12,11 +12,8 @@ const ListItem = ({ label, checked }: { label: string, checked: boolean }) => {
   const [isChecked, setCheck] = useState<boolean>(checked);
   
   return (
-    <View style={styles.card}>
-      <TouchableOpacity
-        style={styles.count}
-        onPress={() => setCheck(!isChecked)}
-      >
+    <TouchableOpacity style={styles.card} onPress={() => setCheck(!isChecked)}>
+      <View style={styles.count}>
         {isChecked ? (
           <View style={styles.iconChecked}>
             <CheckSvg color={Colors.White} width={13}/>
@@ -26,14 +23,14 @@ const ListItem = ({ label, checked }: { label: string, checked: boolean }) => {
             <CheckSvg color='#CCC' width={13} />
           </View>
         )}
-      </TouchableOpacity>
+      </View>
       
       <View style={styles.content}>
         <Text style={[styles.label, isChecked && styles.labelChecked]}>
           {label}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 

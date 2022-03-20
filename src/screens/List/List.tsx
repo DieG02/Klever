@@ -13,9 +13,10 @@ import useZustand from '../../store/store';
 import styles from './styles';
 
 const List = ({ route }: any) => {
-  const { name, store } = useContext<any>(DataContext);
+  const { name } = useContext<any>(DataContext);
   
   const navigation = useNavigation<any>();
+  const store = useZustand();
   const getList = () => {
     return store.boards.filter((list: any) => list.title === name.current)[0];
   }

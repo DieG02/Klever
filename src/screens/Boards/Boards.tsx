@@ -9,6 +9,7 @@ import FloatButton from '../../components/FloatButton/FloatButton';
 import EmptyMessage from '../../components/EmptyMessage/EmptyMessage';
 import { ModalContext } from '../../context/ModalContext';
 import { DataContext } from '../../context/DataContext';
+import useZustand from '../../store/store';
 import { Schedule } from '../../utils/interfaces';
 import { Colors } from '../../utils/stylers';
 import styles from './styles';
@@ -17,10 +18,10 @@ import styles from './styles';
 const Boards = () => {
   
   const { setVisible } = useContext<any>(ModalContext);
-  const { store } = useContext<any>(DataContext);
-  const { boards } = store;
+  const { } = useContext<any>(DataContext);
+  const store = useZustand();
   
-  if (!boards.length) {
+  if (!store.boards.length) {
     return (
       <EmptyMessage message='No hay listas agregadas'>
         <FloatButton onPress={() => setVisible(true)} />
@@ -35,7 +36,7 @@ const Boards = () => {
         contentContainerStyle={{ paddingBottom: 20 }}
         showsVerticalScrollIndicator={false}
       >
-        {boards.map(({ title }: Schedule, index: number) => (
+        {store.boards.map(({ title }: any, index: number) => (
           <BoardItem
             key={index}
             title={title}

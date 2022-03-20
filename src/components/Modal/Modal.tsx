@@ -10,14 +10,13 @@ import Times from '../../assets/icons/Times.svg';
 import { CustomStyles } from '../../utils/stylers';
 import { ModalContext } from '../../context/ModalContext';
 import { DataContext } from '../../context/DataContext';
-import { Data, Schedule } from '../../utils/interfaces';
 import styles from './styles';
 import useZustand from '../../store/store';
 
 
 const Modal = ({ navigation }: any) => {
   const { isVisible, setVisible } = useContext<any>(ModalContext);
-  const { data, setData, storage } = useContext<any>(DataContext);
+  const { } = useContext<any>(DataContext);
   const [title, setTitle] = useState<string>('');
 
   const handleOnChange = (event: string): void => {
