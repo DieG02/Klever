@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 import BoardStack from './BoardStack';
+import ProfileDrawer from './ProfileDrawer';
 
 import Login from '../screens/Login/Login';
 
@@ -47,8 +48,8 @@ const Navigation = () => {
         initialRouteName='Login'
       >
         <RootStack.Screen name='Login' component={Login} />
-
-        <RootStack.Screen name='Board-Stack' component={BoardStack} />
+        <RootStack.Screen name='Drawer' component={ProfileDrawer} />
+        {/* <RootStack.Screen name='Board-Stack' component={BoardStack} /> */}
           
       </RootStack.Navigator>
     </NavigationContainer>

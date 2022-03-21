@@ -44,7 +44,7 @@ const Login = ({ navigation }: any) => {
           </TouchableOpacity>
           <TouchableOpacity 
             style={styles.guest}
-            onPress={() => navigation.navigate('Board-Stack')} 
+            onPress={() => navigation.navigate('Drawer')} 
           >
             <Text style={{ fontSize: 15, color: '#AAA' }}>
               Continuar como invitado
