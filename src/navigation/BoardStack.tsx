@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { DataContext } from '../context/DataContext';
-import StackBar from '../components/StackBar/StackBar';
+import NavBar from '../components/NavBar/NavBar';
 import Boards from '../screens/Boards/Boards';
 import List from '../screens/List/List';
 import AddItem from '../screens/AddItem/AddItem';
@@ -53,8 +53,8 @@ export default function MyStackNavigator() {
           close: config
         },
         ...horizontalAnimation,
-        header: StackBar,
-        // headerMode: 'float', // keep the same StackBar, slow to dynamic title
+        header: NavBar,
+        // headerMode: 'float', // keep the same NavBar, slow to dynamic title
       }}
       initialRouteName='boards'
     >
@@ -93,8 +93,8 @@ export default function MyStackNavigator() {
           close: config
         },
         ...horizontalAnimation,
-        header: StackBar,
-        headerMode: 'float', // keep the same StackBar, slow to dynamic title
+        header: NavBar,
+        headerMode: 'float', // keep the same NavBar, slow to dynamic title
       }}
       initialRouteName='List'
     >

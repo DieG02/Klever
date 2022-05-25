@@ -9,8 +9,8 @@ const styles: any = StyleSheet.create({
     height: 60,
     borderRadius: 30,
     position: 'absolute',
-    right: 20,
-    bottom: 100,
+    right: 15,
+    bottom: 75,
     ..._center,
     elevation: 2,
   }

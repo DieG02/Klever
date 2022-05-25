@@ -1,0 +1,158 @@
+{
+    "boards": [
+      { 
+        "id": "001",
+        "title": "Escuela",
+        "description": "Lista para ir a la escuela",
+        "default": "{Primeros 5 items}"
+      },
+      { 
+        "id": "010",
+        "title": "Supermercado",
+        "description": "Mis compras Lunes",
+        "default": "{Primeros 5 items}"
+      },
+      { 
+        "id": "011",
+        "title": "Trabajo",
+        "description": "Tareas del trabajo",
+        "default": "{Primeros 5 items}"
+      }
+    ],
+
+    "items": {
+      "Escuela": [
+        {
+          "id": "675h6efg",
+          "name": "Mochila",
+          "isChecked": false,
+          "category": null,
+          "data": {
+            "amount": "1",
+            "unit": null
+          }
+        },
+        {
+          "id": "h57bfdg4",
+          "name": "Lapicera",
+          "isChecked": true,
+          "category": null,
+          "data": {
+            "amount": "8",
+            "unit": null
+          }
+        },
+        {
+          "id": "h75eg",
+          "name": "Cuaderno",
+          "isChecked": true,
+          "category": null,
+          "data": {
+            "amount": "3",
+            "unit": null
+          }
+        }
+      ],
+      "Supermercado": [
+        {
+          "id": "54gdrf",
+          "name": "Manzana",
+          "isChecked": true,
+          "category": "fruits",
+          "data": {
+            "amount": "3",
+            "unit": "kg"
+          }
+        },
+        {
+          "id": "67h6g5e",
+          "name": "Tornillos",
+          "isChecked": true,
+          "category": "others",
+          "data": {
+            "amount": "1.5",
+            "unit": "kg"
+          }
+        },
+        {
+          "id": "sdgdavs",
+          "name": "Agua",
+          "isChecked": true,
+          "category": "drinks",
+          "data": {
+            "amount": "2.25",
+            "unit": "l"
+          }
+        },
+        {
+          "id": "345gv",
+          "name": "Naranja",
+          "isChecked": false,
+          "category": null,
+          "data": {
+            "amount": "3",
+            "unit": "kg"
+          }
+        }
+      ],
+      "Trabajo": [
+        {
+          "id": "yrthd",
+          "name": "Café",
+          "isChecked": true,
+          "category": null,
+          "data": {
+            "amount": "2",
+            "unit": null
+          }
+        },
+        {
+          "id": "45rf42",
+          "name": "Medialuna",
+          "isChecked": true,
+          "category": "breakfast",
+          "data": {
+            "amount": "12",
+            "unit": "u"
+          }
+        },
+        {
+          "id": "23d2332e",
+          "name": "Planos para 24/07",
+          "isChecked": false,
+          "category": "TASK",
+          "data": null
+        },
+        {
+          "id": "54gf42",
+          "name": "Crear modelo VM",
+          "isChecked": true,
+          "category": "TASK",
+          "data": null
+        }
+      ]
+    },
+
+    "categories": [
+      {
+        "id": "001",
+        "type": "fruits",
+        "description": "Categoria de frutas (initial)"
+      },
+      {
+        "id": "010",
+        "type": "others",
+        "description": "Categoria para otros (default)"
+      },
+      {
+        "id": "011",
+        "type": "breakfast",
+        "description": "Categoria personalizada (custom)"
+      },
+      {
+        "id": "100",
+        "type": "TASK",
+        "description": "Categoria especial (special)"
+      }
+    ]
+}

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   View,
   Text,
@@ -6,21 +6,27 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { DataContext } from '../../context/DataContext';
+import useZustand from '../../store/store';
 
 import styles from './styles';
 
-const BoardItem = ({ title, completed }: any) => {
+const BoardItem = ({ title, completed = 9 }: any) => {
   const navigation = useNavigation<any>();
   const { name } = useContext<any>(DataContext);
+  const { boards } = useZustand();
+  const { items } = boards.filter((list: any) => list.title === title)[0];
+
+  const [percent, setPercent] = useState<number>(0);
+
+  useEffect(() => {
+    console.log(items);
+  }, [])
+
   return (
     <TouchableOpacity
       style={styles.card}
       onPress={() => {
         name.current = title;
-        // navigation.navigate('List-Stack', {
-        //   screen: 'List',
-        //   params: { title }
-        // })
         navigation.navigate('list-detail', { title })
       }}
     >
@@ -38,13 +44,13 @@ const BoardItem = ({ title, completed }: any) => {
         {completed ? (
           <View style={styles.listItemsCompleted}>
             <Text style={styles.itemCountCompleted}>
-              12/12
+              {`${items.length}/${items.length}`}
             </Text>
           </View>
         ) : (
           <View style={styles.listItems}>
             <Text style={styles.itemCount}>
-              12/12
+              {`${completed}/${items.length}`}
             </Text>
           </View>
         )}

@@ -9,7 +9,7 @@ const styles: any = StyleSheet.create({
   },
   cardContainer: {
     width: '100%',
-    padding: 20,
+    padding: 15,
     display: 'flex',
   },
 });

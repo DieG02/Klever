@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DataContext } from '../context/DataContext';
 import BoardDetail from '../screens/Boards/BoardDetail';
+import BoardStack from '../navigation/BoardStack';
+import NavBar from '../components/NavBar/NavBar';
 const Drawer = createDrawerNavigator();
 
 export default function MyStackNavigator() {
@@ -38,10 +40,14 @@ export default function MyStackNavigator() {
 
   return (
     <Drawer.Navigator
-      initialRouteName='boardDetail'
+      initialRouteName='Board-Stack'
+      screenOptions={{
+        header: NavBar,
+        // headerShown: false
+      }}
     >
+      <Drawer.Screen name='Board-Stack' component={BoardStack} options={{ headerShown: false }}/>
       <Drawer.Screen name='boardDetail' component={BoardDetail} />
-
     </Drawer.Navigator>
   )
 }

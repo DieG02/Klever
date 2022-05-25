@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   View,
   Text,
@@ -12,31 +12,32 @@ import { DataContext } from '../../context/DataContext';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from './styles';
 
-const ResultItem = ({ name, selected }: { name: string, selected: boolean }) => {
-  const [value, setValue] = useState<boolean>();
+const ResultItem = ({ name, selected, value, setValue, setData }: { name: string, selected: boolean, value: string, setValue: any, setData: any }) => {
+  const [isSelected, setIsSelected] = useState<boolean>(selected);
   const { name: listName } = useContext<any>(DataContext);
   const { addItems, removeItems } = useZustand();
+
   const onPress = () => {
-    if(value) {
+    if (isSelected) {
       removeItems(listName.current, name);
     } else {
+      if(value === name) {
+        setValue('')
+        setData((previous: any[]) => [{ name, selected: true, id: new Date() }, ...previous.slice(1)])
+      }
       addItems(listName.current, name);
     }
-    setValue(!value);
+    setIsSelected(!isSelected);
   }
+  const toogleStyle = isSelected ? styles.selected : styles.none;
 
-  const isSelected = value ? styles.selected : styles.none;
-
-  useEffect(() => {
-    setValue(selected)
-  }, [])
   return (
     <TouchableOpacity style={styles.item} onPress={onPress}>
-      <Text style={[styles.text, isSelected]}>
+      <Text style={[styles.text, toogleStyle]}>
         {name}
       </Text>
       <Pressable style={styles.icon}>
-        {value
+        {isSelected
           ? <Times color={Colors.Red} width={14}/>
           : <Plus color={Colors.Blue} width={18}/>
         }

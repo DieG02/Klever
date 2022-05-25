@@ -9,8 +9,8 @@ const styles: any = StyleSheet.create({
   },
   cardContainer: {
     width: '100%',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
     backgroundColor: Colors.Light,
     display: 'flex',
   }

@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
-  Text,
   Pressable,
 } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Microphone from '../../assets/icons/Microphone.svg';
 import LeftArrow from '../../assets/icons/Arrow.svg';
 import Times from '../../assets/icons/Times.svg';
-import styles from './styles';
+import { useNavigation } from '@react-navigation/native';
 import { Colors } from '../../utils/stylers';
+import styles from './styles';
 
-const SearchBar = () => {
-  const [value, setValue] = useState<string>('')
+const SearchBar = ({ value, setValue }: { value: string, setValue: any }) => {
+  const navigation = useNavigation();
 
   return (
     <View style={styles.view}>
       <Pressable 
         hitSlop={{ top: 20, right: 15, bottom: 20, left: 5 }}
-        onPress={() => console.log('Back')}
+        onPress={() => navigation.goBack()}
         style={styles.left}
       >
         <LeftArrow width={18} color={Colors.Grey}/>
@@ -26,7 +26,7 @@ const SearchBar = () => {
       <TextInput 
         style={styles.input}
         value={value}
-        // autoFocus
+        autoFocus
         placeholder='Añadir artículo'
         onChangeText={(text: string) => {
           setValue(text)
@@ -34,7 +34,10 @@ const SearchBar = () => {
       />
       <Pressable
         hitSlop={{ top: 20, right: 5, bottom: 20, left: 15 }}
-        onPress={() => console.log('Microphone')}
+        onPress={() => {
+          if(value) setValue('')
+          else console.log('Microphone');
+        }}
         style={styles.right}
       >
         {value 

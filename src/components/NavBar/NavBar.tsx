@@ -13,23 +13,23 @@ const StackHeader = ({ route, options, navigation }: any) => {
     if (route.name === 'list-detail') {
       navigation.goBack();
     } else {
-      console.log('Show Drawer')
+      console.log('Drawer slide')
     }
   }
 
   return (
     <View style={styles.header}>
-      <Pressable
-        style={styles.menuIcon}
-        hitSlop={{ top: 50, right: 50, bottom: 50, left: 50 }}
-        onPress={onPress}
-      >
-        {route.name === 'list-detail'
-          ? <ArrowIcon width={18} color='white'/> 
-          : <MenuIcon width={18} color='white'/>
-        }
-      </Pressable>
-      <Text style={styles.title}>{options.title}</Text>
+
+      {route.name === 'list-detail' &&
+        <Pressable
+          style={styles.menuIcon}
+          hitSlop={{ top: 50, right: 50, bottom: 50, left: 50 }}
+          onPress={onPress}
+        >
+          <ArrowIcon width={18} color='white'/> 
+        </Pressable>
+      }
+      <Text style={styles.title}>{options.title || route.name}</Text>
     </View>
   )
 }
