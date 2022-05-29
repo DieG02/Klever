@@ -6,13 +6,26 @@ import {
 } from 'react-native';
 import CheckSvg from '../../assets/icons/Check.svg';
 import { Colors } from '../../utils/stylers';
+import useZustand from '../../store/store';
 import styles from './styles';
 
-const ListItem = ({ label, checked }: { label: string, checked: boolean }) => {
-  const [isChecked, setCheck] = useState<boolean>(checked);
-  
+const ListItem = ({ item }: any) => {
+  const [isChecked, setCheck] = useState<boolean>(item.isChecked);
+  const { idList, updateItems } = useZustand();
+
+  const handleOnPress = () => {
+    setCheck(!isChecked);
+    updateItems(idList, {
+      ...item,
+      isChecked: !isChecked,
+    })
+  }
+
   return (
-    <TouchableOpacity style={styles.card} onPress={() => setCheck(!isChecked)}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={handleOnPress}
+    >
       <View style={styles.count}>
         {isChecked ? (
           <View style={styles.iconChecked}>
@@ -27,7 +40,7 @@ const ListItem = ({ label, checked }: { label: string, checked: boolean }) => {
       
       <View style={styles.content}>
         <Text style={[styles.label, isChecked && styles.labelChecked]}>
-          {label}
+          {item.name}
         </Text>
       </View>
     </TouchableOpacity>

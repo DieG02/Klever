@@ -46,7 +46,8 @@ const AddItems = () => {
     );
   }, [])
 
-
+  console.log(data);
+  
   return(
     <View>
       <View style={{ backgroundColor: 'white' }}>

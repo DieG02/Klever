@@ -12,7 +12,7 @@ import { DataContext } from '../../context/DataContext';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styles from './styles';
 
-const ResultItem = ({ name, selected, value, setValue, setData }: { name: string, selected: boolean, value: string, setValue: any, setData: any }) => {
+const ResultItem = ({ name, selected }: { name: string, selected: boolean }) => {
   const [isSelected, setIsSelected] = useState<boolean>(selected);
   const { name: listName } = useContext<any>(DataContext);
   const { addItems, removeItems } = useZustand();
@@ -21,11 +21,7 @@ const ResultItem = ({ name, selected, value, setValue, setData }: { name: string
     if (isSelected) {
       removeItems(listName.current, name);
     } else {
-      if(value === name) {
-        setValue('')
-        setData((previous: any[]) => [{ name, selected: true, id: new Date() }, ...previous.slice(1)])
-      }
-      addItems(listName.current, name);
+      addItems(listName.current, { name, selected: isSelected });
     }
     setIsSelected(!isSelected);
   }

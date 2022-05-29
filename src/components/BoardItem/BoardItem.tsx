@@ -10,16 +10,14 @@ import useZustand from '../../store/store';
 
 import styles from './styles';
 
-const BoardItem = ({ title, completed = 9 }: any) => {
+const BoardItem = ({ title, description, id, completed = 0 }: any) => {
   const navigation = useNavigation<any>();
   const { name } = useContext<any>(DataContext);
-  const { boards } = useZustand();
-  const { items } = boards.filter((list: any) => list.title === title)[0];
-
-  const [percent, setPercent] = useState<number>(0);
+  const store = useZustand();
+  const [items, setItems] = useState<any>([]);
 
   useEffect(() => {
-    console.log(items);
+    setItems(store.items[id])
   }, [])
 
   return (
@@ -28,15 +26,15 @@ const BoardItem = ({ title, completed = 9 }: any) => {
       onPress={() => {
         name.current = title;
         navigation.navigate('list-detail', { title })
+        store.updateIdList(id)
       }}
     >
       <View style={styles.content}>
         <Text style={styles.cardTitle}>
-         {title}
+          {title}
         </Text>
         <Text style={styles.description}>
-         {/* {data[index].items.slice(0, 5).join(', ')} */}
-         Description
+          {description}
         </Text>
       </View>
 

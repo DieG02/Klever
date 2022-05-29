@@ -1,33 +1,24 @@
 import create from 'zustand'
 
-const useZustand = create((set: any) => ({
-  boards: [
-    {
-      title: 'Escuela',
-      items: new Array(),
-    },
-    {
-      title: 'Supermercado',
-      items:  new Array(),
-    },
-  ],
-  addItems: (title: string, item: any | any[]) => set(({ boards }: any) => {
-    const list = boards.filter((list: any) => list.title === title)[0];
-    return list.items = [...list.items, item];
-  }),
-  removeItems: (title: string, item: any | any[]) => set(({ boards }: any) => {
-    const list = boards.filter((list: any) => list.title === title)[0];
-    const aux: any = new Set(list.items);
-    aux.delete(item);
-    return list.items = Array.from(aux);
-  }),
-  addBoard: (title: string, items?: any | any[]) => set(({ boards }: any) => {
-    return boards.unshift({
-      title,
-      items: items || new Array(),
-    })
-  }),
 
+export default create((set: any) => ({
+  // Use idList to call database from each list view
+  idList: null,
+  updateIdList: (id: string) => set({ idList: id }), 
+
+  // Use isLoading to show a spinner while is fetching results
+  isLoading: false,
+  startLoading: () => set({ isLoading: true }),
+  stopLoading: () => set({ isLoading: false }),
+
+
+  // Boards --> Lists contentainer (Board)
+  boards: [],
+  // Items --> All items by list, use idList as key (List)
+  items: {},
+  // Default categories from items, optional
+  categories: [],
+  // Default items catalogue
   allItems: [
     { name: 'leche', selected: false },
     { name: 'pan', selected: false },
@@ -39,9 +30,43 @@ const useZustand = create((set: any) => ({
     { name: 'cebolla', selected: false },
     { name: 'zapallo', selected: false },
     { name: 'frijoles', selected: false },
-  ]
-}))
+  ],
 
+  addItems: (title: string, item: any | any[]) => set(({ boards }: any) => {
+    const list = boards.find((list: any) => list.title === title);
+    return list.items = [...list.items, item];
+  }),
+  updateItems: (idList: string, value: any) => set(({ items }: any) => {
+    return {
+      items: {
+        ...items,
+        [idList]: items[idList].map((obj: any) => {
+          if (obj.id === value.id) return value;
+          return obj
+        })
+      }
+    }
+  }), 
+  removeItems: (title: string, item: any | any[]) => set(({ boards }: any) => {
+    const list = boards.find((list: any) => list.title === title);
+    const aux: any = new Set(list.items);
+    aux.delete(item);
+    return list.items = Array.from(aux);
+  }),
+  addBoard: (value: any) => set(({ boards }: any) => {
+    if(Array.isArray(value)) {
+      return value.map((board) => boards.unshift(board));
+    } else {
+      return boards.unshift(value);
+    }
+  }),
+  // Remove each list from the deleted board
+  // removeBoard: () => set(() => {
 
-
-export default useZustand;
+  // }),
+  setInitialData: (response: any) => set({ 
+    boards: response.boards,
+    items: response.items,
+    categories: response.categories,
+  }),
+}));
