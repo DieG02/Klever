@@ -20,6 +20,8 @@ const BoardItem = ({ title, description, id, completed = 0 }: any) => {
     setItems(store.items[id])
   }, [])
 
+  if(!items) return null;
+
   return (
     <TouchableOpacity
       style={styles.card}

@@ -12,7 +12,6 @@ import EmptyMessage from '../../components/EmptyMessage/EmptyMessage';
 import { ModalContext } from '../../context/ModalContext';
 import { DataContext } from '../../context/DataContext';
 import useZustand from '../../store/store';
-import { Schedule } from '../../utils/interfaces';
 import CallProcedure from '../../utils/seed.json';
 import { Colors } from '../../utils/stylers';
 import styles from './styles';

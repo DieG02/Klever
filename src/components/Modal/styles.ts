@@ -4,19 +4,19 @@ const { _center } = CustomStyles;
 
 const styles: any = StyleSheet.create({
   container: {
-    ..._center,
     position: 'absolute',
-    flex: 1,
     width: '100%',
     height: '100%',
     backgroundColor: 'rgba(50, 50, 50, 0.75)',
     zIndex: 10,
-    paddingHorizontal: 20,
   },
   modal: {
     height: 135,
     width: '100%',
-    borderRadius: 15,
+    bottom: 0,
+    position: 'absolute',
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
     backgroundColor: Colors.White,
     paddingVertical: 10,
     paddingHorizontal: 15,
