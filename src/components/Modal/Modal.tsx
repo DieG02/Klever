@@ -18,6 +18,7 @@ const Modal = ({ navigation }: any) => {
   const { isVisible, setVisible } = useContext<any>(ModalContext);
   const { } = useContext<any>(DataContext);
   const [title, setTitle] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
 
   const handleOnChange = (event: string): void => {
     setTitle(event)
@@ -49,7 +50,12 @@ const Modal = ({ navigation }: any) => {
 
   const { addBoard } = useZustand();
   const createBoard = () => {
-    addBoard(title);
+    addBoard({
+      id: Math.round(Math.random() * 10000),
+      title: title,
+      description: description,
+      default: 'Empty description!'
+    });
     closeModal()
   }
   

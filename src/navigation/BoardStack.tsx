@@ -4,7 +4,7 @@ import { DataContext } from '../context/DataContext';
 import NavBar from '../components/NavBar/NavBar';
 import Boards from '../screens/Boards/Boards';
 import List from '../screens/List/List';
-import AddItem from '../screens/AddItem/AddItem';
+import Search from '../screens/Search/Search';
 import BoardDetail from '../screens/Boards/BoardDetail';
 
 const Stack = createStackNavigator();
@@ -67,8 +67,8 @@ export default function MyStackNavigator() {
         })}
       />
       <Stack.Screen
-        name='add-items'
-        component={AddItem}
+        name='search'
+        component={Search}
         options={{ headerShown: false }}
       />
 
@@ -107,7 +107,7 @@ export default function MyStackNavigator() {
       />
       <Stack.Screen
         name='Add-Item'
-        component={AddItem}
+        component={Search}
         options={{ headerShown: false }}
       />
  */

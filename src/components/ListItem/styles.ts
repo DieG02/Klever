@@ -24,11 +24,6 @@ const styles: any = StyleSheet.create({
     fontFamily: Fonts.Bold,
     color: Colors.Dark,
   },
-  label: {
-    fontSize: 15,
-    fontFamily: Fonts.Medium,
-    color: Colors.Dark,
-  },
   labelChecked: {
     color: Colors.Grey,
     textDecorationLine: 'line-through',

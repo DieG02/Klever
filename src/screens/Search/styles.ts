@@ -4,7 +4,7 @@ const { _container } = CustomStyles;
 
 const styles: any = StyleSheet.create({
   content: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 0,
     paddingVertical: 5,
   },
 });

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useMemo } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
   View,
   FlatList
@@ -11,43 +11,45 @@ import { Colors } from '../../utils/stylers';
 import styles from './styles';
 
 
-const AddItems = () => {
+const Search = () => {
   const { name } = useContext<any>(DataContext);
   const [data, setData] = useState<any[]>([]);
   const [value, setValue] = useState<string>('');
-  const { boards, allItems } = useZustand();
-  const { items } = boards.filter((list: any) => list.title === name.current)[0];
-
+  const { items, allItems, idList } = useZustand();
 
   const addTopItem = (current: string) => {
     setValue(current);
-    if (!current) {
-      setData(data.slice(1))
-    }
-    if (allItems.length === data.length && current) {
-      setData([{ name: current, selected: false }, ...data])
-    } else {
-      setData(data.map((element, index) => {
-        if (index === 0) return { name: current, selected: false };
-        else return element;
-      }))
-    }
+    // if (!current) {
+    //   setData(data.slice(1))
+    // }
+    // if (allItems.length === data.length && current) {
+    //   setData([{ name: current, selected: false }, ...data])
+    // } else {
+    //   setData(data.map((element, index) => {
+    //     if (index === 0) return { name: current, selected: false };
+    //     else return element;
+    //   }))
+    // }
+    const currentValue = allItems.filter(val => val.name.includes(current))
+    // console.log(currentValue)
+    setData(currentValue)
   }
 
+  if(!items) return null;
 
+  console.log(items[idList]);
   useEffect(() => {
     const sorted = allItems.sort((a, b) => (a.name > b.name) ? 1 : -1);
-    const array = sorted.map((element, index) => ({ ...element, id: index }))
+    const array = sorted.map((element, index) => ({ ...element, id: index }));
+    // console.log(sorted)
     setData(
-      array.map((element) => {
-        if (items.includes(element.name)) return { ...element, selected: true };
+      sorted.map((element) => {
+        if (items[idList].includes(element.name)) return { ...element, selected: true };
         return element;
       })
     );
   }, [])
 
-  console.log(data);
-  
   return(
     <View>
       <View style={{ backgroundColor: 'white' }}>
@@ -76,4 +78,4 @@ const AddItems = () => {
   )
 }
 
-export default AddItems;
+export default Search;

@@ -37,7 +37,7 @@ const List = () => {
           />
         ))}
       </ScrollView>
-      <FloatButton onPress={() => navigation.navigate('add-items')} />
+      <FloatButton onPress={() => navigation.navigate('search')} />
     </View>
   )
 }
