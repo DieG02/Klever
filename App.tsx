@@ -9,22 +9,13 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-} from 'react-native';
-import { Colors } from './src/styles/global';
+import { NavigationContainer } from '@react-navigation/native';
+import RootStack from './src/navigation/RootStack';
 
-
-const App = () => {
+export default function App () {
   return (
-    <SafeAreaView>
-      <StatusBar
-        barStyle={'dark-content'}
-        backgroundColor={Colors.white}
-      />
-    </SafeAreaView>
-  );
+    <NavigationContainer>
+      <RootStack/>
+    </NavigationContainer>
+  )
 };
-
-export default App;
