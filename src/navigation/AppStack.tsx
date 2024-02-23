@@ -2,13 +2,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home';
 import Collection from '../screens/Collection';
 
-const Stack = createStackNavigator();
+export type AppStackParamList = {
+  Home: undefined;
+  Collection: undefined;
+};
 
-export default function AppStack() {
+const AppStack = createStackNavigator<AppStackParamList>();
+
+export default function AppNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name='Home' component={Home} />
-      <Stack.Screen name='Collenction' component={Collection} />
-    </Stack.Navigator>
+    <AppStack.Navigator>
+      <AppStack.Screen name='Home' component={Home} />
+      <AppStack.Screen name='Collection' component={Collection} />
+    </AppStack.Navigator>
   )
 };
