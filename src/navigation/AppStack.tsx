@@ -1,11 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
+import { AppStackParamList } from '../types/Navigation';
 import Home from '../screens/Home';
 import Collection from '../screens/Collection';
-
-export type AppStackParamList = {
-  Home: undefined;
-  Collection: undefined;
-};
 
 const AppStack = createStackNavigator<AppStackParamList>();
 

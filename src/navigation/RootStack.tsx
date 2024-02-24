@@ -1,11 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
+import { RootStackParamList } from '../types/Navigation';
 import AuthStack from './AuthStack';
 import AppStack from './AppStack';
-
-export type RootStackParamList = {
-  AuthStack: undefined;
-  AppStack: undefined;
-};
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
