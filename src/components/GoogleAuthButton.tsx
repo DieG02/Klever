@@ -2,8 +2,8 @@ import { useNavigation } from '@react-navigation/native';
 import { Pressable, StyleSheet, ViewStyle } from 'react-native';
 
 import { Colors } from '../styles/global';
-import { Parragraph } from './common';
 import { NavigationProps } from '../types/Navigation';
+import { Parragraph } from './common';
 
 interface GoogleAuthButtonProps {
   style?: ViewStyle;
