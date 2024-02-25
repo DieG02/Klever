@@ -1,17 +1,21 @@
 import { FlatList, Image, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
-import { ListItem } from '../components';
+import { Card } from '../components';
 import { Parragraph, PrimaryButton, Title } from '../components/common';
 import { Colors } from '../styles/global';
+import { AppNavigationProps } from '../types/Navigation';
 import { avatar } from '../utils/mock.data';
 import { data } from '../utils/mock.data';
 
-interface HomeProps {}
-export default function Home({}: HomeProps) {
+interface HomeProps {
+  navigation: AppNavigationProps;
+}
+export default function Home({ navigation }: HomeProps) {
 
   const Separator = () => (
     <View style={{ marginBottom: 15 }}/>
   );
+  const onRedirect = (item: any) => navigation.push('Collection', item);
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -39,7 +43,12 @@ export default function Home({}: HomeProps) {
         <FlatList
           data={data}
           showsVerticalScrollIndicator={false}
-          renderItem={ListItem}
+          renderItem={({ item }) => (
+            <Card
+              item={item}
+              onRedirect={() => onRedirect(item)}
+            />
+          )}
           ItemSeparatorComponent={Separator}
           keyExtractor={item => item.id}
         />

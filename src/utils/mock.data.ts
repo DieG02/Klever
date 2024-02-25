@@ -3,15 +3,15 @@ export const avatar = 'https://i.ibb.co/WWhZDRM/avatar.png';
 export const data = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
+    title: 'Supermarket',
   },
   {
     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
+    title: 'Work',
   },
   {
     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
+    title: 'Studies',
   },
   {
     id: '4d9c141d-6de3-4c40-96e2-fc5fa8a5b602',
@@ -41,4 +41,22 @@ export const data = [
     id: 'f0e8f038-7507-4c9f-8fe2-fa56bea7d5fc',
     title: 'Tenth Item',
   },
+];
+
+export const listData = [
+  { label: 'Manzana', isChecked: true },
+  { label: 'Banana', isChecked: true },
+  { label: 'Uva', isChecked: true },
+  { label: 'Cereza', isChecked: true },
+  { label: 'Naranja', isChecked: false },
+  { label: 'Melón', isChecked: true },
+  { label: 'Sandía', isChecked: false },
+  { label: 'Piña', isChecked: true },
+  { label: 'Durazno', isChecked: false },
+  { label: 'Pera', isChecked: false },
+  { label: 'Papaya', isChecked: true },
+  { label: 'Fresa', isChecked: false },
+  { label: 'Mango', isChecked: false },
+  { label: 'Kiwi', isChecked: false },
+  { label: 'Limón', isChecked: true },
 ];

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { Colors } from '../styles/global';
 
@@ -6,11 +6,11 @@ type ItemData = {
   id: string;
   title: string;
 };
-export default function ListItem ({ item }: { item: ItemData }) {
+export default function Card ({ item, onRedirect }: { item: ItemData, onRedirect: () => void }) {
   return (
-    <View style={styles.item}>
+    <Pressable style={styles.item} onPress={onRedirect}>
       <Text>{item.title}</Text>
-    </View>
+    </Pressable>
   )
 };
 

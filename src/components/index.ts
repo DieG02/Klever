@@ -1,9 +1,9 @@
+import Card from './Card';
 import FacebookAuthButton from './FacebookAuthButton';
 import GoogleAuthButton from './GoogleAuthButton';
-import ListItem from './ListItem';
 
 export {
-  ListItem,
+  Card,
   GoogleAuthButton,
   FacebookAuthButton,
 }
