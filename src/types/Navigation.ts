@@ -1,9 +1,13 @@
-import { NavigatorScreenParams } from '@react-navigation/native';
+import { NavigatorScreenParams, RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 export type NavigationProps = StackNavigationProp<RootStackParamList>;
 export type AuthNavigationProps = StackNavigationProp<AuthStackParamList>;
 export type AppNavigationProps = StackNavigationProp<AppStackParamList>;
+
+export type RouteProps<T extends keyof RootStackParamList> = RouteProp<RootStackParamList, T>;
+export type AuthRouteProps<T extends keyof AuthStackParamList> = RouteProp<AuthStackParamList, T>;
+export type AppRouteProps<T extends keyof AppStackParamList> = RouteProp<AppStackParamList, T>;
 
 export type RootStackParamList = {
   AuthStack: NavigatorScreenParams<AuthStackParamList>;
@@ -18,5 +22,5 @@ export type AuthStackParamList = {
 
 export type AppStackParamList = {
   Home: undefined;
-  Collection: undefined;
+  Collection: { id: string, title: string };
 };
