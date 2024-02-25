@@ -1,13 +1,20 @@
+import { useNavigation } from '@react-navigation/native';
 import { Pressable, StyleSheet, ViewStyle } from 'react-native';
-import { Parragraph } from './common';
+
 import { Colors } from '../styles/global';
+import { Parragraph } from './common';
+import { NavigationProps } from '../types/Navigation';
 
 interface GoogleAuthButtonProps {
   style?: ViewStyle;
 }
 export default function GoogleAuthButton({ style }: GoogleAuthButtonProps) {
+  const navigation = useNavigation<NavigationProps>();
+  const onRedirect = () => {
+    navigation.navigate('AppStack', { screen: 'Home' });
+  } 
   return (
-    <Pressable style={[styles.container, style]}>
+    <Pressable style={[styles.container, style]} onPress={onRedirect}>
       <Parragraph>
         Continue with Google
       </Parragraph>

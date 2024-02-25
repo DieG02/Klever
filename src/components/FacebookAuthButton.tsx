@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, ViewStyle } from 'react-native';
-import { Parragraph } from './common';
+
 import { Colors } from '../styles/global';
+import { Parragraph } from './common';
 
 interface FacebookAuthButtonProps {
   style?: ViewStyle;

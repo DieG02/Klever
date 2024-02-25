@@ -1,15 +1,8 @@
 import { useEffect } from 'react';
-import { View, Text, StyleSheet, StatusBar } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+
 import { Colors, Poppins } from '../styles/global';
-import { AuthStackParamList } from '../navigation/AuthStack';
-
-type NavigationProps = StackNavigationProp<AuthStackParamList, 'Splash'>;
-
-interface SplashProps {
-  navigation: NavigationProps
-}
+import { SplashProps } from '../types/Screens';
 
 export default function Splash({ navigation }: SplashProps) {
 
@@ -19,7 +12,6 @@ export default function Splash({ navigation }: SplashProps) {
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
-
   return (
     <SafeAreaView style={styles.wrapper}>
       <StatusBar backgroundColor={Colors.Primary} barStyle='light-content'/>
@@ -63,7 +55,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: Colors.White,
   },
-
   footer: {
     position: 'absolute',
     bottom: 16,

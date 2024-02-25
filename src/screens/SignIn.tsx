@@ -1,63 +1,50 @@
 import { Pressable, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 
-import SignUpSvg from '../assets/svg/SignUpSvg';
+import SignInSvg from '../assets/svg/SignInSvg';
 import { FacebookAuthButton, GoogleAuthButton } from '../components';
 import { Parragraph, Title } from '../components/common';
 import { Colors, Poppins } from '../styles/global';
 import { AuthNavigationProps } from '../types/Navigation';
 
-interface SignUpProps {
+interface SignInProps {
   navigation: AuthNavigationProps
 }
-export default function SignUp({ navigation }: SignUpProps) {
+export default function SignIn({ navigation }: SignInProps) {
   const onRedirect = () => {
-    navigation.replace('SignIn');
+    navigation.replace('SignUp');
   };
   return (
     <SafeAreaView style={styles.wrapper}>
       <StatusBar backgroundColor={Colors.White} barStyle='dark-content'/>
       <View style={styles.brand}>
-        <Title style={styles.klever}>
+        <Text style={styles.klever}>
           Klever
-        </Title>
+        </Text>
       </View>
 
       <View>
         <Title style={styles.title}>
-          Create your account
+          Log in to your account
         </Title>
         <Parragraph>
-          Organise your ideas in an easy, quick and simple way!
+          Hello, welcome back! 👋
         </Parragraph>
       </View>
 
       <View style={styles.svg}>
-        <SignUpSvg/>
+        <SignInSvg/>
       </View>
 
       <View>
         <GoogleAuthButton/>
         <FacebookAuthButton/>
         <Pressable onPress={onRedirect}>
-          <Parragraph style={styles.center}>
-            <Text>
-              Already have an account?&nbsp;
-            </Text>
-            <Text style={styles.redirect}>
-              Sign in
-            </Text>
-          </Parragraph>
-        </Pressable>
-      </View>
-
-      <View style={styles.footer}>
-        <Pressable>
           <Text style={styles.center}>
-            <Parragraph size='sm'>
-              By registration up you accept the
-            </Parragraph >
-            <Parragraph size='sm' color='primary'>
-              Terms of Services & Privacy Policy
+            <Parragraph>
+              {`Don't have an account? `}
+            </Parragraph>
+            <Parragraph color='primary' weight='semibold'>
+              {`Sign up`}
             </Parragraph>
           </Text>
         </Pressable>
@@ -91,14 +78,5 @@ const styles = StyleSheet.create({
   },
   center: {
     textAlign: 'center'
-  },
-  redirect: {
-    fontFamily: Poppins.Semibold,
-    color: Colors.Primary,
-  },
-  footer: {
-    marginTop: 'auto',
-    marginBottom: 24,
-    marginHorizontal: 24,
   },
 });

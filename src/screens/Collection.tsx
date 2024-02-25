@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 interface CollectionProps {}
 export default function Collection({}: CollectionProps) {

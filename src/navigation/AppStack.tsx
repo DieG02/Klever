@@ -8,7 +8,7 @@ const AppStack = createStackNavigator<AppStackParamList>();
 export default function AppNavigator() {
   return (
     <AppStack.Navigator>
-      <AppStack.Screen name='Home' component={Home} />
+      <AppStack.Screen name='Home' component={Home} options={{ headerShown: false }}/>
       <AppStack.Screen name='Collection' component={Collection} />
     </AppStack.Navigator>
   )
