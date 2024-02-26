@@ -3,7 +3,7 @@ import { Colors, Poppins } from '../../styles/global';
 
 interface ParragraphProps extends TextProps {
   color?: 'default' | 'white' | 'primary';
-  size?: 'sm' | 'base' | 'md';
+  size?: 'sm' | 'base' | 'md' | 'lg';
   weight?: 'regular' | 'medium' | 'semibold';
 }
 
@@ -17,7 +17,8 @@ export default function Parragraph(props: ParragraphProps) {
   const fontSize = {
     'sm': 10,
     'base': 11,
-    'md': 12
+    'md': 12,
+    'lg': 13,
   };
   const fontFamily = {
     'regular': Poppins.Regular,
