@@ -31,7 +31,7 @@ export default function Home({ navigation }: HomeProps) {
 
       <View style={styles.content}>
         <View style={styles.labels}>
-          <Parragraph>
+          <Parragraph weight='semibold'>
             {`My lists`}
           </Parragraph>
           <Pressable>

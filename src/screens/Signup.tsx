@@ -52,14 +52,14 @@ export default function SignUp({ navigation }: SignUpProps) {
 
       <View style={styles.footer}>
         <Pressable>
-          <Text style={styles.center}>
-            <Parragraph size='sm'>
-              By registration up you accept the
-            </Parragraph >
-            <Parragraph size='sm' color='primary'>
-              Terms of Services & Privacy Policy
-            </Parragraph>
-          </Text>
+          <Parragraph size='sm' style={styles.center}>
+            <Text>
+              {`By registration up you accept the `}
+            </Text>
+            <Text style={{ color: Colors.Link }}>
+              {` Terms of Services & Privacy Policy`}
+            </Text>
+          </Parragraph>
         </Pressable>
       </View>
     </SafeAreaView>
