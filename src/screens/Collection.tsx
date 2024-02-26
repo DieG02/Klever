@@ -1,29 +1,21 @@
 import { useState } from 'react';
-import { FlatList, Pressable, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Pressable, SafeAreaView, StyleSheet, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { CheckIcon, MicrophoneIcon, PlusIcon } from 'react-native-heroicons/mini';
+import { MicrophoneIcon, PlusIcon } from 'react-native-heroicons/mini';
 
 import { Colors, Poppins } from '../styles/global';
 import { AppNavigationProps, AppRouteProps } from '../types/Navigation';
-import { listData } from '../utils/mock.data';
+import { items } from '../utils/mock.data';
+import { Item } from '../components';
 
 interface CollectionProps {
   navigation: AppNavigationProps;
   route: AppRouteProps<'Collection'>
 }
 export default function Collection({ route }: CollectionProps) {
+  const { id, title } = route.params;
   const [value, setValue] = useState<string>('');
 
-  const ListItem = ({ item }: any) => (
-    <TouchableOpacity style={styles.item}>
-      <Text style={styles.itemLabel}>
-        {item.label}
-      </Text>
-      <View style={item.isChecked ? styles.itemChecked : styles.itemButton}>
-        <CheckIcon color={item.isChecked ? Colors.White : 'transparent'} width={15}/>
-      </View>
-    </TouchableOpacity>
-  );
   const Divider = () => (
     <View style={styles.divider}/>
   )
@@ -32,15 +24,16 @@ export default function Collection({ route }: CollectionProps) {
     <SafeAreaView style={styles.wrapper}>
       <FlatList
         style={styles.list}
-        data={listData}
-        renderItem={ListItem}
+        data={items[id]}
+        renderItem={Item}
         ItemSeparatorComponent={Divider}
         showsVerticalScrollIndicator={false}
       />
       <View style={styles.footer}>
         <View style={styles.modal}>
           <TextInput 
-            style={styles.input} 
+            style={styles.input}
+            maxLength={40}
             placeholder='Add new item...'
             value={value}
             onChangeText={setValue}
@@ -65,35 +58,6 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingHorizontal: 20,
-  },
-  item: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  itemLabel: {
-    fontFamily: Poppins.Regular,
-    fontSize: 14,
-    color: Colors.Dark,
-    paddingVertical: 14,
-  },
-  itemButton: {
-    height: 20,
-    width: 20,
-    borderWidth: 1,
-    borderColor: Colors.Gray,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  itemChecked: {
-    height: 20,
-    width: 20,
-    backgroundColor: Colors.Primary,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   divider: {
     height: 1,
