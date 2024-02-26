@@ -1,8 +1,8 @@
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable, PressableProps, StyleSheet } from 'react-native';
 import Title from './Title';
 import { Colors } from '../../styles/global';
 
-interface PrimaryButtonProps {
+interface PrimaryButtonProps extends PressableProps {
   children: React.ReactNode
 }
 export default function PrimaryButton({ children, ...props }: PrimaryButtonProps) {

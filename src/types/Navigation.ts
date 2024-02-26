@@ -23,4 +23,5 @@ export type AuthStackParamList = {
 export type AppStackParamList = {
   Home: undefined;
   Collection: { id: string, title: string };
+  NewCollectionModal: undefined;
 };

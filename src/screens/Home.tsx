@@ -1,4 +1,4 @@
-import { FlatList, Image, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, Pressable, SafeAreaView, StyleSheet, Text, View, Modal } from 'react-native';
 
 import { Card } from '../components';
 import { Parragraph, PrimaryButton, Title } from '../components/common';
@@ -6,16 +6,15 @@ import { Colors } from '../styles/global';
 import { AppNavigationProps } from '../types/Navigation';
 import { avatar } from '../utils/mock.data';
 import { data } from '../utils/mock.data';
+import TextInputHome from '../components/TextInputHome';
 
 interface HomeProps {
   navigation: AppNavigationProps;
 }
-export default function Home({ navigation }: HomeProps) {
-
+export default function Home({ }: HomeProps) {
   const Separator = () => (
     <View style={{ marginBottom: 15 }}/>
   );
-  const onRedirect = (item: any) => navigation.push('Collection', item);
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -42,23 +41,14 @@ export default function Home({ navigation }: HomeProps) {
         </View>
         <FlatList
           data={data}
+          contentContainerStyle={{ paddingBottom: 5 }}
           showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => (
-            <Card
-              item={item}
-              onRedirect={() => onRedirect(item)}
-            />
-          )}
+          renderItem={({ item }) => <Card item={item} />}
           ItemSeparatorComponent={Separator}
           keyExtractor={item => item.id}
         />
       </View>
-
-      <View style={styles.footer}>
-        <PrimaryButton>
-          {`Create a new list`}
-        </PrimaryButton>
-      </View>
+      <TextInputHome onPress={(value: string) => console.log(value)}/>
     </SafeAreaView>
   )
 };
@@ -67,7 +57,6 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: Colors.White,
-    paddingHorizontal: 20,
   },
   header: {
     display: 'flex',
@@ -75,6 +64,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 20,
+    marginHorizontal: 20,
   },
   avatar: {
     height: 40,
@@ -82,24 +72,31 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   news: {
-    width: '100%',
     height: 100,
     borderRadius: 15,
     marginBottom: 30,
-    backgroundColor: Colors.Background,
+    backgroundColor: Colors.Dark,
+    marginHorizontal: 20,
   },
-
   content: {
     flex: 1,
+    marginHorizontal: 20,
   },
   labels: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 15
   },
-
   footer: {
     paddingVertical: 20,
-    backgroundColor: Colors.White
+    backgroundColor: Colors.White,
+  },
+
+  modalContainer: {
+    backgroundColor: Colors.Black,
+    // flex: 1,
+    height: 500,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 })

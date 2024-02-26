@@ -7,7 +7,6 @@ interface ItemProps {
   children: React.ReactNode;
 }
 export default function Item({ item }: any) {
-  console.log(item)
   return (
     <TouchableOpacity style={styles.item}>
       <Parragraph

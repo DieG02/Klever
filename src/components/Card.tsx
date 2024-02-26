@@ -2,7 +2,8 @@ import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Colors } from '../styles/global';
 import { Parragraph } from './common';
-import { Text } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProps } from '../types/Navigation';
 
 type ItemData = {
   id: string,
@@ -12,8 +13,13 @@ type ItemData = {
   description: string,
   category: string,
 };
-export default function Card ({ item, onRedirect }: { item: ItemData, onRedirect: () => void }) {
+export default function Card ({ item }: { item: ItemData }) {
   const { title, total, current } = item;
+  const navigation = useNavigation<AppNavigationProps>();
+  const onRedirect = () => {
+    navigation.push('Collection', item);
+  }
+
   const getProgress = (current: number, total: number): number => {
     const percent = (current / total) * 100;
     return parseInt(percent.toFixed(0));
