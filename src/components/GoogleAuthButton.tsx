@@ -1,8 +1,9 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Pressable, StyleSheet, ViewStyle } from 'react-native';
+import GoogleSvg from '../assets/svg/GoogleSvg';
 
 import { Colors } from '../styles/global';
-import { NavigationProps } from '../types/Navigation';
+import { AuthRouteProps, NavigationProps } from '../types/Navigation';
 import { Parragraph } from './common';
 
 interface GoogleAuthButtonProps {
@@ -13,10 +14,16 @@ export default function GoogleAuthButton({ style }: GoogleAuthButtonProps) {
   const onRedirect = () => {
     navigation.navigate('AppStack', { screen: 'Home' });
   } 
+  const route = useRoute<AuthRouteProps<'SignUp'>>();
+  const label = route.name === 'SignUp'
+    ? 'Sign up with Google'
+    : 'Continue with Google';
+
   return (
     <Pressable style={[styles.container, style]} onPress={onRedirect}>
-      <Parragraph>
-        Continue with Google
+      <GoogleSvg width={24} height={24}/>
+      <Parragraph size='md' style={{ marginLeft: 15 }}>
+        {label}
       </Parragraph>
     </Pressable>
   )
@@ -31,5 +38,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.Background,
     borderRadius: 25,
     marginBottom: 15,
+    flexDirection: 'row',
   },
-})
+});
