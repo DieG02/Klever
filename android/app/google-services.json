@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "860051153873",
+    "project_id": "klever-24d61",
+    "storage_bucket": "klever-24d61.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860051153873:android:a8196cf24a7072614976f0",
+        "android_client_info": {
+          "package_name": "com.klever"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860051153873-kovjsnuts8ftu2bpqbb6n6h8i6kqqt8q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjiIfsu56dkZRYDtormiu7tAu-4e71_TQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860051153873-kovjsnuts8ftu2bpqbb6n6h8i6kqqt8q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
