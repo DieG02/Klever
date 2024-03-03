@@ -8,16 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* KleverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* KleverTests.m */; };
+		06B1FAEFF3304105A7C14338 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3DE66CA60134569A0CCEC13 /* Poppins-Bold.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-Klever.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-Klever.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		4A70B46062E9498AB0E20483 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E0A21B8840E4A358CB8F401 /* Poppins-Medium.ttf */; };
+		69B217D02992421698DB8960 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95BAFBE6F612400987B2ECCA /* Poppins-Regular.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-Klever-KleverTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Klever-KleverTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		69B217D02992421698DB8960 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95BAFBE6F612400987B2ECCA /* Poppins-Regular.ttf */; };
 		F769942D031D4E7FB634DBA8 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9481705B425448D69639C5C7 /* Poppins-SemiBold.ttf */; };
-		06B1FAEFF3304105A7C14338 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3DE66CA60134569A0CCEC13 /* Poppins-Bold.ttf */; };
-		4A70B46062E9498AB0E20483 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E0A21B8840E4A358CB8F401 /* Poppins-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,32 +26,32 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = "Klever";
+			remoteInfo = Klever;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* KleverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KleverTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* KleverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KleverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* KleverTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "KleverTests.m"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* Klever.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Klever.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "Klever/AppDelegate.h"; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = "Klever/AppDelegate.mm"; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Klever/Images.xcassets"; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Klever/Info.plist"; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Klever/main.m"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* KleverTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KleverTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* Klever.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klever.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Klever/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Klever/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Klever/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Klever/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Klever/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-Klever-KleverTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Klever-KleverTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-Klever.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klever.debug.xcconfig"; path = "Target Support Files/Pods-Klever/Pods-Klever.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-Klever.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klever.release.xcconfig"; path = "Target Support Files/Pods-Klever/Pods-Klever.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Klever-KleverTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klever-KleverTests.debug.xcconfig"; path = "Target Support Files/Pods-Klever-KleverTests/Pods-Klever-KleverTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-Klever.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Klever.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "Klever/LaunchScreen.storyboard"; sourceTree = "<group>"; };
+		5E0A21B8840E4A358CB8F401 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../src/assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Klever/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Klever-KleverTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Klever-KleverTests.release.xcconfig"; path = "Target Support Files/Pods-Klever-KleverTests/Pods-Klever-KleverTests.release.xcconfig"; sourceTree = "<group>"; };
+		9481705B425448D69639C5C7 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../src/assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		95BAFBE6F612400987B2ECCA /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../src/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		A3DE66CA60134569A0CCEC13 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../src/assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		95BAFBE6F612400987B2ECCA /* Poppins-Regular.ttf */ = {isa = PBXFileReference; name = "Poppins-Regular.ttf"; path = "../src/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9481705B425448D69639C5C7 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; name = "Poppins-SemiBold.ttf"; path = "../src/assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A3DE66CA60134569A0CCEC13 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; name = "Poppins-Bold.ttf"; path = "../src/assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5E0A21B8840E4A358CB8F401 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; name = "Poppins-Medium.ttf"; path = "../src/assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +80,7 @@
 				00E356F21AD99517003FC87E /* KleverTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = "KleverTests";
+			path = KleverTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -101,7 +101,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = "Klever";
+			name = Klever;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -158,7 +158,7 @@
 			sourceTree = "<group>";
 		};
 		DB98140D4CE44A7AB13A3924 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				95BAFBE6F612400987B2ECCA /* Poppins-Regular.ttf */,
 				9481705B425448D69639C5C7 /* Poppins-SemiBold.ttf */,
@@ -166,8 +166,8 @@
 				5E0A21B8840E4A358CB8F401 /* Poppins-Medium.ttf */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
 			path = "";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -188,8 +188,7 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = "KleverTests";
-			productname = "KleverTests";
+			name = KleverTests;
 			productReference = 00E356EE1AD99517003FC87E /* KleverTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -210,8 +209,8 @@
 			);
 			dependencies = (
 			);
-			name = "Klever";
-			productName = "Klever";
+			name = Klever;
+			productName = Klever;
 			productReference = 13B07F961A680F5B00A75B9A /* Klever.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -462,7 +461,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "KleverTests/Info.plist";
+				INFOPLIST_FILE = KleverTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -486,7 +485,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = "KleverTests/Info.plist";
+				INFOPLIST_FILE = KleverTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -512,8 +511,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = "Klever/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "Klever";
+				INFOPLIST_FILE = Klever/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Klever;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -524,7 +523,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "Klever";
+				PRODUCT_NAME = Klever;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -538,8 +537,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = "Klever/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "Klever";
+				INFOPLIST_FILE = Klever/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Klever;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -550,7 +549,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "Klever";
+				PRODUCT_NAME = Klever;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
