@@ -1,4 +1,4 @@
-package com.klver.newarchitecture;
+package com.klever.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.klver.BuildConfig;
-import com.klver.newarchitecture.components.MainComponentsRegistry;
-import com.klver.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.klever.BuildConfig;
+import com.klever.newarchitecture.components.MainComponentsRegistry;
+import com.klever.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

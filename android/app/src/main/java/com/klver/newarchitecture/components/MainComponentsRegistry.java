@@ -1,4 +1,4 @@
-package com.klver.newarchitecture.components;
+package com.klever.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

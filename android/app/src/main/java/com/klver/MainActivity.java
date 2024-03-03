@@ -1,4 +1,4 @@
-package com.klver;
+package com.klever;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
