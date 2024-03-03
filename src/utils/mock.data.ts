@@ -119,7 +119,7 @@ type ObjectWithNestedObjects = {
 
 export const items: ObjectWithNestedObjects = {
   'bd7a8afc-3da1-4c40-9d77-6a1e09cbd109': [
-    { label: 'Add Modal to Cards', isChecked: false },
+    { label: 'Add Modal to Cards', isChecked: true },
     { label: 'Add new cards to home page', isChecked: false },
     { label: 'Add translation function (EN-ES-IT?)', isChecked: false },
     { label: 'Add a new screen to see all lists', isChecked: false },
