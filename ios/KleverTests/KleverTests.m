@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface KlverTests : XCTestCase
+@interface KleverTests : XCTestCase
 
 @end
 
-@implementation KlverTests
+@implementation KleverTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {
