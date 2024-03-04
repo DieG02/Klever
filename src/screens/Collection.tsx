@@ -11,8 +11,7 @@ interface CollectionProps {
   route: AppRouteProps<'Collection'>
 }
 export default function Collection({ route }: CollectionProps) {
-  const { id } = route.params;
-
+  const { collectionId } = route.params;
   const Divider = () => (
     <View style={styles.divider}/>
   )
@@ -21,7 +20,7 @@ export default function Collection({ route }: CollectionProps) {
     <SafeAreaView style={styles.wrapper}>
       <FlatList
         style={styles.list}
-        data={items[id]}
+        data={items[collectionId]}
         renderItem={Item}
         ItemSeparatorComponent={Divider}
         showsVerticalScrollIndicator={false}

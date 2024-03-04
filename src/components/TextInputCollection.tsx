@@ -54,7 +54,6 @@ export default function TextInputCollection({ placeholder = 'Add', onPress, allo
     _clearState();
     try {
       await Voice.start('es-MX');
-      console.log('called start');
     } catch (e) {
       console.error(e);
     }
