@@ -1,6 +1,6 @@
+import { RootStackParamList } from '../types/navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { RootStackParamList } from '../types/Navigation';
 import AppStack from './AppStack';
 import AuthStack from './AuthStack';
 

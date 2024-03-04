@@ -1,10 +1,10 @@
+import { AuthRouteProps } from '../types/navigation';
+import { useRoute } from '@react-navigation/native';
 import { Pressable, StyleSheet, ViewStyle } from 'react-native';
 
+import FacebookSvg from '../assets/svg/FacebookSvg';
 import { Colors } from '../styles/global';
 import { Parragraph } from './common';
-import FacebookSvg from '../assets/svg/FacebookSvg';
-import { useRoute } from '@react-navigation/native';
-import { AuthRouteProps } from '../types/Navigation';
 
 interface FacebookAuthButtonProps {
   style?: ViewStyle;

@@ -1,8 +1,9 @@
+import { AuthStackParamList } from '../types/navigation';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AuthStackParamList } from '../types/Navigation';
-import Splash from '../screens/Splash';
+
 import SignIn from '../screens/SignIn';
 import SignUp from '../screens/SignUp';
+import Splash from '../screens/Splash';
 
 const AuthStack = createStackNavigator<AuthStackParamList>();
 

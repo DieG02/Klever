@@ -1,12 +1,12 @@
-import { FlatList, Image, Pressable, SafeAreaView, StyleSheet, Text, View, Modal } from 'react-native';
+import { AppNavigationProps } from '../types/navigation';
+import { FlatList, Image, Modal, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 
 import { Card } from '../components';
 import { Parragraph, PrimaryButton, Title } from '../components/common';
+import TextInputHome from '../components/TextInputHome';
 import { Colors } from '../styles/global';
-import { AppNavigationProps } from '../types/Navigation';
 import { avatar } from '../utils/mock.data';
 import { data } from '../utils/mock.data';
-import TextInputHome from '../components/TextInputHome';
 
 interface HomeProps {
   navigation: AppNavigationProps;

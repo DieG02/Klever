@@ -1,10 +1,11 @@
+import { AppNavigationProps, AppRouteProps } from '../types/navigation';
 import { useState } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, View } from 'react-native';
-import { Colors } from '../styles/global';
-import { AppNavigationProps, AppRouteProps } from '../types/Navigation';
-import { items } from '../utils/mock.data';
+
 import { Item } from '../components';
 import TextInputCollection from '../components/TextInputCollection';
+import { Colors } from '../styles/global';
+import { items } from '../utils/mock.data';
 
 interface CollectionProps {
   navigation: AppNavigationProps;

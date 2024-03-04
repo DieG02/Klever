@@ -1,9 +1,9 @@
+import { AppNavigationProps } from '../types/navigation';
+import { useNavigation } from '@react-navigation/native';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Colors } from '../styles/global';
 import { Parragraph } from './common';
-import { useNavigation } from '@react-navigation/native';
-import { AppNavigationProps } from '../types/Navigation';
 
 type ItemData = {
   id: string,
