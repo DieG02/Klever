@@ -20,7 +20,6 @@ export type AppStackParamList = {
     title: string;
     collectionId?: any;
   };
-  NewCollectionModal: undefined;
 };
 
 // Types of navigation

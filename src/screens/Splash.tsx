@@ -1,16 +1,31 @@
+import { SplashProps } from '../types/screens';
+import { WEB_CLIENT_ID } from '@env';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { useEffect } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 
 import { Colors, Poppins } from '../styles/global';
-import { SplashProps } from '../types/Screens';
 
 export default function Splash({ navigation }: SplashProps) {
-
   useEffect(() => {
-    const timer = setTimeout(() => {
-      navigation.replace('SignIn');
-    }, 1000);
-    return () => clearTimeout(timer);
+    GoogleSignin.configure({
+      // scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+      webClientId: WEB_CLIENT_ID,
+      offlineAccess: true,
+    });
+    const isSignedIn = async () => {
+      const session = await GoogleSignin.isSignedIn();
+      console.log({session});
+      if (session) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Home' }],
+        });
+      } else {
+        navigation.replace('SignIn');
+      }
+    };
+    isSignedIn();
   }, []);
   return (
     <SafeAreaView style={styles.wrapper}>
