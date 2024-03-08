@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "860051153873-jcb5fppakd23890jh206ttrvvj8k1bsd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.klever",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
           "client_id": "860051153873-kovjsnuts8ftu2bpqbb6n6h8i6kqqt8q.apps.googleusercontent.com",
           "client_type": 3
         }
