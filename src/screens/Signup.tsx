@@ -2,7 +2,7 @@ import { AuthNavigationProps } from '../types/navigation';
 import { Pressable, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 
 import SignUpSvg from '../assets/svg/SignUpSvg';
-import { FacebookAuthButton, GoogleAuthSignUpButton } from '../components';
+import { FacebookAuthButton, GoogleAuthButton } from '../components';
 import { Parragraph, Title } from '../components/common';
 import { Colors, Poppins } from '../styles/global';
 
@@ -36,7 +36,7 @@ export default function SignUp({ navigation }: SignUpProps) {
       </View>
 
       <View>
-        <GoogleAuthSignUpButton/>
+        <GoogleAuthButton/>
         <FacebookAuthButton/>
         <Pressable onPress={onRedirect}>
           <Parragraph style={styles.center}>

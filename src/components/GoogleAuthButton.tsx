@@ -1,7 +1,8 @@
-import { NavigationProps, RouteProps, AuthRouteProps } from '../types/navigation';
+import { NavigationProps, AuthRouteProps } from '../types/navigation';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Pressable, StyleSheet, ViewStyle } from 'react-native';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import GoogleSvg from '../assets/svg/GoogleSvg';
 import { Colors } from '../styles/global';
@@ -11,66 +12,18 @@ import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-si
 interface GoogleAuthButtonProps {
   style?: ViewStyle;
 };
-export function GoogleAuthSignInButton({ style }: GoogleAuthButtonProps) {
+
+export function GoogleAuthButton({ style }: GoogleAuthButtonProps) {
   const navigation = useNavigation<NavigationProps>();
-  const route = useRoute<RouteProps<'AuthStack'>>();
 
-  
-  const signInWithGoogle = async () => {
+  const authWithGoogle = async () => {
     try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      return userInfo;
-    } catch (error: any) {
-      switch (error.code) {
-        case statusCodes.SIGN_IN_CANCELLED: 
-          console.log('Cancelled');
-          break;
-        case error.code === statusCodes.IN_PROGRESS:
-          console.log('In progress...');
-          break;
-        case error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-          console.log('Play services not available');
-          break;
-
-        default:
-          console.log('Some error', error);
-          break;
-      }
-    }
-  };
-
-  const _signIn= async () => {
-    const session = await signInWithGoogle();
-    console.log({ session });
-    if(session) {
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'AppStack' }],
-      });
-    }
-  };
-
-  return (
-    <Pressable style={[styles.container, style]} onPress={_signIn}>
-      <GoogleSvg width={24} height={24}/>
-      <Parragraph size='md' style={{ marginLeft: 15 }}>
-        Continue with Google
-      </Parragraph>
-    </Pressable>
-  )
-};
-
-export function GoogleAuthSignUpButton({ style }: GoogleAuthButtonProps) {
-  const navigation = useNavigation<NavigationProps>();
-  const route = useRoute<AuthRouteProps<'SignUp'>>();
-
-  const signUpWithGoogle = async () => {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
+      // Check if your device supports Google Play
+      await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+      // Get the users ID token
+      const { idToken } = await GoogleSignin.signIn();
       // Create a Google credential with the token
-      const googleCredential = auth.GoogleAuthProvider.credential(userInfo.idToken);
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
       // Sign-in the user with the credential
       return auth().signInWithCredential(googleCredential);
     } catch (error: any) {
@@ -92,10 +45,47 @@ export function GoogleAuthSignUpButton({ style }: GoogleAuthButtonProps) {
     }
   };
 
-  const _signUp= async () => {
-    const session = await signUpWithGoogle();
-    console.log({ session });
-    if(session) {
+  const _signIn = async (user_id: string) => {
+    const userDocRef = firestore().collection('users').doc(user_id);
+    await userDocRef.get();
+    return userDocRef;
+  };
+
+  const _signUp = async ({ user, profile }: any) => {
+    const userDocRef = firestore().collection('users').doc(user.uid);
+    await userDocRef.set({
+      email: user.email,
+      displayName: user.displayName,
+      name: profile.given_name,
+      surname: profile.family_name,
+      locale: profile.locale,
+      birthday: null,
+      gender: null,
+      picture: user.photoURL,
+      phone: user.phoneNumber,
+      provider: user.providerData[0].providerId,
+      createdAt: firestore.FieldValue.serverTimestamp(),
+      updatedAt: firestore.FieldValue.serverTimestamp(),
+    });
+    return userDocRef;
+  };
+
+  const onPress = async () => {
+    const userCredentials = await authWithGoogle();
+    const isNewUser = userCredentials?.additionalUserInfo?.isNewUser;
+    if(isNewUser) {
+      await _signUp({ 
+        user: userCredentials.user, 
+        profile: userCredentials.additionalUserInfo?.profile
+      });
+      // TODO: Redirect to complete profile
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'AppStack' }],
+      });
+    } else {
+      await _signIn(userCredentials!.user.uid);
+      // Redirect to home screen
       navigation.reset({
         index: 0,
         routes: [{ name: 'AppStack' }],
@@ -104,10 +94,10 @@ export function GoogleAuthSignUpButton({ style }: GoogleAuthButtonProps) {
   };
 
   return (
-    <Pressable style={[styles.container, style]} onPress={_signUp}>
+    <Pressable style={[styles.container, style]} onPress={onPress}>
       <GoogleSvg width={24} height={24}/>
       <Parragraph size='md' style={{ marginLeft: 15 }}>
-        Sign up with Google
+        Continue with Google
       </Parragraph>
     </Pressable>
   )

@@ -1,5 +1,5 @@
-import { AuthNavigationProps } from './Navigation';
+import { NavigationProps } from './Navigation';
 
 export interface SplashProps {
-  navigation: AuthNavigationProps<'Splash'>;
+  navigation: NavigationProps<'Splash'>;
 }

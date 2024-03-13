@@ -9,17 +9,20 @@ import { Colors, Poppins } from '../styles/global';
 export default function Splash({ navigation }: SplashProps) {
   useEffect(() => {
     GoogleSignin.configure({
-      // scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+      scopes: [
+        // 'https://www.googleapis.com/auth/user.birthday.read',
+        // 'https://www.googleapis.com/auth/user.gender.read',
+        // 'https://www.googleapis.com/auth/user.addresses.read',
+      ],
       webClientId: WEB_CLIENT_ID,
       offlineAccess: true,
     });
     const isSignedIn = async () => {
       const session = await GoogleSignin.isSignedIn();
-      console.log({session});
       if (session) {
         navigation.reset({
           index: 0,
-          routes: [{ name: 'Home' }],
+          routes: [{ name: 'AppStack' }],
         });
       } else {
         navigation.replace('SignIn');
