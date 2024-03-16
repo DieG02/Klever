@@ -11,6 +11,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import RootStack from './src/navigation/RootStack';
+import './src/config/GoogleServices';
 
 export default function App () {
   return (
