@@ -2,13 +2,23 @@ import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { ArrowRightIcon } from 'react-native-heroicons/mini';
 import { Colors, Poppins } from '../styles/global';
 import { useState } from 'react';
+import { addCard } from '../services/firestore';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigationProps } from '../types/navigation';
 
-interface TextInputHomeProps {
-  onPress: (str: string) => void;
-}
-export default function TextInputHome({ onPress }: TextInputHomeProps) {
+export default function TextInputHome() {
   const [value, setValue] = useState<string>('');
+  const navigation = useNavigation<AppNavigationProps>();
 
+  const handleOnPress = async () => {
+    const cardRef = await addCard(value);
+    if(!cardRef.id) return;
+    setValue('');
+    navigation.navigate('Collection', { 
+      id: cardRef.id, 
+      title: value 
+    });
+  }
   return (
     <View style={styles.footer}>
       <View style={styles.modal}>
@@ -19,7 +29,7 @@ export default function TextInputHome({ onPress }: TextInputHomeProps) {
           value={value}
           onChangeText={setValue}
         />
-          <Pressable style={styles.button} onPress={() => onPress(value)}>
+          <Pressable style={styles.button} onPress={handleOnPress}>
             <ArrowRightIcon color={Colors.White}/>
           </Pressable>
       </View>

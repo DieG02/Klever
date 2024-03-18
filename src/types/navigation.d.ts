@@ -18,7 +18,6 @@ export type AppStackParamList = {
   Collection: { 
     id: string;
     title: string;
-    collectionId?: any;
   };
 };
 

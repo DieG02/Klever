@@ -7,15 +7,29 @@ import TextInputHome from '../components/TextInputHome';
 import { Colors } from '../styles/global';
 import { avatar } from '../utils/mock.data';
 import { data } from '../utils/mock.data';
+import useSession from '../hooks/useSession';
+import { useEffect, useState } from 'react';
+import { getUserCards } from '../services/firestore';
 
 interface HomeProps {
   navigation: AppNavigationProps;
 }
 export default function Home({ }: HomeProps) {
+  const { user } = useSession();
+  const [cards, setCards] = useState<any>([]);
+
   const Separator = () => (
     <View style={{ marginBottom: 15 }}/>
   );
 
+  useEffect(() => {
+    if(!user) return;
+    const useCards = async () => {
+      const value = await getUserCards(user.cards);
+      setCards(value);
+    }
+    useCards();
+  }, [user]);
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.header}>
@@ -40,15 +54,16 @@ export default function Home({ }: HomeProps) {
           </Pressable>
         </View>
         <FlatList
-          data={data}
+          data={cards}
           contentContainerStyle={{ paddingBottom: 5 }}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => <Card item={item} />}
           ItemSeparatorComponent={Separator}
           keyExtractor={item => item.id}
+          refreshing
         />
       </View>
-      <TextInputHome onPress={(value: string) => console.log(value)}/>
+      <TextInputHome />
     </SafeAreaView>
   )
 };

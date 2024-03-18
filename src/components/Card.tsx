@@ -15,10 +15,10 @@ type ItemData = {
   collectionId: string;
 };
 export default function Card ({ item }: { item: ItemData }) {
-  const { id, title, total, current, collectionId } = item;
+  const { id, title, total, current } = item;
   const navigation = useNavigation<AppNavigationProps>();
   const onRedirect = () => {
-    navigation.push('Collection', { id, title, collectionId });
+    navigation.push('Collection', { id, title });
   }
 
   const getProgress = (current: number, total: number): number => {

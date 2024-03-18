@@ -1,5 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import { Card, Item } from '../../types/models';
 
 export const getUser = () => {
   const id = auth().currentUser?.uid;
@@ -17,14 +18,11 @@ export const getItem = (id: string) => {
   return itemRef;
 };
 
-export const getUserCards = async () => {
-  const userRef = getUser();
-  const userSnapshot = await userRef.get();
-  const user = userSnapshot.data();
-  if(!(user?.cards.length)) return [];
-
-  const cardsPromises = user.cards.map(async (id: string) => {
-    const cardSnapshot = await getCard(id).get();
+export const getUserCards = async (cards: string[]) => {
+  if(!cards.length) return [];
+  const cardsPromises = cards.map(async (id: string) => {
+    const cardRef = getCard(id);
+    const cardSnapshot = await cardRef.get();
     return cardSnapshot.data();
   });
   return Promise.all(cardsPromises);
@@ -62,25 +60,28 @@ export const createUser = async (user: any, profile: any) => {
   return userRef;
 };
 
-export const addCard = async (card: any) => {
+export const addCard = async (title: string) => {
   const userRef = getUser();
   const cardRef = firestore().collection('cards').doc();
   const card_id = cardRef.id;
-
+  const card: Card = {
+    id: card_id,
+    title: title,
+    description: '',
+    category: '',
+    total: 0,
+    current: 0,
+    items: [],
+  };
+  await cardRef.set(card);
+  //Linkin cards to current user
   await userRef.update({
     cards: firestore.FieldValue.arrayUnion(card_id),
-  });
-  await cardRef.set({
-    title: card.title,
-    description: card.description,
-    total: card.total || 0,
-    current: card.current || 0,
-    items: [],
   });
   return cardRef;
 };
 
-export const addItem = async (id: string, item: any) => {
+export const addItem = async (id: string, item: Item) => {
   const cardRef = getCard(id);
   const itemRef = firestore().collection('items').doc();
   const item_id = itemRef.id;
@@ -89,6 +90,7 @@ export const addItem = async (id: string, item: any) => {
     items: firestore.FieldValue.arrayUnion(item_id),
   });
   await itemRef.set({
+    id: item_id,
     label: item.label,
     check: item.checked
   });
