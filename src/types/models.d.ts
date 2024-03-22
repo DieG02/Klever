@@ -1,4 +1,4 @@
-export interface User {
+export interface UserModel {
   birthday: Date; 
   cards: string[];
   createdAt: Date;
@@ -14,7 +14,7 @@ export interface User {
   updatedAt: Date;
 };
 
-export interface Card {
+export interface CardModel {
   id: string;
   title: string;
   description: string;
@@ -24,10 +24,14 @@ export interface Card {
   items: string[];
 };
 
-export interface Item {
-  id: string
+export interface ItemModel {
+  id: string;
+  parentId: string;
   label: string;
   checked: boolean;
 };
 
-export type Items = Item[];
+export interface NewItemModel {
+  label: string;
+  checked: boolean;
+};
