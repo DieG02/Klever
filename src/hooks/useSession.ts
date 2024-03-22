@@ -1,28 +1,30 @@
 import { useEffect, useState } from 'react';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import { SessionProps } from '../types/hooks';
 
+const defaultProps = {
+  user: null,
+  ref: null,
+};
 const useSession = () => {
-  const [session, setSession] = useState<any>({
-    user: null,
-    ref: null,
-  });
+  const [session, setSession] = useState<SessionProps>(defaultProps);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const id = auth().currentUser?.uid;
-        const userRef = firestore().collection('users').doc(id);
-        userRef.onSnapshot(userSnapshot => {
-          const userData = userSnapshot.data();
-          setSession({ user: userData, ref: userRef });
+    try {
+      const id = auth().currentUser?.uid;
+      const unsubscribeUser = firestore()
+        .collection('users')
+        .doc(id)
+        .onSnapshot(userSnapshot => {
+          const userData = userSnapshot.data() as any;
+          setSession({ user: userData, ref: userSnapshot.ref });
         });
-      } catch (error) {
-        console.error('Something wnet wrong:', error);
-      }
-    };
 
-    fetchUserData();
+      return () => unsubscribeUser();
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
   }, []);
 
   return session;
