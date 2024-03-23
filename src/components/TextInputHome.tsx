@@ -1,18 +1,19 @@
-import { Pressable, StyleSheet, TextInput, View } from 'react-native';
-import { ArrowRightIcon } from 'react-native-heroicons/mini';
-import { Colors, Poppins } from '../styles/global';
 import { useState } from 'react';
-import { addCard } from '../services/firestore';
+import { TouchableOpacity, TextInput, View } from 'react-native';
+import { ArrowRightIcon } from 'react-native-heroicons/mini';
 import { useNavigation } from '@react-navigation/native';
+import { addCard } from '../services/firestore';
 import { AppNavigationProps } from '../types/navigation';
+import styles from '../styles/components/TextInputCustom';
 
 export default function TextInputHome() {
   const [value, setValue] = useState<string>('');
   const navigation = useNavigation<AppNavigationProps>();
 
   const handleOnPress = async () => {
-    const cardRef = await addCard(value);
-    if(!cardRef.id) return;
+    const title = value.trim();
+    if(!title) return;
+    const cardRef = await addCard(title);
     setValue('');
     navigation.navigate('Collection', { 
       id: cardRef.id, 
@@ -20,56 +21,19 @@ export default function TextInputHome() {
     });
   }
   return (
-    <View style={styles.footer}>
-      <View style={styles.modal}>
+    <View style={styles.container}>
+      <View style={styles.footer}>
         <TextInput
           style={styles.input}
-          maxLength={40}
-          placeholder='Create new list...'
+          maxLength={30}
+          placeholder='Create new list here!'
           value={value}
           onChangeText={setValue}
         />
-          <Pressable style={styles.button} onPress={handleOnPress}>
-            <ArrowRightIcon color={Colors.White}/>
-          </Pressable>
+          <TouchableOpacity style={styles.button} onPress={handleOnPress} disabled={!value.trim()}>
+            <ArrowRightIcon color={styles.icon.color}/>
+          </TouchableOpacity>
       </View>
     </View>
   )
 };
-
-const styles = StyleSheet.create({
-  footer: {
-    paddingVertical: 15,
-    backgroundColor: Colors.White,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    paddingHorizontal: 20,
-  },
-  modal: {
-    backgroundColor: Colors.Light,
-    borderRadius: 15,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 50,
-  },
-  input: {
-    flex: 1,
-    marginLeft: 10,
-    paddingVertical: 0,
-    fontFamily: Poppins.Regular,
-    fontSize: 14,
-    color: Colors.Dark,
-    padding: 0,
-  },
-  button: {
-    backgroundColor: Colors.Primary,
-    width: 35,
-    height: 35,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 25,
-    margin: 10,
-  },
-});
