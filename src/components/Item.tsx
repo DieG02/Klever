@@ -1,26 +1,35 @@
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { CheckIcon } from 'react-native-heroicons/micro';
-import { Colors } from '../styles/global';
+import { toggleItem } from '../services/firestore';
 import { Parragraph } from './common';
+import { Colors } from '../styles/global';
 
 interface ItemProps {
-  children: React.ReactNode;
+  id: string;
+  label: string;
+  check: boolean;
+  parentId: string;
 }
-export default function Item({ item }: any) {
+export default function Item({ item }: { item: ItemProps }) {
+  const { label, check } = item;
+  const onToggle = () => {
+    toggleItem(item.id, !check);
+  };
+
   return (
-    <TouchableOpacity style={styles.item}>
+    <TouchableOpacity style={styles.item} onPress={onToggle}>
       <Parragraph
         numberOfLines={1}
         ellipsizeMode='clip'
         size='lg'
         style={[
           styles.itemLabel, 
-          item.isChecked && { textDecorationLine: 'line-through' },
+          check && { textDecorationLine: 'line-through' },
         ]}>
-        {item.label}
+        {label}
       </Parragraph>
-      <View style={item.isChecked ? styles.itemChecked : styles.itemButton}>
-        <CheckIcon color={item.isChecked ? Colors.White : 'transparent'} width={15}/>
+      <View style={check ? styles.itemChecked : styles.itemButton}>
+        <CheckIcon color={check ? Colors.White : 'transparent'} width={15}/>
       </View>
     </TouchableOpacity>
   )

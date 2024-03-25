@@ -1,33 +1,28 @@
 import { AppNavigationProps } from '../types/navigation';
 import { useNavigation } from '@react-navigation/native';
 import { Pressable, StyleSheet, View } from 'react-native';
-
+import useCollection from '../hooks/useCollection';
 import { Colors } from '../styles/global';
 import { Parragraph } from './common';
+import { CardModel } from '../types/models';
 
-type ItemData = {
-  id: string,
-  title: string,
-  total: number,
-  current: number,
-  description: string,
-  category: string,
-  collectionId: string;
-};
-export default function Card ({ item }: { item: ItemData }) {
-  const { id, title, total, current } = item;
+export default function Card ({ item }: { item: CardModel }) {
+  const { id, title } = item;
+  const collection = useCollection(item.id);
+  const { current, total } = collection;
   const navigation = useNavigation<AppNavigationProps>();
+
   const onRedirect = () => {
     navigation.push('Collection', { id, title });
-  }
+  };
 
   const getProgress = (current: number, total: number): number => {
     const percent = (current / total) * 100;
     return parseInt(percent.toFixed(0));
-  }
-  const progress = getProgress(current, total);
+  };
+  const progress = getProgress(current!, total!);
   const completed = progress === 100;
-
+  
   return (
     <Pressable style={[styles.container, completed && styles.containerCompleted]} onPress={onRedirect}>
       <View style={styles.labels}>
@@ -39,7 +34,7 @@ export default function Card ({ item }: { item: ItemData }) {
         </Parragraph>
       </View>
       <View style={styles.progressBar}>
-        <View style={[styles.progress, { width: completed ? '0%' : `${progress}%` }]}/>
+        <View style={[styles.progress, { width: completed || total === 0 ? '0%' : `${progress}%` }]}/>
       </View>
     </Pressable>
   )
