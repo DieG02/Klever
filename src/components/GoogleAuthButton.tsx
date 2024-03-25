@@ -1,19 +1,18 @@
-import { NavigationProps, AuthRouteProps } from '../types/navigation';
-import { useNavigation, useRoute } from '@react-navigation/native';
 import { Pressable, StyleSheet, ViewStyle } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-
+import { Parragraph } from './common';
+import { NavigationProps } from '../types/navigation';
 import GoogleSvg from '../assets/svg/GoogleSvg';
 import { Colors } from '../styles/global';
-import { Parragraph } from './common';
-import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 interface GoogleAuthButtonProps {
   style?: ViewStyle;
 };
 
-export function GoogleAuthButton({ style }: GoogleAuthButtonProps) {
+export default function GoogleAuthButton({ style }: GoogleAuthButtonProps) {
   const navigation = useNavigation<NavigationProps>();
 
   const authWithGoogle = async () => {
