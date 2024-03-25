@@ -1,13 +1,13 @@
-import { AuthNavigationProps } from '../types/navigation';
-import { Pressable, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
-
-import SignUpSvg from '../assets/svg/SignUpSvg';
-import { FacebookAuthButton, GoogleAuthButton } from '../components';
+import { Pressable, SafeAreaView, StatusBar, Text, View } from 'react-native';
 import { Parragraph, Title } from '../components/common';
-import { Colors, Poppins } from '../styles/global';
+import { FacebookAuthButton, GoogleAuthButton } from '../components';
+import SignUpSvg from '../assets/svg/SignUpSvg';
+import styles from '../styles/screens/signup';
+import { Colors } from '../styles/global';
+import { AuthNavigationProps } from '../types/navigation';
 
 interface SignUpProps {
-  navigation: AuthNavigationProps
+  navigation: AuthNavigationProps;
 }
 export default function SignUp({ navigation }: SignUpProps) {
   const onRedirect = () => {
@@ -15,37 +15,29 @@ export default function SignUp({ navigation }: SignUpProps) {
   };
   return (
     <SafeAreaView style={styles.wrapper}>
-      <StatusBar backgroundColor={Colors.White} barStyle='dark-content'/>
+      <StatusBar backgroundColor={Colors.White} barStyle='dark-content' />
       <View style={styles.brand}>
-        <Title style={styles.klever}>
-          Klever
-        </Title>
+        <Title style={styles.klever}>Klever</Title>
       </View>
 
       <View>
-        <Title style={styles.title}>
-          Create your account
-        </Title>
+        <Title style={styles.title}>Create your account</Title>
         <Parragraph>
           Organise your ideas in an easy, quick and simple way!
         </Parragraph>
       </View>
 
       <View style={styles.svg}>
-        <SignUpSvg/>
+        <SignUpSvg />
       </View>
 
       <View>
-        <GoogleAuthButton/>
-        <FacebookAuthButton/>
+        <GoogleAuthButton />
+        <FacebookAuthButton />
         <Pressable onPress={onRedirect}>
           <Parragraph style={styles.center}>
-            <Text>
-              Already have an account?&nbsp;
-            </Text>
-            <Text style={styles.redirect}>
-              Sign in
-            </Text>
+            <Text>Already have an account?&nbsp;</Text>
+            <Text style={styles.redirect}>Sign in</Text>
           </Parragraph>
         </Pressable>
       </View>
@@ -53,9 +45,7 @@ export default function SignUp({ navigation }: SignUpProps) {
       <View style={styles.footer}>
         <Pressable>
           <Parragraph size='sm' style={styles.center}>
-            <Text>
-              {`By registration up you accept the `}
-            </Text>
+            <Text>{`By registration up you accept the `}</Text>
             <Text style={{ color: Colors.Link }}>
               {` Terms of Services & Privacy Policy`}
             </Text>
@@ -63,42 +53,5 @@ export default function SignUp({ navigation }: SignUpProps) {
         </Pressable>
       </View>
     </SafeAreaView>
-  )
-};
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    backgroundColor: Colors.White,
-    paddingHorizontal: 20,
-  },
-  brand: {
-    alignItems: 'center',
-    marginVertical: 24,
-  },
-  klever: {
-    fontFamily: Poppins.Semibold,
-    fontSize: 24,
-    color: Colors.Primary,
-  },
-  title: {
-    marginBottom: 8,
-  },
-  svg: { 
-    height: 350,
-    width: 350,
-    marginVertical: 8,
-  },
-  center: {
-    textAlign: 'center'
-  },
-  redirect: {
-    fontFamily: Poppins.Semibold,
-    color: Colors.Primary,
-  },
-  footer: {
-    marginTop: 'auto',
-    marginBottom: 24,
-    marginHorizontal: 24,
-  },
-});
+  );
+}
