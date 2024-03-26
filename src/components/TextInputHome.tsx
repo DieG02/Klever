@@ -12,14 +12,14 @@ export default function TextInputHome() {
 
   const handleOnPress = async () => {
     const title = value.trim();
-    if(!title) return;
+    if (!title) return;
     const cardRef = await addCard(title);
     setValue('');
-    navigation.navigate('Collection', { 
-      id: cardRef.id, 
-      title: value 
+    navigation.navigate('Collection', {
+      id: cardRef.id,
+      title: value,
     });
-  }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.footer}>
@@ -30,10 +30,13 @@ export default function TextInputHome() {
           value={value}
           onChangeText={setValue}
         />
-          <TouchableOpacity style={styles.button} onPress={handleOnPress} disabled={!value.trim()}>
-            <ArrowRightIcon color={styles.icon.color}/>
-          </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={handleOnPress}
+          disabled={!value.trim()}>
+          <ArrowRightIcon color={styles.icon.color} />
+        </TouchableOpacity>
       </View>
     </View>
-  )
-};
+  );
+}

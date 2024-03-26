@@ -9,10 +9,6 @@ const styles = StyleSheet.create({
   list: {
     paddingHorizontal: 20,
   },
-  divider: {
-    height: 1,
-    backgroundColor: Colors.Gray,
-  },
 });
 
 export default styles;

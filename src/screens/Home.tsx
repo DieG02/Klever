@@ -8,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import { Card, TextInputHome } from '../components';
-import { Parragraph, Title, Divider } from '../components/common';
+import { Parragraph, Title, Spacing } from '../components/common';
 import styles from '../styles/screens/home';
 import { AppNavigationProps } from '../types/navigation';
 import { getUserCards } from '../services/firestore';
@@ -55,11 +55,12 @@ export default function Home({}: HomeProps) {
           contentContainerStyle={{ paddingBottom: 5 }}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => <Card item={item} />}
-          ItemSeparatorComponent={Divider}
+          ItemSeparatorComponent={Spacing}
           keyExtractor={item => item?.id}
           refreshing
         />
       </View>
+
       <TextInputHome />
     </SafeAreaView>
   );

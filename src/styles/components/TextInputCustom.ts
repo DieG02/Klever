@@ -7,13 +7,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   footer: {
-    backgroundColor: Colors.Light,
+    backgroundColor: Colors.Background,
     borderRadius: 25,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: 50,
+    height: 45,
   },
   input: {
     flex: 1,
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     color: Colors.Dark,
   },
   button: {
-    backgroundColor: Colors.Primary,
+    backgroundColor: Colors.Sky,
     width: 35,
     height: 35,
     alignItems: 'center',
@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   icon: {
-    color: Colors.White,
-  }
+    color: Colors.Primary,
+  },
 });
 
 export default styles;

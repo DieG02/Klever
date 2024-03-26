@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
 import { Item, TextInputCollection } from '../components';
-import { Divider } from '../components/common';
+import { Separator } from '../components/common';
 import styles from '../styles/screens/collection';
 import { getCollectionItems } from '../services/firestore';
 import { AppNavigationProps, AppRouteProps } from '../types/navigation';
@@ -26,7 +26,7 @@ export default function Collection({ route }: CollectionProps) {
         style={styles.list}
         data={items}
         renderItem={Item}
-        ItemSeparatorComponent={Divider}
+        ItemSeparatorComponent={Separator}
         showsVerticalScrollIndicator={false}
       />
       <TextInputCollection collectionId={id} />

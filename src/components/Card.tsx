@@ -6,7 +6,7 @@ import { Colors } from '../styles/global';
 import { Parragraph } from './common';
 import { CardModel } from '../types/models';
 
-export default function Card ({ item }: { item: CardModel }) {
+export default function Card({ item }: { item: CardModel }) {
   const { id, title } = item;
   const collection = useCollection(item.id);
   const { current, total } = collection;
@@ -22,27 +22,43 @@ export default function Card ({ item }: { item: CardModel }) {
   };
   const progress = getProgress(current!, total!);
   const completed = progress === 100;
-  
+
   return (
-    <Pressable style={[styles.container, completed && styles.containerCompleted]} onPress={onRedirect}>
+    <Pressable
+      style={[styles.container, completed && styles.containerCompleted]}
+      onPress={onRedirect}>
       <View style={styles.labels}>
-        <Parragraph style={{ flex: 1, marginRight: 15 }} numberOfLines={1} ellipsizeMode='tail' weight='semibold' size='lg' color={completed ? 'white' : 'default' }>
+        <Parragraph
+          style={{ flex: 1, marginRight: 15 }}
+          numberOfLines={1}
+          ellipsizeMode='tail'
+          weight='semibold'
+          size='lg'
+          color={completed ? 'white' : 'default'}>
           {title}
         </Parragraph>
-        <Parragraph weight='medium' size='sm' color={completed ? 'white' : 'default' }>
+        <Parragraph
+          weight='medium'
+          size='sm'
+          color={completed ? 'white' : 'default'}>
           {completed ? 'Completed!' : `${current}/${total}`}
         </Parragraph>
       </View>
       <View style={styles.progressBar}>
-        <View style={[styles.progress, { width: completed || total === 0 ? '0%' : `${progress}%` }]}/>
+        <View
+          style={[
+            styles.progress,
+            { width: completed || total === 0 ? '0%' : `${progress}%` },
+          ]}
+        />
       </View>
     </Pressable>
-  )
-};
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.Light,
+    backgroundColor: Colors.Alternative,
     height: 90,
     borderRadius: 15,
     padding: 20,
@@ -68,6 +84,6 @@ const styles = StyleSheet.create({
     height: '100%',
     maxWidth: '100%',
     borderRadius: 3,
-    backgroundColor: Colors.Primary
-  }
+    backgroundColor: Colors.Primary,
+  },
 });

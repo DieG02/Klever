@@ -19,7 +19,7 @@ export const getItem = (id: string) => {
 };
 
 export const getUserCards = async (cards: string[]) => {
-  if(!cards.length) return [];
+  if (!cards.length) return [];
   const cardsPromises = cards.map(async (id: string) => {
     const cardRef = getCard(id);
     const cardSnapshot = await cardRef.get();
@@ -38,7 +38,7 @@ export const getCardItems = async (id: string) => {
     return itemSnapshot.data();
   });
   return Promise.all(itemsPromises);
-}
+};
 
 export const getCollectionItems = (id: string, callback: Function) => {
   try {
@@ -113,12 +113,12 @@ export const addItem = async (id: string, item: NewItemModel) => {
     id: item_id,
     parentId: card_id,
     label: item.label,
-    check: item.checked
+    check: item.checked,
   });
 
   await cardRef.update({
     total: firestore.FieldValue.increment(1),
-  })
+  });
   return itemRef;
 };
 
@@ -152,7 +152,9 @@ export const deleteItem = async (itemId: string) => {
 
     await cardRef.update({
       total: firestore.FieldValue.increment(-1),
-      current: firestore.FieldValue.increment(itemSnapshot.data()?.checked ? -1 : 0),
+      current: firestore.FieldValue.increment(
+        itemSnapshot.data()?.checked ? -1 : 0,
+      ),
     });
   }
 };

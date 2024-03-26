@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   avatar: {
-    height: 40,
-    width: 40,
+    height: 35,
+    width: 35,
     borderRadius: 20,
   },
   news: {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   labels: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 15
+    marginBottom: 15,
   },
   footer: {
     paddingVertical: 20,
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     height: 500,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 });
 
 export default styles;
