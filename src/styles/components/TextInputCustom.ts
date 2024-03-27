@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     paddingVertical: 0,
     fontFamily: Poppins.Regular,
-    fontSize: 14,
+    fontSize: 13,
     color: Colors.Dark,
   },
   button: {

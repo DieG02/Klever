@@ -13,6 +13,7 @@ import styles from '../styles/screens/home';
 import { AppNavigationProps } from '../types/navigation';
 import { getUserCards } from '../services/firestore';
 import useSession from '../hooks/useSession';
+import EmptyCards from '../components/EmptyCards';
 
 interface HomeProps {
   navigation: AppNavigationProps;
@@ -51,12 +52,15 @@ export default function Home({}: HomeProps) {
           </Pressable>
         </View>
         <FlatList
+          contentContainerStyle={{
+            paddingBottom: 5,
+          }}
           data={cards}
-          contentContainerStyle={{ paddingBottom: 5 }}
-          showsVerticalScrollIndicator={false}
           renderItem={({ item }) => <Card item={item} />}
           ItemSeparatorComponent={Spacing}
+          showsVerticalScrollIndicator={false}
           keyExtractor={item => item?.id}
+          ListEmptyComponent={EmptyCards}
           refreshing
         />
       </View>

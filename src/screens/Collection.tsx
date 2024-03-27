@@ -5,6 +5,7 @@ import { Separator } from '../components/common';
 import styles from '../styles/screens/collection';
 import { getCollectionItems } from '../services/firestore';
 import { AppNavigationProps, AppRouteProps } from '../types/navigation';
+import EmptyCollection from '../components/EmptyCollection';
 
 interface CollectionProps {
   navigation: AppNavigationProps;
@@ -24,10 +25,12 @@ export default function Collection({ route }: CollectionProps) {
     <SafeAreaView style={styles.wrapper}>
       <FlatList
         style={styles.list}
+        contentContainerStyle={styles.container}
         data={items}
         renderItem={Item}
         ItemSeparatorComponent={Separator}
         showsVerticalScrollIndicator={false}
+        ListEmptyComponent={EmptyCollection}
       />
       <TextInputCollection collectionId={id} />
     </SafeAreaView>

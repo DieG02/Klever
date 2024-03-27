@@ -6,6 +6,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.White,
   },
+  container: {
+    position: 'relative',
+    flex: 1,
+  },
   list: {
     paddingHorizontal: 20,
   },
