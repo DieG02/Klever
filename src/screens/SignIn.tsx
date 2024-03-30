@@ -1,46 +1,97 @@
-import { Pressable, SafeAreaView, StatusBar, Text, View } from 'react-native';
-import { Parragraph, Title } from '../components/common';
-import { FacebookAuthButton, GoogleAuthButton } from '../components';
+import { useEffect, useState } from 'react';
+import {
+  Keyboard,
+  Pressable,
+  SafeAreaView,
+  StatusBar,
+  Text,
+  View,
+} from 'react-native';
+import SignInBanner from '../assets/app/SignInBanner';
+import { Heading, MainButton, InputField, Spacing } from '../components/common';
+import { AuthNavigationProps } from '../types/navigation';
 import styles from '../styles/screens/signin';
 import { Colors } from '../styles/global';
-import SignInSvg from '../assets/svg/SignInSvg';
-import { AuthNavigationProps } from '../types/navigation';
+import { GoogleAuthButton } from '../components';
 
 interface SignInProps {
   navigation: AuthNavigationProps;
 }
 export default function SignIn({ navigation }: SignInProps) {
+  const [keyboardShown, setKeyboardShown] = useState(false);
+
   const onRedirect = () => {
     navigation.replace('SignUp');
   };
+
+  const keyboardDidShow = () => {
+    setKeyboardShown(true);
+  };
+  const keyboardDidHide = () => {
+    setKeyboardShown(false);
+  };
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      keyboardDidShow,
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      keyboardDidHide,
+    );
+
+    // Limpia los listeners cuando el componente se desmonta
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
   return (
     <SafeAreaView style={styles.wrapper}>
       <StatusBar backgroundColor={Colors.White} barStyle='dark-content' />
-      <View style={styles.brand}>
-        <Text style={styles.klever}>Klever</Text>
-      </View>
+      {!keyboardShown && (
+        <View style={styles.banner}>
+          <SignInBanner height={200} />
+        </View>
+      )}
 
-      <View>
-        <Title style={styles.title}>Log in to your account</Title>
-        <Parragraph>Hello, welcome back! 👋</Parragraph>
-      </View>
+      <Heading type='Semibold' style={styles.header}>
+        <Text>Sign in to</Text>
+        <Text>{` `}</Text>
+        <Text style={styles.hightlight}>Klever</Text>
+      </Heading>
 
-      <View style={styles.svg}>
-        <SignInSvg />
-      </View>
+      <InputField
+        label='Email'
+        placeholder={`Enter your email`}
+        onChangeText={value => console.log(value)}
+      />
+      <InputField
+        label='Password'
+        placeholder={`Enter your password`}
+        secureTextEntry
+        marginb={10}
+      />
+      <Pressable onPress={onRedirect}>
+        <Heading type='Medium' color='Label' style={styles.password}>
+          Forgot password?
+        </Heading>
+      </Pressable>
 
-      <View>
-        <GoogleAuthButton />
-        <FacebookAuthButton />
-        <Pressable onPress={onRedirect}>
-          <Text style={styles.center}>
-            <Parragraph>{`Don't have an account? `}</Parragraph>
-            <Parragraph color='primary' weight='semibold'>
-              {`Sign up`}
-            </Parragraph>
-          </Text>
-        </Pressable>
-      </View>
+      <Spacing size={20} />
+
+      <MainButton>Sign in</MainButton>
+      <Spacing size={20} />
+      <GoogleAuthButton />
+
+      <Pressable onPress={onRedirect} style={styles.footer}>
+        <Heading type='Medium' color='Label' style={styles.link}>
+          <Text>Don't have an account?</Text>
+          <Text>{` `}</Text>
+          <Text style={styles.hightlight}>Sign up</Text>
+        </Heading>
+      </Pressable>
     </SafeAreaView>
   );
 }

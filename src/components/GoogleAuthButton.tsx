@@ -1,16 +1,19 @@
 import { Pressable, StyleSheet, ViewStyle } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import { Parragraph } from './common';
+import { Heading } from './common';
 import { NavigationProps } from '../types/navigation';
 import GoogleSvg from '../assets/svg/GoogleSvg';
 import { Colors } from '../styles/global';
 
 interface GoogleAuthButtonProps {
   style?: ViewStyle;
-};
+}
 
 export default function GoogleAuthButton({ style }: GoogleAuthButtonProps) {
   const navigation = useNavigation<NavigationProps>();
@@ -18,7 +21,9 @@ export default function GoogleAuthButton({ style }: GoogleAuthButtonProps) {
   const authWithGoogle = async () => {
     try {
       // Check if your device supports Google Play
-      await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+      await GoogleSignin.hasPlayServices({
+        showPlayServicesUpdateDialog: true,
+      });
       // Get the users ID token
       const { idToken } = await GoogleSignin.signIn();
       // Create a Google credential with the token
@@ -27,7 +32,7 @@ export default function GoogleAuthButton({ style }: GoogleAuthButtonProps) {
       return auth().signInWithCredential(googleCredential);
     } catch (error: any) {
       switch (error.code) {
-        case statusCodes.SIGN_IN_CANCELLED: 
+        case statusCodes.SIGN_IN_CANCELLED:
           console.log('Cancelled');
           break;
         case error.code === statusCodes.IN_PROGRESS:
@@ -72,10 +77,10 @@ export default function GoogleAuthButton({ style }: GoogleAuthButtonProps) {
   const onPress = async () => {
     const userCredentials = await authWithGoogle();
     const isNewUser = userCredentials?.additionalUserInfo?.isNewUser;
-    if(isNewUser) {
-      await _signUp({ 
-        user: userCredentials.user, 
-        profile: userCredentials.additionalUserInfo?.profile
+    if (isNewUser) {
+      await _signUp({
+        user: userCredentials.user,
+        profile: userCredentials.additionalUserInfo?.profile,
       });
       // TODO: Redirect to complete profile
       navigation.reset({
@@ -93,24 +98,34 @@ export default function GoogleAuthButton({ style }: GoogleAuthButtonProps) {
   };
 
   return (
-    <Pressable style={[styles.container, style]} onPress={onPress}>
-      <GoogleSvg width={24} height={24}/>
-      <Parragraph size='md' style={{ marginLeft: 15 }}>
+    <Pressable
+      style={({ pressed }) => [
+        styles.container,
+        pressed && { elevation: 0 },
+        style,
+      ]}
+      onPress={onPress}>
+      <GoogleSvg width={24} height={24} />
+      <Heading
+        color='Placeholder'
+        type='Medium'
+        style={{ marginLeft: 15, fontSize: 13 }}>
         Continue with Google
-      </Parragraph>
+      </Heading>
     </Pressable>
-  )
-};
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 50,
+    height: 48,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.Background,
     borderRadius: 25,
     marginBottom: 15,
     flexDirection: 'row',
+    elevation: 1,
   },
 });

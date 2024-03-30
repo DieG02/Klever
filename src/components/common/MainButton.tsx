@@ -1,8 +1,6 @@
 import {
   Pressable,
   PressableProps,
-  TouchableOpacityProps,
-  TouchableOpacity,
   StyleProp,
   StyleSheet,
   ViewStyle,
@@ -10,7 +8,7 @@ import {
 import Heading from './Heading';
 import { Colors } from '../../styles/global';
 
-interface ButtonProps extends TouchableOpacityProps {
+interface ButtonProps extends PressableProps {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
 }
@@ -19,17 +17,20 @@ export default function Button({ children, style, ...props }: ButtonProps) {
     {
       backgroundColor: Colors.Primary,
       borderRadius: 25,
-      height: 45,
+      height: 48,
       justifyContent: 'center',
       alignItems: 'center',
+      elevation: 1,
     },
     style,
   );
   return (
-    <TouchableOpacity style={styles} {...props}>
+    <Pressable
+      style={({ pressed }) => [styles, pressed && { elevation: 0 }]}
+      {...props}>
       <Heading color='White' type='Semibold'>
         {children}
       </Heading>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
