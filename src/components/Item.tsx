@@ -8,7 +8,7 @@ import {
 import { CheckIcon, TrashIcon } from 'react-native-heroicons/mini';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { toggleItem, deleteItem } from '../services/firestore';
-import { Parragraph } from './common';
+import { Heading } from './common';
 import { Colors } from '../styles/global';
 
 interface ItemProps {
@@ -67,22 +67,22 @@ export default function Item({ item }: { item: ItemProps }) {
         <View style={check ? styles.itemChecked : styles.itemButton}>
           <CheckIcon color={check ? Colors.White : 'transparent'} width={15} />
         </View>
-        <Parragraph
+        <Heading
           numberOfLines={1}
           ellipsizeMode='clip'
-          size='lg'
+          size={13}
           style={[
             styles.itemLabel,
             check && { textDecorationLine: 'line-through' },
           ]}>
           {label}
-        </Parragraph>
+        </Heading>
       </TouchableOpacity>
     </Swipeable>
   );
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   item: {
     display: 'flex',
     flexDirection: 'row',
@@ -94,12 +94,13 @@ const styles = StyleSheet.create({
   itemLabel: {
     flex: 1,
     marginLeft: 10,
+    color: Colors.Text,
   },
   itemButton: {
     height: 20,
     width: 20,
     borderWidth: 1,
-    borderColor: Colors.Gray,
+    borderColor: Colors.Light,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',

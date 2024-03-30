@@ -1,5 +1,4 @@
 import { View } from 'react-native';
-import { Colors } from '../../styles/global';
 
 interface SeparatorProps {}
 export default function Separator({}: SeparatorProps) {
@@ -7,7 +6,7 @@ export default function Separator({}: SeparatorProps) {
     <View
       style={{
         height: 1,
-        backgroundColor: Colors.Gray,
+        backgroundColor: '#EFEFEF',
       }}
     />
   );
