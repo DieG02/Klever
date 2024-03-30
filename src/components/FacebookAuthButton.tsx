@@ -4,26 +4,27 @@ import { Pressable, StyleSheet, ViewStyle } from 'react-native';
 
 import FacebookSvg from '../assets/svg/FacebookSvg';
 import { Colors } from '../styles/global';
-import { Parragraph } from './common';
+import { Heading } from './common';
 
 interface FacebookAuthButtonProps {
   style?: ViewStyle;
 }
 export default function FacebookAuthButton({ style }: FacebookAuthButtonProps) {
   const route = useRoute<AuthRouteProps<'SignUp'>>();
-  const label = route.name === 'SignUp'
-    ? 'Sign up with Facebook'
-    : 'Continue with Facebook'; 
+  const label =
+    route.name === 'SignUp'
+      ? 'Sign up with Facebook'
+      : 'Continue with Facebook';
 
   return (
     <Pressable style={[styles.container, style]}>
-      <FacebookSvg width={24} height={24}/>
-      <Parragraph size='md' style={{ marginLeft: 15 }}>
+      <FacebookSvg width={24} height={24} />
+      <Heading size={13} style={{ marginLeft: 15 }}>
         {label}
-      </Parragraph>
+      </Heading>
     </Pressable>
-  )
-};
+  );
+}
 
 const styles = StyleSheet.create({
   container: {

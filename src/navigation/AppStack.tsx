@@ -11,29 +11,29 @@ const AppStack = createStackNavigator<AppStackParamList>();
 export default function AppNavigator() {
   return (
     <AppStack.Navigator>
-      <AppStack.Screen 
+      <AppStack.Screen
         name='Home'
         component={Home}
-        options={{ headerShown: false }}/>
-      <AppStack.Screen 
+        options={{ headerShown: false }}
+      />
+      <AppStack.Screen
         name='Collection'
         component={Collection}
-        options={({ route }) => ({ 
+        options={({ route }) => ({
           title: route.params.title,
           headerStyle: {
             backgroundColor: Colors.White,
-            elevation: 0
+            elevation: 0,
           },
-          headerTintColor: Colors.Dark,
+          headerTintColor: Colors.Black,
           headerTitleStyle: {
             fontFamily: Poppins.Semibold,
             fontSize: 16,
           },
           headerTitleAlign: 'center',
-          headerBackImage: () => (
-            <ChevronLeftIconMini color={ Colors.Dark }/>
-          )
-        })}/>
+          headerBackImage: () => <ChevronLeftIconMini color={Colors.Black} />,
+        })}
+      />
     </AppStack.Navigator>
-  )
-};
+  );
+}
