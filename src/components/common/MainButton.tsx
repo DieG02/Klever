@@ -20,14 +20,11 @@ export default function Button({ children, style, ...props }: ButtonProps) {
       height: 48,
       justifyContent: 'center',
       alignItems: 'center',
-      elevation: 1,
     },
     style,
   );
   return (
-    <Pressable
-      style={({ pressed }) => [styles, pressed && { elevation: 0 }]}
-      {...props}>
+    <Pressable style={styles} {...props}>
       <Heading color='White' type='Semibold'>
         {children}
       </Heading>

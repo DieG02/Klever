@@ -98,13 +98,7 @@ export default function GoogleAuthButton({ style }: GoogleAuthButtonProps) {
   };
 
   return (
-    <Pressable
-      style={({ pressed }) => [
-        styles.container,
-        pressed && { elevation: 0 },
-        style,
-      ]}
-      onPress={onPress}>
+    <Pressable style={[styles.container, style]} onPress={onPress}>
       <GoogleSvg width={24} height={24} />
       <Heading
         color='Placeholder'
@@ -126,6 +120,5 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginBottom: 15,
     flexDirection: 'row',
-    elevation: 1,
   },
 });
