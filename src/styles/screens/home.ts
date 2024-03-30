@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: Colors.White,
+    paddingHorizontal: 20,
   },
   header: {
     display: 'flex',
@@ -12,7 +13,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 20,
-    marginHorizontal: 20,
   },
   avatar: {
     height: 35,
@@ -22,13 +22,10 @@ const styles = StyleSheet.create({
   news: {
     height: 100,
     borderRadius: 15,
-    marginBottom: 30,
-    backgroundColor: Colors.Dark,
-    marginHorizontal: 20,
+    backgroundColor: Colors.Text,
   },
   content: {
     flex: 1,
-    marginHorizontal: 20,
   },
   labels: {
     flexDirection: 'row',
@@ -46,6 +43,9 @@ const styles = StyleSheet.create({
     height: 500,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  hightlight: {
+    color: Colors.Primary,
   },
 });
 

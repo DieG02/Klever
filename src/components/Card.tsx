@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Pressable, StyleSheet, View } from 'react-native';
 import useCollection from '../hooks/useCollection';
 import { Colors } from '../styles/global';
-import { Parragraph } from './common';
+import { Heading } from './common';
 import { CardModel } from '../types/models';
 
 export default function Card({ item }: { item: CardModel }) {
@@ -28,22 +28,21 @@ export default function Card({ item }: { item: CardModel }) {
       style={[styles.container, completed && styles.containerCompleted]}
       onPress={onRedirect}>
       <View style={styles.labels}>
-        <Parragraph
-          style={{ flex: 1, marginRight: 15 }}
+        <Heading
+          style={{ marginRight: 15 }}
           numberOfLines={1}
           ellipsizeMode='tail'
-          weight='semibold'
-          size='lg'
-          color={completed ? 'white' : 'default'}>
+          type='Semibold'
+          size={13}
+          color={completed ? 'White' : 'Text'}>
           {title}
-        </Parragraph>
-        <Parragraph
-          weight='medium'
-          size='sm'
-          color={completed ? 'white' : 'default'}>
+        </Heading>
+
+        <Heading size={10} type='Medium' color={completed ? 'White' : 'Label'}>
           {completed ? 'Completed!' : `${current}/${total}`}
-        </Parragraph>
+        </Heading>
       </View>
+
       <View style={styles.progressBar}>
         <View
           style={[
@@ -58,7 +57,7 @@ export default function Card({ item }: { item: CardModel }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.Alternative,
+    backgroundColor: Colors.Light,
     height: 90,
     borderRadius: 15,
     padding: 20,

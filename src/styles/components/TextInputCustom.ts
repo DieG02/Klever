@@ -4,7 +4,7 @@ import { Colors, Poppins } from '../global';
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 15,
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
   },
   footer: {
     backgroundColor: Colors.Background,
@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 10,
     paddingVertical: 0,
-    fontFamily: Poppins.Regular,
     fontSize: 13,
-    color: Colors.Dark,
+    color: Colors.Text,
+    fontFamily: Poppins.Regular,
   },
   button: {
-    backgroundColor: Colors.Sky,
+    backgroundColor: Colors.Light,
     width: 35,
     height: 35,
     alignItems: 'center',
