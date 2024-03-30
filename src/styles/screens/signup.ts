@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Colors, Poppins } from '../global';
+import { Colors } from '../global';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -7,34 +7,25 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.White,
     paddingHorizontal: 20,
   },
-  brand: {
+  banner: {
+    marginTop: 50,
+    marginBottom: 30,
     alignItems: 'center',
-    marginVertical: 24,
   },
-  klever: {
-    fontFamily: Poppins.Semibold,
-    fontSize: 24,
-    color: Colors.Primary,
-  },
-  title: {
-    marginBottom: 8,
-  },
-  svg: { 
-    height: 350,
-    width: 350,
-    marginVertical: 8,
-  },
-  center: {
-    textAlign: 'center'
-  },
-  redirect: {
-    fontFamily: Poppins.Semibold,
-    color: Colors.Primary,
+  header: {
+    marginVertical: 20,
+    fontSize: 18,
   },
   footer: {
     marginTop: 'auto',
-    marginBottom: 24,
-    marginHorizontal: 24,
+    marginBottom: 20,
+  },
+  link: {
+    fontSize: 12,
+    textAlign: 'center',
+  },
+  hightlight: {
+    color: Colors.Primary,
   },
 });
 
