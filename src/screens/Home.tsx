@@ -42,20 +42,18 @@ export default function Home({}: HomeProps) {
           <Image source={{ uri: user?.picture }} style={styles.avatar} />
         </View>
       </View>
-      <View style={styles.news} />
+      <View style={styles.placeholder} />
       <Spacing size={20} />
 
-      <View style={styles.content}>
+      <View style={styles.container}>
         <Heading type='Medium' size={12}>
           All collections
         </Heading>
         <Spacing size={20} />
 
         <FlatList
-          contentContainerStyle={{
-            paddingBottom: 5,
-          }}
           data={cards}
+          contentContainerStyle={styles.flex}
           renderItem={({ item }) => <Card item={item} />}
           ItemSeparatorComponent={Spacing}
           showsVerticalScrollIndicator={false}

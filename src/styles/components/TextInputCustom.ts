@@ -4,7 +4,7 @@ import { Colors, Poppins } from '../global';
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 15,
-    // paddingHorizontal: 20,
+    paddingHorizontal: 20,
   },
   footer: {
     backgroundColor: Colors.Background,

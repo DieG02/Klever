@@ -1,49 +1,57 @@
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import EmptyCollectionSvg from '../assets/svg/EmptyCollectionSvg';
-import { Colors, Poppins } from '../styles/global';
-
-const windowHeight = Dimensions.get('window').height;
-const itemHeight = 350;
-const top = (windowHeight - itemHeight) / 2;
+import { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { Heading } from './common';
+import CollectionBanner from '../assets/app/CollectionBanner';
 
 interface EmptyCollectionProps {}
 export default function EmptyCollection({}: EmptyCollectionProps) {
+  const [layout, setLayout] = useState({
+    update: false,
+    margin: 0,
+  });
+
+  const handleLayout = (e: any) => {
+    if (!layout.update) {
+      const layout = e.nativeEvent.layout;
+      setLayout({
+        update: true,
+        margin: (layout.height - 300) / 2,
+      });
+    }
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.svg}>
-        <EmptyCollectionSvg />
+    <View style={styles.container} onLayout={handleLayout}>
+      <View style={[styles.content, { marginTop: layout.margin }]}>
+        <View style={styles.banner}>
+          <CollectionBanner height={225} width={225} />
+        </View>
+        <View style={styles.center}>
+          <Heading type='Semibold' size={16} color='Placeholder'>
+            Oops! Nothing to see here
+          </Heading>
+          <Heading color='Placeholder' size={12}>
+            Add new items with a tap or talk
+          </Heading>
+        </View>
       </View>
-      <Text style={styles.label}>Oops! Nothing to see here.</Text>
-      <Text style={styles.text}>
-        Bring some magic to this empty collection! Add new items with a tap or
-        talk!
-      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: top / 2,
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 1,
   },
-  svg: {
+  content: {
     height: 300,
-    width: 300,
+    justifyContent: 'space-between',
   },
-  label: {
-    color: Colors.Text,
-    fontFamily: Poppins.Semibold,
-    fontSize: 16,
-    textAlign: 'center',
+  banner: {
+    alignItems: 'center',
+    marginBottom: 20,
   },
-  text: {
-    fontSize: 12,
-    textAlign: 'center',
-    fontFamily: Poppins.Regular,
-    marginTop: 6,
-    paddingHorizontal: 16,
+  center: {
+    alignItems: 'center',
   },
 });

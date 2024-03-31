@@ -102,7 +102,7 @@ export default function TextInputCollection({
     };
   }, []);
   return (
-    <View style={[styles.container, { paddingHorizontal: 20 }]}>
+    <View style={styles.container}>
       <View style={styles.footer}>
         <TextInput
           style={styles.input}

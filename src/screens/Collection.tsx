@@ -3,6 +3,7 @@ import { FlatList, SafeAreaView } from 'react-native';
 import { Item, TextInputCollection } from '../components';
 import { Separator } from '../components/common';
 import styles from '../styles/screens/collection';
+import { styles as itemStyle } from '../components/Item';
 import { getCollectionItems } from '../services/firestore';
 import { AppNavigationProps, AppRouteProps } from '../types/navigation';
 import EmptyCollection from '../components/EmptyCollection';
@@ -25,7 +26,7 @@ export default function Collection({ route }: CollectionProps) {
     <SafeAreaView style={styles.wrapper}>
       <FlatList
         style={styles.list}
-        contentContainerStyle={styles.container}
+        contentContainerStyle={styles.flex}
         data={items}
         renderItem={Item}
         ItemSeparatorComponent={Separator}
