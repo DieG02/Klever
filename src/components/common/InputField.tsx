@@ -15,11 +15,14 @@ interface InputFieldProps extends TextInputProps {
   labelStyle?: StyleProp<TextStyle>;
   inputStyle?: StyleProp<TextStyle>;
 }
+
 /**
  * Custom TextInput component extended from RNTextInput
  * @param label Optional text at the top of the TextInput
- * @param marginb Override margin bottom from the container. Deafult `20`
- * @returns {JSX.Element} A JSX element representing the custom text
+ * @param marginb Override margin bottom from the container - Default `20`
+ * @param labelStyle Override default Text style
+ * @param inputStyle Override default TextInput style
+ * @returns {JSX.Element} A JSX element representing the custom text input
  */
 export default function InputField(props: InputFieldProps): JSX.Element {
   const { label, labelStyle, inputStyle, marginb, ...inputProps } = props;

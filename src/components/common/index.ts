@@ -1,7 +1,7 @@
-import Spacing from './Spacing';
-import Separator from './Separator';
 import Heading from './Heading';
-import MainButton from './MainButton';
 import InputField from './InputField';
+import MainButton from './MainButton';
+import Separator from './Separator';
+import Spacing from './Spacing';
 
-export { Spacing, Separator, Heading, MainButton, InputField };
+export { Heading, InputField, MainButton, Separator, Spacing };
