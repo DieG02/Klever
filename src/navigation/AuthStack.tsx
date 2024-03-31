@@ -14,5 +14,5 @@ export default function AuthNavigator() {
       <AuthStack.Screen name='SignIn' component={SignIn} />
       <AuthStack.Screen name='SignUp' component={SignUp} />
     </AuthStack.Navigator>
-  )
-};
+  );
+}
