@@ -36,7 +36,7 @@ export default function Home({}: HomeProps) {
         <Heading type='Semibold' size={16}>
           <Text>Hello</Text>
           <Text>{` `}</Text>
-          <Text style={styles.hightlight}>{`${user?.name}!`}</Text>
+          <Text style={styles.hightlight}>{`${user?.name || 'User'}!`}</Text>
         </Heading>
         <View>
           <Image source={{ uri: user?.picture }} style={styles.avatar} />
