@@ -14,13 +14,20 @@ import auth from '@react-native-firebase/auth';
 import styles from '../styles/screens/signin';
 import { Colors } from '../styles/global';
 import { GoogleAuthButton } from '../components';
+import { AuthWithCredentials, FirebaseSignUp } from '../utils/auth';
+import { CommonActions } from '@react-navigation/native';
+
+interface CredentialsProps {
+  email: string;
+  password: string;
+}
 
 interface SignInProps {
   navigation: AuthNavigationProps;
 }
 export default function SignIn({ navigation }: SignInProps) {
   const [keyboardShown, setKeyboardShown] = useState(false);
-  const [credentials, setCredentials] = useState({
+  const [credentials, setCredentials] = useState<CredentialsProps>({
     email: '',
     password: '',
   });
@@ -43,24 +50,16 @@ export default function SignIn({ navigation }: SignInProps) {
     });
   };
 
-  const handleSignIn = () => {
-    console.log(credentials);
-    auth()
-      .signInWithEmailAndPassword(credentials.email, credentials.password)
-      .then(data => {
-        console.log({ data, user: data.user });
-        console.log('User account created & signed in!');
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-        }
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
-        // if (error.code === 'auth/invalid-credential') { }
-        console.error({ message: error.message, code: error.code });
-      });
+  const handleSignIn = async () => {
+    const userCredentials = await AuthWithCredentials(credentials, false);
+    if (!userCredentials) return null;
+    console.log(JSON.stringify(userCredentials, null, 2));
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: 'AppStack', params: { screen: 'Home' } }],
+      }),
+    );
   };
 
   useEffect(() => {

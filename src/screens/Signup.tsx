@@ -9,10 +9,11 @@ import {
 } from 'react-native';
 import SignUpBanner from '../assets/app/SignUpBanner';
 import { Heading, MainButton, InputField, Spacing } from '../components/common';
-import { AuthNavigationProps } from '../types/navigation';
-import auth from '@react-native-firebase/auth';
-import styles from '../styles/screens/signup';
+import { AuthWithCredentials, FirebaseSignUp } from '../utils/auth';
+import { CommonActions } from '@react-navigation/native';
+import { NavigationProps } from '../types/navigation';
 import { Colors } from '../styles/global';
+import styles from '../styles/screens/signup';
 
 interface CredentialsProps {
   email: string;
@@ -21,7 +22,7 @@ interface CredentialsProps {
 }
 
 interface SignUpProps {
-  navigation: AuthNavigationProps;
+  navigation: NavigationProps;
 }
 export default function SignUp({ navigation }: SignUpProps) {
   const [keyboardShown, setKeyboardShown] = useState(false);
@@ -38,7 +39,7 @@ export default function SignUp({ navigation }: SignUpProps) {
     setKeyboardShown(false);
   };
   const handleRedirect = () => {
-    navigation.replace('SignIn');
+    navigation.replace('AuthStack', { screen: 'SignIn' });
   };
 
   const handleChange = (
@@ -53,34 +54,28 @@ export default function SignUp({ navigation }: SignUpProps) {
 
   const verifyCredentials = (credentials: CredentialsProps): boolean => {
     // TODO: Insert password rules
-    console.log(credentials);
     return credentials.password === credentials.confirm;
   };
 
   const handleSignUp = async () => {
-    try {
-      const verified = verifyCredentials(credentials);
-      if (!verified) return null;
+    const verified = verifyCredentials(credentials);
+    if (!verified) return null;
 
-      const userCredentials = await auth().createUserWithEmailAndPassword(
-        credentials.email,
-        credentials.password,
-      );
-
-      // WORKS!!!! Now redirect to home screen with data loaded.
-      await userCredentials.user.sendEmailVerification();
-      console.log({ user: userCredentials.user });
-      console.log('User account created & signed in!');
-    } catch (error: any) {
-      if (error.code === 'auth/email-already-in-use') {
-        console.log('That email address is already in use!');
-      }
-      if (error.code === 'auth/invalid-email') {
-        console.log('That email address is invalid!');
-      }
-      // if (error.code === 'auth/invalid-credential') { }
-      console.error({ message: error.message, code: error.code });
+    const userCredentials = await AuthWithCredentials(credentials, true);
+    if (!userCredentials) return null;
+    console.log(JSON.stringify(userCredentials, null, 2));
+    const isNewUser = userCredentials?.additionalUserInfo?.isNewUser;
+    if (isNewUser) {
+      await FirebaseSignUp(userCredentials.user, 'email');
+      // TODO: Redirect to complete profile
     }
+
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: 'AppStack', params: { screen: 'Home' } }],
+      }),
+    );
   };
 
   useEffect(() => {

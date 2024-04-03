@@ -130,7 +130,6 @@ export const toggleItem = async (itemId: string, check: boolean) => {
 
   const itemSnapshot = await itemRef.get();
   const parentId = itemSnapshot.data()?.parentId;
-  console.log({ parentId, check });
   if (parentId) {
     const cardRef = firestore().collection('cards').doc(parentId);
 
