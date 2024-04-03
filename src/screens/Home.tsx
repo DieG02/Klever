@@ -36,7 +36,7 @@ export default function Home({}: HomeProps) {
         <Heading type='Semibold' size={16}>
           <Text>Hello</Text>
           <Text>{` `}</Text>
-          <Text style={styles.hightlight}>{`${user?.name || 'User'}!`}</Text>
+          <Text style={styles.hightlight}>{`${user?.displayName}!`}</Text>
         </Heading>
         <View>
           <Image source={{ uri: user?.picture }} style={styles.avatar} />
@@ -53,13 +53,12 @@ export default function Home({}: HomeProps) {
 
         <FlatList
           data={cards}
-          contentContainerStyle={styles.flex}
           renderItem={({ item }) => <Card item={item} />}
           ItemSeparatorComponent={Spacing}
           showsVerticalScrollIndicator={false}
           keyExtractor={item => item?.id}
           ListEmptyComponent={EmptyCards}
-          refreshing
+          contentContainerStyle={styles.flatlist}
         />
       </View>
 

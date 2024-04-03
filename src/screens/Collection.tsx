@@ -26,12 +26,12 @@ export default function Collection({ route }: CollectionProps) {
     <SafeAreaView style={styles.wrapper}>
       <FlatList
         style={styles.list}
-        contentContainerStyle={styles.flex}
         data={items}
         renderItem={Item}
         ItemSeparatorComponent={Separator}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={EmptyCollection}
+        contentContainerStyle={styles.flatlist}
       />
       <TextInputCollection collectionId={id} />
     </SafeAreaView>
