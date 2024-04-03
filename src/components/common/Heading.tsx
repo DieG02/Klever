@@ -32,6 +32,7 @@ export default function Heading(props: HeadingProps): JSX.Element {
     color = 'Text',
     size = 14,
     style,
+    ...nativeProps
   } = props;
   const styles = StyleSheet.compose(
     {
@@ -42,5 +43,9 @@ export default function Heading(props: HeadingProps): JSX.Element {
     style,
   );
 
-  return <Text style={styles}>{children}</Text>;
+  return (
+    <Text style={styles} {...nativeProps}>
+      {children}
+    </Text>
+  );
 }

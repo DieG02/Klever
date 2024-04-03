@@ -68,8 +68,8 @@ export default function Item({ item }: { item: ItemProps }) {
           <CheckIcon color={check ? Colors.White : 'transparent'} width={15} />
         </View>
         <Heading
-          numberOfLines={1}
-          ellipsizeMode='clip'
+          numberOfLines={2}
+          ellipsizeMode='tail'
           size={13}
           style={[
             styles.itemLabel,

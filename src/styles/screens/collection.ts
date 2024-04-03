@@ -6,11 +6,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.White,
   },
-  flex: {
-    flex: 1,
+  flatlist: {
+    flexGrow: 1,
   },
   list: {
     paddingHorizontal: 20,
+    flex: 1,
   },
 });
 

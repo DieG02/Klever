@@ -106,9 +106,10 @@ export default function TextInputCollection({
       <View style={styles.footer}>
         <TextInput
           style={styles.input}
-          maxLength={40}
-          placeholder={'Add new items...'}
+          maxLength={75}
+          placeholder={'Add new items'}
           value={value}
+          multiline
           onChangeText={setValue}
         />
         {value ? (

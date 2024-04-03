@@ -29,8 +29,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 20,
   },
-  flex: {
-    flex: 1,
+  flatlist: {
+    flexGrow: 1,
+    paddingBottom: 3,
   },
   hightlight: {
     color: Colors.Primary,
