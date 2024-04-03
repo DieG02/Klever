@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 20,
     justifyContent: 'space-between',
-    elevation: 0.5,
   },
   containerCompleted: {
     backgroundColor: Colors.Primary,
