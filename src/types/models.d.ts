@@ -1,18 +1,17 @@
 export interface UserModel {
-  birthday: Date; 
+  avatar: string | null;
+  birthday: Date | null;
   cards: string[];
   createdAt: Date;
   displayName: string;
   email: string;
+  emailVerified: boolean;
   gender: 'male' | 'female' | null;
   locale: string;
-  name: string;
-  phone: string;
-  picture: string;
-  provider: string;
-  surname: string;
+  phone: string | null;
+  provider: 'email' | 'google';
   updatedAt: Date;
-};
+}
 
 export interface CardModel {
   id: string;
@@ -22,16 +21,16 @@ export interface CardModel {
   total: number;
   current: number;
   items: string[];
-};
+}
 
 export interface ItemModel {
   id: string;
   parentId: string;
   label: string;
   checked: boolean;
-};
+}
 
 export interface NewItemModel {
   label: string;
   checked: boolean;
-};
+}

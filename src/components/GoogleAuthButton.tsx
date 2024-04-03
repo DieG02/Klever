@@ -2,7 +2,7 @@ import { Pressable, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Heading } from './common';
 import { NavigationProps } from '../types/navigation';
-import GoogleSvg from '../assets/svg/GoogleSvg';
+import GoogleSVG from '../assets/svg/Google';
 import { Colors } from '../styles/global';
 import { FirebaseSignUp, AuthWithGoogle } from '../utils/auth';
 
@@ -25,7 +25,7 @@ export default function GoogleAuthButton() {
 
   return (
     <Pressable style={styles.container} onPress={handleGoogleAuth}>
-      <GoogleSvg width={24} height={24} />
+      <GoogleSVG width={24} height={24} />
       <Heading color='Placeholder' type='Medium' style={styles.label}>
         Continue with Google
       </Heading>

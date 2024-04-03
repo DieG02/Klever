@@ -1,14 +1,9 @@
+import * as React from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
-export default function GoogleSvg(props: SvgProps) {
+function GoogleSVG(props: SvgProps) {
   return (
-    <Svg
-      width={26}
-      height={25}
-      viewBox='0 0 26 25'
-      fill='none'
-      {...props}
-    >
+    <Svg width={26} height={25} viewBox='0 0 26 25' fill='none' {...props}>
       <Path
         d='M25.473 10.052h-1.007V10h-11.25v5h7.064c-1.03 2.91-3.8 5-7.064 5a7.5 7.5 0 010-15 7.46 7.46 0 014.976 1.9l3.535-3.536A12.442 12.442 0 0013.217 0C6.312 0 .716 5.597.716 12.5S6.312 25 13.216 25c6.902 0 12.5-5.597 12.5-12.5 0-.838-.087-1.656-.244-2.448z'
         fill='#FBC02D'
@@ -26,5 +21,7 @@ export default function GoogleSvg(props: SvgProps) {
         fill='#1565C0'
       />
     </Svg>
-  )
-};
+  );
+}
+
+export default GoogleSVG;

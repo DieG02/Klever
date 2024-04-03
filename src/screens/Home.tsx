@@ -14,6 +14,7 @@ import { AppNavigationProps } from '../types/navigation';
 import { getUserCards } from '../services/firestore';
 import useSession from '../hooks/useSession';
 import EmptyCards from '../components/EmptyCards';
+import AvatarSVG from '../assets/svg/Avatar';
 
 interface HomeProps {
   navigation: AppNavigationProps;
@@ -39,7 +40,11 @@ export default function Home({}: HomeProps) {
           <Text style={styles.hightlight}>{`${user?.displayName}!`}</Text>
         </Heading>
         <View>
-          <Image source={{ uri: user?.picture }} style={styles.avatar} />
+          {user?.avatar ? (
+            <Image source={{ uri: user?.avatar }} style={styles.avatar} />
+          ) : (
+            <AvatarSVG width={35} height={35} />
+          )}
         </View>
       </View>
       <View style={styles.placeholder} />

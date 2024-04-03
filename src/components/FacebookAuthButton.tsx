@@ -2,7 +2,7 @@ import { AuthRouteProps } from '../types/navigation';
 import { useRoute } from '@react-navigation/native';
 import { Pressable, StyleSheet, ViewStyle } from 'react-native';
 
-import FacebookSvg from '../assets/svg/FacebookSvg';
+import FacebookSVG from '../assets/svg/Facebook';
 import { Colors } from '../styles/global';
 import { Heading } from './common';
 
@@ -18,7 +18,7 @@ export default function FacebookAuthButton({ style }: FacebookAuthButtonProps) {
 
   return (
     <Pressable style={[styles.container, style]}>
-      <FacebookSvg width={24} height={24} />
+      <FacebookSVG width={24} height={24} />
       <Heading size={13} style={{ marginLeft: 15 }}>
         {label}
       </Heading>
