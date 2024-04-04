@@ -1,13 +1,7 @@
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-  Animated,
-} from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Animated } from 'react-native';
+import { Swipeable } from 'react-native-gesture-handler';
 import { CheckIcon, TrashIcon } from 'react-native-heroicons/mini';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
-import { toggleItem, deleteItem } from '../services/firestore';
+import { toggleItem, removeItem } from '../services/firestore';
 import { Heading } from './common';
 import { Colors } from '../styles/global';
 
@@ -24,7 +18,7 @@ export default function Item({ item }: { item: ItemProps }) {
   };
 
   const handleDelete = () => {
-    deleteItem(item.id);
+    removeItem(item.id);
   };
 
   const RightSideActions = (progress: any, dragX: any) => {

@@ -5,6 +5,9 @@ export enum Colors {
   Danger = '#F35F5F',
   Pastel = '#FFEBEB',
 
+  Orange = '#FFAB49',
+  Ambar = '#FFEDDA',
+
   Text = '#444444',
   Label = '#666666',
   Background = '#FBFBFB',

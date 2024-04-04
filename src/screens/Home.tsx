@@ -1,12 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  FlatList,
-  Image,
-  Pressable,
-  SafeAreaView,
-  Text,
-  View,
-} from 'react-native';
+import { FlatList, Image, SafeAreaView, Text, View } from 'react-native';
 import { Card, TextInputHome } from '../components';
 import { Spacing, Heading } from '../components/common';
 import styles from '../styles/screens/home';

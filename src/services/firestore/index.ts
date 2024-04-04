@@ -83,7 +83,8 @@ export const createUser = async (user: any, profile: any) => {
 };
 
 export const addCard = async (title: string) => {
-  const userRef = getUser();
+  const batch = firestore().batch();
+
   const cardRef = firestore().collection('cards').doc();
   const card_id = cardRef.id;
   const card: CardModel = {
@@ -93,14 +94,33 @@ export const addCard = async (title: string) => {
     category: '',
     total: 0,
     current: 0,
-    items: [],
   };
-  await cardRef.set(card);
-  //Linkin cards to current user
-  await userRef.update({
+
+  batch.set(cardRef, card);
+
+  const userRef = getUser();
+  batch.update(userRef, {
     cards: firestore.FieldValue.arrayUnion(card_id),
   });
+
+  await batch.commit();
   return cardRef;
+};
+
+export const removeCard = async (id: string) => {
+  const batch = firestore().batch();
+
+  // Remove card
+  const cardRef = firestore().collection('cards').doc(id);
+  batch.delete(cardRef);
+
+  // Remove the card reference from the user's array 'cards'.
+  const userRef = getUser();
+  batch.update(userRef, {
+    cards: firestore.FieldValue.arrayRemove(id),
+  });
+
+  await batch.commit();
 };
 
 export const addItem = async (id: string, item: NewItemModel) => {
@@ -139,7 +159,7 @@ export const toggleItem = async (itemId: string, check: boolean) => {
   }
 };
 
-export const deleteItem = async (itemId: string) => {
+export const removeItem = async (itemId: string) => {
   const itemRef = firestore().collection('items').doc(itemId);
   const itemSnapshot = await itemRef.get();
   const parentId = itemSnapshot.data()?.parentId;
