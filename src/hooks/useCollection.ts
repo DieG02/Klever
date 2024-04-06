@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import firestore from '@react-native-firebase/firestore'; // Importa Firestore según corresponda
 import { ItemModel } from '../types/models';
 
-const useRealtimeItems = (parent_id: string) => {
-  const [items, setItems] = useState<ItemModel[]>([]);
+const useCollection = (parent_id: string) => {
+  const [items, setItems] = useState<ItemModel[] | null>(null);
 
   useEffect(() => {
     const unsubscribe = firestore()
@@ -26,4 +26,4 @@ const useRealtimeItems = (parent_id: string) => {
   return { items };
 };
 
-export default useRealtimeItems;
+export default useCollection;

@@ -1,7 +1,6 @@
 import { StyleSheet, View, TouchableOpacity, Animated } from 'react-native';
 import { Swipeable } from 'react-native-gesture-handler';
 import { CheckIcon, TrashIcon } from 'react-native-heroicons/mini';
-// import { toggleItem, removeItem } from '../services/firestore';
 import { toogleItemStatus, removeItem } from '../services/firestore/collection';
 import { Heading } from './common';
 import { Colors } from '../styles/global';

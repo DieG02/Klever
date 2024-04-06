@@ -3,10 +3,10 @@ import { Card, TextInputHome } from '../components';
 import { Spacing, Heading } from '../components/common';
 import styles from '../styles/screens/home';
 import { AppNavigationProps } from '../types/navigation';
-import useSession from '../hooks/useSession';
 import EmptyCards from '../components/EmptyCards';
 import AvatarSVG from '../assets/svg/Avatar';
-import useBoards from '../hooks/useBoard';
+import { useSession, useBoards } from '../hooks/';
+import BoardSkeleton from '../components/skeleton/Board';
 
 interface HomeProps {
   navigation: AppNavigationProps;
@@ -40,15 +40,18 @@ export default function Home({}: HomeProps) {
         </Heading>
         <Spacing size={20} />
 
-        <FlatList
-          data={boards}
-          renderItem={({ item }) => <Card item={item} />}
-          ItemSeparatorComponent={Spacing}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={item => item?.id}
-          ListEmptyComponent={EmptyCards}
-          contentContainerStyle={styles.flatlist}
-        />
+        {boards && (
+          <FlatList
+            data={boards}
+            renderItem={({ item }) => <Card item={item} />}
+            ItemSeparatorComponent={Spacing}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={item => item?.id}
+            ListEmptyComponent={EmptyCards}
+            contentContainerStyle={styles.flatlist}
+          />
+        )}
+        {!boards && [0, 1, 2, 3].map(i => <BoardSkeleton key={i} />)}
       </View>
 
       <TextInputHome />

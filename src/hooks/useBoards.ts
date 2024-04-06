@@ -4,7 +4,8 @@ import firestore from '@react-native-firebase/firestore';
 import { BoardModel } from '../types/models';
 
 const useBoards = () => {
-  const [boards, setBoards] = useState<BoardModel[]>([]);
+  const [boards, setBoards] = useState<BoardModel[] | null>(null);
+  const [error, setError] = useState<any>(null);
 
   useEffect(() => {
     try {
@@ -26,11 +27,12 @@ const useBoards = () => {
 
       return () => unsubscribe();
     } catch (error) {
+      setError(error);
       console.error('Error fetching user boards:', error);
     }
   }, []);
 
-  return { boards };
+  return { boards, error };
 };
 
 export default useBoards;

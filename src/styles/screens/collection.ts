@@ -6,12 +6,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.White,
   },
+  container: {
+    flex: 1,
+    marginHorizontal: 20,
+  },
   flatlist: {
     flexGrow: 1,
-  },
-  list: {
-    paddingHorizontal: 20,
-    flex: 1,
+    paddingBottom: 3,
   },
 });
 
