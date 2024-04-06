@@ -1,36 +1,27 @@
-import { useEffect, useState } from 'react';
 import { FlatList, Image, SafeAreaView, Text, View } from 'react-native';
 import { Card, TextInputHome } from '../components';
 import { Spacing, Heading } from '../components/common';
 import styles from '../styles/screens/home';
 import { AppNavigationProps } from '../types/navigation';
-import { getUserCards } from '../services/firestore';
 import useSession from '../hooks/useSession';
 import EmptyCards from '../components/EmptyCards';
 import AvatarSVG from '../assets/svg/Avatar';
+import useBoards from '../hooks/useBoard';
 
 interface HomeProps {
   navigation: AppNavigationProps;
 }
 export default function Home({}: HomeProps) {
   const { user } = useSession();
-  const [cards, setCards] = useState<any>(null);
+  const { boards } = useBoards();
 
-  useEffect(() => {
-    if (!user) return;
-    const updateCardList = async () => {
-      const value = await getUserCards(user.cards);
-      setCards(value);
-    };
-    updateCardList();
-  }, [user]);
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.header}>
         <Heading type='Semibold' size={16}>
           <Text>Hello</Text>
           <Text>{` `}</Text>
-          <Text style={styles.hightlight}>{`${user?.displayName}!`}</Text>
+          <Text style={styles.hightlight}>{`${user?.display_name}!`}</Text>
         </Heading>
         <View>
           {user?.avatar ? (
@@ -50,7 +41,7 @@ export default function Home({}: HomeProps) {
         <Spacing size={20} />
 
         <FlatList
-          data={cards}
+          data={boards}
           renderItem={({ item }) => <Card item={item} />}
           ItemSeparatorComponent={Spacing}
           showsVerticalScrollIndicator={false}

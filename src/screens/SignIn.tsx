@@ -10,11 +10,10 @@ import {
 import SignInBanner from '../assets/app/SignInBanner';
 import { Heading, MainButton, InputField, Spacing } from '../components/common';
 import { AuthNavigationProps } from '../types/navigation';
-import auth from '@react-native-firebase/auth';
 import styles from '../styles/screens/signin';
 import { Colors } from '../styles/global';
 import { GoogleAuthButton } from '../components';
-import { AuthWithCredentials, FirebaseSignUp } from '../utils/auth';
+import { AuthWithCredentials } from '../utils/auth';
 import { CommonActions } from '@react-navigation/native';
 
 interface CredentialsProps {

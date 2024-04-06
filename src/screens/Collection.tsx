@@ -1,27 +1,19 @@
-import { useEffect, useState } from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
 import { Item, TextInputCollection } from '../components';
 import { Separator } from '../components/common';
 import styles from '../styles/screens/collection';
-import { styles as itemStyle } from '../components/Item';
-import { getCollectionItems } from '../services/firestore';
 import { AppNavigationProps, AppRouteProps } from '../types/navigation';
 import EmptyCollection from '../components/EmptyCollection';
+import useRealtimeItems from '../hooks/useCollection';
 
 interface CollectionProps {
   navigation: AppNavigationProps;
   route: AppRouteProps<'Collection'>;
 }
 export default function Collection({ route }: CollectionProps) {
-  const { id } = route.params;
-  const [items, setItems] = useState<any[]>([]);
+  const { id: parent_id } = route.params;
+  const { items } = useRealtimeItems(parent_id);
 
-  useEffect(() => {
-    const unsubscribe = getCollectionItems(id, setItems);
-    return () => {
-      unsubscribe();
-    };
-  }, []);
   return (
     <SafeAreaView style={styles.wrapper}>
       <FlatList
@@ -33,7 +25,7 @@ export default function Collection({ route }: CollectionProps) {
         ListEmptyComponent={EmptyCollection}
         contentContainerStyle={styles.flatlist}
       />
-      <TextInputCollection collectionId={id} />
+      <TextInputCollection collectionId={parent_id} />
     </SafeAreaView>
   );
 }

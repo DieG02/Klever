@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import SignUpBanner from '../assets/app/SignUpBanner';
 import { Heading, MainButton, InputField, Spacing } from '../components/common';
-import { AuthWithCredentials, FirebaseSignUp } from '../utils/auth';
+import { AuthWithCredentials } from '../utils/auth';
+import { createNewUser } from '../services/firestore/user';
 import { CommonActions } from '@react-navigation/native';
 import { NavigationProps } from '../types/navigation';
 import { Colors } from '../styles/global';
@@ -66,7 +67,7 @@ export default function SignUp({ navigation }: SignUpProps) {
     console.log(JSON.stringify(userCredentials, null, 2));
     const isNewUser = userCredentials?.additionalUserInfo?.isNewUser;
     if (isNewUser) {
-      await FirebaseSignUp(userCredentials.user, 'email');
+      await createNewUser(userCredentials.user, 'email');
       // TODO: Redirect to complete profile
     }
 

@@ -1,35 +1,29 @@
 import { useEffect, useState } from 'react';
-import firestore from '@react-native-firebase/firestore';
-import { CollectionProps } from '../types/hooks';
+import firestore from '@react-native-firebase/firestore'; // Importa Firestore según corresponda
+import { ItemModel } from '../types/models';
 
-const defaultProps = {
-  total: null,
-  current: null,
-};
-const useCollection = (id: string) => {
-  const [collection, setCollection] = useState<CollectionProps>(defaultProps);
+const useRealtimeItems = (parent_id: string) => {
+  const [items, setItems] = useState<ItemModel[]>([]);
 
   useEffect(() => {
-    try {
-      const unsubscribeItems = firestore()
-        .collection('items')
-        .where('parentId', '==', id)
-        .onSnapshot((snapshot) => {
-          const totalItems = snapshot.size;
-          const checkedItems = snapshot.docs.filter((doc) => doc.data().check).length;
-          setCollection({
-            total: totalItems,
-            current: checkedItems,
-          });
+    const unsubscribe = firestore()
+      .collection('items')
+      .where('parent_id', '==', parent_id)
+      .orderBy('created_at', 'desc')
+      .onSnapshot(snapshot => {
+        const updatedItems: ItemModel[] = [];
+        snapshot.forEach(doc => {
+          const itemData = doc.data() as ItemModel;
+          updatedItems.push(itemData);
         });
 
-      return () => unsubscribeItems();
-    } catch (error) {
-      console.error('Error fetching items data:', error);
-    }
-  }, []);
+        setItems(updatedItems);
+      });
 
-  return collection;
+    return () => unsubscribe();
+  }, [parent_id]);
+
+  return { items };
 };
 
-export default useCollection;
+export default useRealtimeItems;
