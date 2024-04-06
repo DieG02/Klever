@@ -7,18 +7,15 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Swipeable } from 'react-native-gesture-handler';
-import useCollection from '../hooks/useCollection';
 import { Heading } from './common';
 import { AppNavigationProps } from '../types/navigation';
-import { CardModel } from '../types/models';
+import { BoardModel } from '../types/models';
 import { Colors } from '../styles/global';
 import { PencilIcon, TrashIcon } from 'react-native-heroicons/mini';
-import { removeCard } from '../services/firestore';
+import { removeBoard } from '../services/firestore/board';
 
-export default function Card({ item }: { item: CardModel }) {
-  const { id, title } = item;
-  const collection = useCollection(item.id);
-  const { current, total } = collection;
+export default function Card({ item }: { item: BoardModel }) {
+  const { id, title, description, current, total } = item;
   const navigation = useNavigation<AppNavigationProps>();
 
   const onRedirect = () => {
@@ -34,7 +31,7 @@ export default function Card({ item }: { item: CardModel }) {
 
   const handleDelete = () => {
     console.log({ card: item.id });
-    removeCard(item.id);
+    removeBoard(item.id);
   };
 
   const handleEdit = () => {

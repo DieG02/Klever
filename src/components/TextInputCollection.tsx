@@ -9,7 +9,8 @@ import {
   PlusIcon,
   StopIcon,
 } from 'react-native-heroicons/mini';
-import { addItem } from '../services/firestore';
+// import { addItem } from '../services/firestore';
+import { addItem } from '../services/firestore/collection';
 import styles from '../styles/components/TextInputCustom';
 
 export default function TextInputCollection({
@@ -29,10 +30,7 @@ export default function TextInputCollection({
   const _addNewItem = () => {
     const label = value.trim();
     if (!label) return null;
-    addItem(collectionId, {
-      label: label,
-      checked: false,
-    });
+    addItem(collectionId, { label: label });
     setValue('');
   };
   const _startRecognizing = async () => {

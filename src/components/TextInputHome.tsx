@@ -3,6 +3,7 @@ import { TouchableOpacity, TextInput, View } from 'react-native';
 import { ArrowRightIcon } from 'react-native-heroicons/mini';
 import { useNavigation } from '@react-navigation/native';
 import { addCard } from '../services/firestore';
+import { addBoard } from '../services/firestore/board';
 import { AppNavigationProps } from '../types/navigation';
 import styles from '../styles/components/TextInputCustom';
 
@@ -13,7 +14,11 @@ export default function TextInputHome() {
   const handleOnPress = async () => {
     const title = value.trim();
     if (!title) return;
-    const cardRef = await addCard(title);
+    const cardRef = await addBoard({
+      title,
+      description: '',
+      category: 'none',
+    });
     setValue('');
     navigation.navigate('Collection', {
       id: cardRef.id,

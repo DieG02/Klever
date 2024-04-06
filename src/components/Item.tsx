@@ -1,24 +1,20 @@
 import { StyleSheet, View, TouchableOpacity, Animated } from 'react-native';
 import { Swipeable } from 'react-native-gesture-handler';
 import { CheckIcon, TrashIcon } from 'react-native-heroicons/mini';
-import { toggleItem, removeItem } from '../services/firestore';
+// import { toggleItem, removeItem } from '../services/firestore';
+import { toogleItemStatus, removeItem } from '../services/firestore/collection';
 import { Heading } from './common';
 import { Colors } from '../styles/global';
+import { ItemModel } from '../types/models';
 
-interface ItemProps {
-  id: string;
-  label: string;
-  check: boolean;
-  parentId: string;
-}
-export default function Item({ item }: { item: ItemProps }) {
-  const { label, check } = item;
+export default function Item({ item }: { item: ItemModel }) {
+  const { parent_id, label, checked } = item;
   const handlePress = () => {
-    toggleItem(item.id, !check);
+    toogleItemStatus(parent_id, item);
   };
 
   const handleDelete = () => {
-    removeItem(item.id);
+    removeItem(parent_id, item);
   };
 
   const RightSideActions = (progress: any, dragX: any) => {
@@ -58,8 +54,11 @@ export default function Item({ item }: { item: ItemProps }) {
         onPress={handlePress}
         // onLongPress={handleDelete}
       >
-        <View style={check ? styles.itemChecked : styles.itemButton}>
-          <CheckIcon color={check ? Colors.White : 'transparent'} width={15} />
+        <View style={checked ? styles.itemChecked : styles.itemButton}>
+          <CheckIcon
+            color={checked ? Colors.White : 'transparent'}
+            width={15}
+          />
         </View>
         <Heading
           numberOfLines={2}
@@ -67,7 +66,7 @@ export default function Item({ item }: { item: ItemProps }) {
           size={13}
           style={[
             styles.itemLabel,
-            check && { textDecorationLine: 'line-through' },
+            checked && { textDecorationLine: 'line-through' },
           ]}>
           {label}
         </Heading>

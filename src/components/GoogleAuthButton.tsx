@@ -4,7 +4,8 @@ import { Heading } from './common';
 import { NavigationProps } from '../types/navigation';
 import GoogleSVG from '../assets/svg/Google';
 import { Colors } from '../styles/global';
-import { FirebaseSignUp, AuthWithGoogle } from '../utils/auth';
+import { AuthWithGoogle } from '../utils/auth';
+import { createNewUser } from '../services/firestore/user';
 
 interface GoogleAuthButtonProps {}
 export default function GoogleAuthButton() {
@@ -14,7 +15,7 @@ export default function GoogleAuthButton() {
     const userCredentials = await AuthWithGoogle();
     const isNewUser = userCredentials?.additionalUserInfo?.isNewUser;
     if (isNewUser) {
-      await FirebaseSignUp(userCredentials.user, 'google');
+      await createNewUser(userCredentials.user, 'google');
       // TODO: Redirect to complete profile
     }
     navigation.reset({
