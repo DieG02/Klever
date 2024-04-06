@@ -1,36 +1,35 @@
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+
 export interface UserModel {
+  email: string;
+  email_verified: boolean;
+  display_name: string;
   avatar: string | null;
   birthday: Date | null;
-  cards: string[];
-  createdAt: Date;
-  displayName: string;
-  email: string;
-  emailVerified: boolean;
-  gender: 'male' | 'female' | null;
-  locale: string;
   phone: string | null;
+  locale: string;
+  gender: 'male' | 'female' | null;
   provider: 'email' | 'google';
-  updatedAt: Date;
+  created_at: FirebaseFirestoreTypes.DocumentFieldType;
+  updated_at: FirebaseFirestoreTypes.DocumentFieldType;
 }
 
-export interface CardModel {
+export interface BoardModel {
+  user_id: string;
   id: string;
   title: string;
-  description: string;
-  category: string; // TODO: Set categories enum
+  description?: string;
+  category?: string; // TODO: Set categories enum
   total: number;
   current: number;
-  items: string[];
+  created_at: FirebaseFirestoreTypes.DocumentFieldType;
+  updated_at: FirebaseFirestoreTypes.DocumentFieldType;
 }
 
 export interface ItemModel {
+  parent_id: string;
   id: string;
-  parentId: string;
   label: string;
   checked: boolean;
-}
-
-export interface NewItemModel {
-  label: string;
-  checked: boolean;
+  created_at: FirebaseFirestoreTypes.DocumentFieldType;
 }

@@ -1,6 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import { CardModel, NewItemModel } from '../../types/models';
+import { BoardModel, NewItemModel } from '../../types/models';
 
 export const getUser = () => {
   const id = auth().currentUser?.uid;
@@ -87,7 +87,7 @@ export const addCard = async (title: string) => {
 
   const cardRef = firestore().collection('cards').doc();
   const card_id = cardRef.id;
-  const card: CardModel = {
+  const card: BoardModel = {
     id: card_id,
     title: title,
     description: '',

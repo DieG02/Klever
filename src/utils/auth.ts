@@ -1,4 +1,3 @@
-import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 import {
   GoogleSignin,
@@ -67,28 +66,4 @@ export const AuthWithCredentials = async (
       console.error(error);
     }
   }
-};
-
-type AuthProviders = 'google' | 'email';
-export const FirebaseSignUp = async (user: any, provider: AuthProviders) => {
-  const userDocRef = firestore().collection('users').doc(user.uid);
-  const locale = auth().languageCode;
-  const displayName = user.displayName?.split(' ')[0];
-  const userData = {
-    email: user.email,
-    locale: locale || 'en-US', // TODO: Take locale from system, email or pick one
-    displayName: displayName || 'User',
-    cards: [], // TODO: Change to implemented after sucess auth (Include Card Model)
-    gender: null,
-    birthday: null,
-    provider: provider,
-    avatar: user?.photoURL, //TODO: Set a default avatar
-    phone: user?.phoneNumber,
-    emailVerified: user.emailVerified,
-    createdAt: firestore.FieldValue.serverTimestamp(),
-    updatedAt: firestore.FieldValue.serverTimestamp(),
-  };
-
-  await userDocRef.set(userData);
-  return userDocRef;
 };
