@@ -15,8 +15,11 @@ export type AuthStackParamList = {
 
 export type AppStackParamList = {
   Home: undefined;
-  Collection: { 
+  Collection: {
     id: string;
+    title: string;
+  };
+  Settings: {
     title: string;
   };
 };
@@ -27,6 +30,15 @@ export type AuthNavigationProps = StackNavigationProp<AuthStackParamList>;
 export type AppNavigationProps = StackNavigationProp<AppStackParamList>;
 
 // Types of routes
-export type RouteProps<T extends keyof RootStackParamList> = RouteProp<RootStackParamList, T>;
-export type AuthRouteProps<T extends keyof AuthStackParamList> = RouteProp<AuthStackParamList, T>;
-export type AppRouteProps<T extends keyof AppStackParamList> = RouteProp<AppStackParamList, T>;
+export type RouteProps<T extends keyof RootStackParamList> = RouteProp<
+  RootStackParamList,
+  T
+>;
+export type AuthRouteProps<T extends keyof AuthStackParamList> = RouteProp<
+  AuthStackParamList,
+  T
+>;
+export type AppRouteProps<T extends keyof AppStackParamList> = RouteProp<
+  AppStackParamList,
+  T
+>;
