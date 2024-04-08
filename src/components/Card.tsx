@@ -54,14 +54,14 @@ export default function Card({ item }: { item: BoardModel }) {
             }}>
             <Animated.View
               style={{
-                backgroundColor: Colors.Ambar,
+                backgroundColor: Colors.Amber,
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: 35,
                 width: 35,
                 borderRadius: 20,
               }}>
-              <PencilIcon color={Colors.Orange} />
+              <PencilIcon color={Colors.Gold} />
             </Animated.View>
           </View>
         </TouchableOpacity>
