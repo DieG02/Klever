@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { FlatList, Image, SafeAreaView, Text, View } from 'react-native';
 import { Card, TextInputHome } from '../components';
 import { Spacing, Heading } from '../components/common';
@@ -8,6 +9,7 @@ import AvatarSVG from '../assets/svg/Avatar';
 import { useSession, useBoards } from '../hooks/';
 import BoardSkeleton from '../components/skeleton/Board';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { updateLocale } from '../services/firestore/user';
 
 interface HomeProps {
   navigation: AppNavigationProps;
@@ -20,6 +22,9 @@ export default function Home({ navigation }: HomeProps) {
     navigation.push('Settings', { title: 'Settings' });
   };
 
+  useEffect(() => {
+    if (!!user?.locale) updateLocale(user?.locale);
+  }, [user?.locale]);
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.header}>
@@ -41,7 +46,7 @@ export default function Home({ navigation }: HomeProps) {
 
       <View style={styles.container}>
         <Heading type='Medium' size={12}>
-          All collections
+          All collections {}
         </Heading>
         <Spacing size={20} />
 

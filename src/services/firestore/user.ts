@@ -11,8 +11,8 @@ export const createNewUser = async (user: any, provider: AuthProviders) => {
 
   const userData: UserModel = {
     email: user.email,
-    locale: locale || 'en-US', // TODO: Take locale from system, email or pick one
     display_name: displayName,
+    locale: locale,
     gender: null,
     birthday: null,
     provider: provider,
@@ -25,4 +25,22 @@ export const createNewUser = async (user: any, provider: AuthProviders) => {
 
   await userDocRef.set(userData);
   return userDocRef;
+};
+
+export const updateLocale = async (locale: string) => {
+  try {
+    const user = auth().currentUser;
+    if (!!user) {
+      const userDocRef = firestore().collection('users').doc(user.uid);
+      await userDocRef.update({
+        locale: locale,
+        updated_at: firestore.FieldValue.serverTimestamp(),
+      });
+    }
+    await auth().setLanguageCode(locale);
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating user locale:', error);
+    return { success: false, error };
+  }
 };

@@ -1,12 +1,13 @@
-import { Image, SafeAreaView, View } from 'react-native';
+import { useState } from 'react';
+import { Image, SafeAreaView, StatusBar, View } from 'react-native';
 import { Spacing, Heading } from '../components/common';
 import styles from '../styles/screens/settings';
-import { AppNavigationProps, RootStackParamList } from '../types/navigation';
+import { AppNavigationProps } from '../types/navigation';
 import AvatarSVG from '../assets/svg/Avatar';
 import { useSession } from '../hooks/';
 import {
   ArrowRightOnRectangleIcon,
-  HeartIcon,
+  StarIcon,
   LanguageIcon,
   LockClosedIcon,
   MoonIcon,
@@ -15,12 +16,16 @@ import {
 import NavItem from '../components/NavItem';
 import { AuthLogOut } from '../utils/auth';
 import { CommonActions } from '@react-navigation/native';
+import LanguageModal from '../components/modal/Language';
 
 interface SettingsProps {
   navigation: AppNavigationProps;
 }
 export default function Settings({ navigation }: SettingsProps) {
   const { user } = useSession();
+  const [visible, setVisible] = useState<boolean>(false);
+  const show = () => setVisible(true);
+  const hide = () => setVisible(false);
 
   const handleLogout = async () => {
     const currentUser = await AuthLogOut();
@@ -36,6 +41,7 @@ export default function Settings({ navigation }: SettingsProps) {
 
   return (
     <SafeAreaView style={styles.wrapper}>
+      <StatusBar barStyle='dark-content' backgroundColor='#FFFFFF' />
       <View style={styles.header}>
         <View>
           {user?.avatar ? (
@@ -59,7 +65,12 @@ export default function Settings({ navigation }: SettingsProps) {
       {/* <NavItem icon={UserIcon} label='Edit profile' arrow /> */}
 
       {/* TODO: Show language modal */}
-      <NavItem icon={LanguageIcon} label='Language' arrow />
+      <NavItem icon={LanguageIcon} label='Language' arrow onPress={show} />
+      <LanguageModal
+        visible={visible}
+        onRequestClose={hide}
+        current={user?.locale || ''}
+      />
 
       {/* TODO: Include in next version */}
       {/* <NavItem icon={MoonIcon} label='Dark mode' />
@@ -68,7 +79,7 @@ export default function Settings({ navigation }: SettingsProps) {
       )} */}
 
       {/* TODO: Redirect to the store*/}
-      <NavItem icon={HeartIcon} label='Rate app' arrow />
+      <NavItem icon={StarIcon} label='Rate app' arrow />
 
       <NavItem
         icon={ArrowRightOnRectangleIcon}

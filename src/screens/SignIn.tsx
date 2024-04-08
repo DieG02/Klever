@@ -15,6 +15,8 @@ import { Colors } from '../styles/global';
 import { GoogleAuthButton } from '../components';
 import { AuthWithCredentials } from '../utils/auth';
 import { CommonActions } from '@react-navigation/native';
+import LanguageModal from '../components/modal/Language';
+import { LanguageIcon } from 'react-native-heroicons/mini';
 
 interface CredentialsProps {
   email: string;
@@ -26,6 +28,7 @@ interface SignInProps {
 }
 export default function SignIn({ navigation }: SignInProps) {
   const [keyboardShown, setKeyboardShown] = useState(false);
+  const [modal, setModal] = useState<boolean>(false);
   const [credentials, setCredentials] = useState<CredentialsProps>({
     email: '',
     password: '',
@@ -52,7 +55,6 @@ export default function SignIn({ navigation }: SignInProps) {
   const handleSignIn = async () => {
     const userCredentials = await AuthWithCredentials(credentials, false);
     if (!userCredentials) return null;
-    console.log(JSON.stringify(userCredentials, null, 2));
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
@@ -80,9 +82,19 @@ export default function SignIn({ navigation }: SignInProps) {
     <SafeAreaView style={styles.wrapper}>
       <StatusBar backgroundColor={Colors.White} barStyle='dark-content' />
       {!keyboardShown && (
-        <View style={styles.banner}>
-          <SignInBanner height={200} />
-        </View>
+        <>
+          <Pressable onPress={() => setModal(true)} style={styles.locale}>
+            <LanguageIcon color={Colors.Primary} />
+          </Pressable>
+          <LanguageModal
+            visible={modal}
+            onRequestClose={() => setModal(false)}
+            current={'en-US'}
+          />
+          <View style={styles.banner}>
+            <SignInBanner height={200} />
+          </View>
+        </>
       )}
 
       <Heading type='Semibold' style={styles.header}>

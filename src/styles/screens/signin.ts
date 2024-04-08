@@ -7,6 +7,17 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.White,
     paddingHorizontal: 20,
   },
+  locale: {
+    height: 35,
+    width: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    backgroundColor: Colors.Light,
+    position: 'absolute',
+    top: 15,
+    left: 20,
+  },
   banner: {
     marginTop: 50,
     marginBottom: 30,
