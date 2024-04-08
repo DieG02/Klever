@@ -8,8 +8,11 @@ import {
 } from 'react-native';
 import Heading from './Heading';
 import { Colors, Poppins } from '../../styles/global';
+import { EyeIcon, EyeSlashIcon } from 'react-native-heroicons/mini';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { useState } from 'react';
 
-interface InputFieldProps extends TextInputProps {
+interface PasswordFieldProps extends TextInputProps {
   label?: string;
   marginb?: number;
   labelStyle?: StyleProp<TextStyle>;
@@ -24,12 +27,12 @@ interface InputFieldProps extends TextInputProps {
  * @param inputStyle Override default TextInput style
  * @returns {JSX.Element} A JSX element representing the custom text input
  */
-export default function InputField(props: InputFieldProps): JSX.Element {
+export default function PasswordField(props: PasswordFieldProps): JSX.Element {
   const { label, labelStyle, inputStyle, marginb, ...inputProps } = props;
+  const [visible, setVisible] = useState<boolean>(false);
   const viewMixStyle = {
     marginBottom: typeof marginb === 'number' ? marginb : 20,
   };
-
   const labelMixStyle = StyleSheet.compose(
     {
       fontSize: 10,
@@ -40,30 +43,48 @@ export default function InputField(props: InputFieldProps): JSX.Element {
   );
   const inputMixStyle = StyleSheet.compose(
     {
+      fontFamily: Poppins.Regular,
+      color: Colors.Text,
+      fontSize: 12,
+      flex: 1,
+      padding: 0,
+      marginRight: 15,
+    },
+    inputStyle,
+  );
+  const styles = StyleSheet.create({
+    wrapper: {
       backgroundColor: Colors.Background,
       borderColor: Colors.Light,
       borderWidth: 1,
       borderRadius: 10,
       height: 45,
-      fontFamily: Poppins.Regular,
-      color: Colors.Text,
-      fontSize: 12,
-      paddingHorizontal: 15,
+      paddingHorizontal: 14, // + 1px border
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
     },
-    inputStyle,
-  );
+  });
 
   return (
     <View style={viewMixStyle}>
       <Heading color='Placeholder' style={labelMixStyle}>
         {label}
       </Heading>
-      <View>
+      <View style={styles.wrapper}>
         <TextInput
           style={inputMixStyle}
           placeholderTextColor={Colors.Label}
+          secureTextEntry={!visible}
           {...inputProps}
         />
+        <TouchableWithoutFeedback onPress={() => setVisible(!visible)}>
+          {visible ? (
+            <EyeSlashIcon color={Colors.Placeholder} />
+          ) : (
+            <EyeIcon color={Colors.Placeholder} />
+          )}
+        </TouchableWithoutFeedback>
       </View>
     </View>
   );
