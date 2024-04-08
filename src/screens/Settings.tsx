@@ -66,11 +66,7 @@ export default function Settings({ navigation }: SettingsProps) {
 
       {/* TODO: Show language modal */}
       <NavItem icon={LanguageIcon} label='Language' arrow onPress={show} />
-      <LanguageModal
-        visible={visible}
-        onRequestClose={hide}
-        current={user?.locale || ''}
-      />
+      <LanguageModal visible={visible} onRequestClose={hide} />
 
       {/* TODO: Include in next version */}
       {/* <NavItem icon={MoonIcon} label='Dark mode' />

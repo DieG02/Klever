@@ -15,15 +15,13 @@ import { updateLocale } from '../../services/firestore/user';
 interface LanguageModalProps {
   visible: boolean;
   onRequestClose: () => void;
-  current: string;
 }
 
 export default function LanguageModal({
   visible,
   onRequestClose,
-  current,
 }: LanguageModalProps) {
-  const [locale, setLocale] = useState<string>(auth().languageCode || current);
+  const [locale, setLocale] = useState<string>(auth().languageCode);
   const options = {
     en: 'en-US',
     es: 'es-MX',

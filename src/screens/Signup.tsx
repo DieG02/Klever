@@ -8,11 +8,18 @@ import {
   View,
 } from 'react-native';
 import SignUpBanner from '../assets/app/SignUpBanner';
-import { Heading, MainButton, InputField, Spacing } from '../components/common';
+import {
+  Heading,
+  MainButton,
+  InputField,
+  PasswordField,
+  Spacing,
+} from '../components/common';
 import { AuthWithCredentials } from '../utils/auth';
 import { createNewUser } from '../services/firestore/user';
 import { CommonActions } from '@react-navigation/native';
-import { NavigationProps } from '../types/navigation';
+import { AuthNavigationProps } from '../types/navigation';
+import { VerifyCredentials } from '../utils/auth';
 import { Colors } from '../styles/global';
 import styles from '../styles/screens/signup';
 
@@ -23,7 +30,7 @@ interface CredentialsProps {
 }
 
 interface SignUpProps {
-  navigation: NavigationProps;
+  navigation: AuthNavigationProps;
 }
 export default function SignUp({ navigation }: SignUpProps) {
   const [keyboardShown, setKeyboardShown] = useState(false);
@@ -33,14 +40,8 @@ export default function SignUp({ navigation }: SignUpProps) {
     confirm: '',
   });
 
-  const keyboardDidShow = () => {
-    setKeyboardShown(true);
-  };
-  const keyboardDidHide = () => {
-    setKeyboardShown(false);
-  };
   const handleRedirect = () => {
-    navigation.replace('AuthStack', { screen: 'SignIn' });
+    navigation.replace('SignIn');
   };
 
   const handleChange = (
@@ -53,18 +54,13 @@ export default function SignUp({ navigation }: SignUpProps) {
     });
   };
 
-  const verifyCredentials = (credentials: CredentialsProps): boolean => {
-    // TODO: Insert password rules
-    return credentials.password === credentials.confirm;
-  };
-
   const handleSignUp = async () => {
-    const verified = verifyCredentials(credentials);
+    const verified = VerifyCredentials(credentials);
     if (!verified) return null;
 
     const userCredentials = await AuthWithCredentials(credentials, true);
     if (!userCredentials) return null;
-    console.log(JSON.stringify(userCredentials, null, 2));
+
     const isNewUser = userCredentials?.additionalUserInfo?.isNewUser;
     if (isNewUser) {
       await createNewUser(userCredentials.user, 'email');
@@ -80,19 +76,17 @@ export default function SignUp({ navigation }: SignUpProps) {
   };
 
   useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
+    const KeyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
-      keyboardDidShow,
+      () => setKeyboardShown(true),
     );
-    const keyboardDidHideListener = Keyboard.addListener(
+    const KeyboardDidHideListener = Keyboard.addListener(
       'keyboardDidHide',
-      keyboardDidHide,
+      () => setKeyboardShown(false),
     );
-
-    // Limpia los listeners cuando el componente se desmonta
     return () => {
-      keyboardDidShowListener.remove();
-      keyboardDidHideListener.remove();
+      KeyboardDidShowListener.remove();
+      KeyboardDidHideListener.remove();
     };
   }, []);
   return (
@@ -115,17 +109,15 @@ export default function SignUp({ navigation }: SignUpProps) {
         placeholder={`Enter your email`}
         onChangeText={value => handleChange(value, 'email')}
       />
-      <InputField
+      <PasswordField
         label='Password'
         placeholder={`Enter your password`}
         onChangeText={value => handleChange(value, 'password')}
-        secureTextEntry
       />
-      <InputField
+      <PasswordField
         label='Confirm password'
         placeholder={`Enter confirm password`}
         onChangeText={value => handleChange(value, 'confirm')}
-        secureTextEntry
       />
       <Spacing size={20} />
 

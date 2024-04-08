@@ -8,7 +8,13 @@ import {
   View,
 } from 'react-native';
 import SignInBanner from '../assets/app/SignInBanner';
-import { Heading, MainButton, InputField, Spacing } from '../components/common';
+import {
+  Heading,
+  MainButton,
+  InputField,
+  Spacing,
+  PasswordField,
+} from '../components/common';
 import { AuthNavigationProps } from '../types/navigation';
 import styles from '../styles/screens/signin';
 import { Colors } from '../styles/global';
@@ -34,13 +40,6 @@ export default function SignIn({ navigation }: SignInProps) {
     password: '',
   });
 
-  const keyboardDidShow = () => {
-    setKeyboardShown(true);
-  };
-  const keyboardDidHide = () => {
-    setKeyboardShown(false);
-  };
-
   const handleRedirect = () => {
     navigation.replace('SignUp');
   };
@@ -64,18 +63,17 @@ export default function SignIn({ navigation }: SignInProps) {
   };
 
   useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
+    const KeyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
-      keyboardDidShow,
+      () => setKeyboardShown(true),
     );
-    const keyboardDidHideListener = Keyboard.addListener(
+    const KeyboardDidHideListener = Keyboard.addListener(
       'keyboardDidHide',
-      keyboardDidHide,
+      () => setKeyboardShown(false),
     );
-
     return () => {
-      keyboardDidShowListener.remove();
-      keyboardDidHideListener.remove();
+      KeyboardDidShowListener.remove();
+      KeyboardDidHideListener.remove();
     };
   }, []);
   return (
@@ -89,7 +87,6 @@ export default function SignIn({ navigation }: SignInProps) {
           <LanguageModal
             visible={modal}
             onRequestClose={() => setModal(false)}
-            current={'en-US'}
           />
           <View style={styles.banner}>
             <SignInBanner height={200} />
@@ -108,11 +105,10 @@ export default function SignIn({ navigation }: SignInProps) {
         placeholder={`Enter your email`}
         onChangeText={value => handleChange(value, 'email')}
       />
-      <InputField
+      <PasswordField
         label='Password'
         placeholder={`Enter your password`}
         onChangeText={value => handleChange(value, 'password')}
-        secureTextEntry
         marginb={10}
       />
 

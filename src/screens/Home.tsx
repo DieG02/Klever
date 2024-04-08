@@ -9,7 +9,7 @@ import AvatarSVG from '../assets/svg/Avatar';
 import { useSession, useBoards } from '../hooks/';
 import BoardSkeleton from '../components/skeleton/Board';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { updateLocale } from '../services/firestore/user';
+import { SyncUserLocale } from '../utils/app';
 
 interface HomeProps {
   navigation: AppNavigationProps;
@@ -23,7 +23,7 @@ export default function Home({ navigation }: HomeProps) {
   };
 
   useEffect(() => {
-    if (!!user?.locale) updateLocale(user?.locale);
+    if (user?.locale) SyncUserLocale(user?.locale);
   }, [user?.locale]);
   return (
     <SafeAreaView style={styles.wrapper}>
