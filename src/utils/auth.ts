@@ -69,8 +69,34 @@ export const AuthWithCredentials = async (
 };
 
 export const AuthLogOut = async () => {
-  await auth().signOut();
+  const user = auth().currentUser;
   // Show popup or not before init new login
-  GoogleSignin.revokeAccess();
+  if (user?.displayName) GoogleSignin.revokeAccess();
+  await auth().signOut();
   return auth().currentUser;
+};
+
+interface CredentialsProps {
+  email: string;
+  password: string;
+  confirm: string;
+}
+export const VerifyCredentials = (credentials: CredentialsProps): boolean => {
+  const { password, confirm } = credentials;
+  const minLength = 8;
+
+  // Password validation rules
+  const validationRules = [
+    password.length >= minLength,
+    // /[!@#$%^&*(),.?":{}|<>]/.test(password), // Has special char
+    // /\d/.test(password), // Has number
+    // /[a-z]/.test(password), // Has lower case
+    // /[A-Z]/.test(password), // Has upper case
+    password === confirm,
+  ];
+
+  // Confirm that all rules are passed
+  const isSecure = validationRules.every(rule => rule);
+
+  return isSecure;
 };
