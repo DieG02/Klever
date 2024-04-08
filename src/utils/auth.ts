@@ -67,3 +67,10 @@ export const AuthWithCredentials = async (
     }
   }
 };
+
+export const AuthLogOut = async () => {
+  await auth().signOut();
+  // Show popup or not before init new login
+  GoogleSignin.revokeAccess();
+  return auth().currentUser;
+};
