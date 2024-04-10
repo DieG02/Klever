@@ -1,9 +1,11 @@
 import { View, StyleSheet } from 'react-native';
 import { Heading } from './common';
 import CollectionBanner from '../assets/app/CollectionBanner';
+import { useTranslation } from 'react-i18next';
 
 interface EmptyCollectionProps {}
 export default function EmptyCollection({}: EmptyCollectionProps) {
+  const { t } = useTranslation();
   return (
     <View style={styles.container}>
       <View style={styles.banner}>
@@ -11,10 +13,10 @@ export default function EmptyCollection({}: EmptyCollectionProps) {
       </View>
       <View style={styles.center}>
         <Heading type='Semibold' size={16} color='Placeholder'>
-          Oops! Nothing to see here
+          {t('collection.empty.title')}
         </Heading>
         <Heading color='Placeholder' size={12}>
-          Add new items with a tap or talk
+          {t('collection.empty.label')}
         </Heading>
       </View>
     </View>

@@ -19,9 +19,7 @@ export type AppStackParamList = {
     id: string;
     title: string;
   };
-  Settings: {
-    title: string;
-  };
+  Settings: undefined;
 };
 
 // Types of navigation

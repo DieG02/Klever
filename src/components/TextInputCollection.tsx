@@ -12,6 +12,7 @@ import {
 // import { addItem } from '../services/firestore';
 import { addItem } from '../services/firestore/collection';
 import styles from '../styles/components/TextInputCustom';
+import { useTranslation } from 'react-i18next';
 
 export default function TextInputCollection({
   collectionId,
@@ -21,6 +22,7 @@ export default function TextInputCollection({
   const [error, setError] = useState('');
   const [recording, setRecording] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
+  const { t } = useTranslation();
 
   const _clearState = () => {
     setRecording(false);
@@ -105,7 +107,7 @@ export default function TextInputCollection({
         <TextInput
           style={styles.input}
           maxLength={75}
-          placeholder={'Add new items'}
+          placeholder={t('collection.new_item')}
           value={value}
           multiline
           onChangeText={setValue}

@@ -17,13 +17,15 @@ import NavItem from '../components/NavItem';
 import { AuthLogOut } from '../utils/auth';
 import { CommonActions } from '@react-navigation/native';
 import LanguageModal from '../components/modal/Language';
+import { useTranslation } from 'react-i18next';
 
 interface SettingsProps {
   navigation: AppNavigationProps;
 }
 export default function Settings({ navigation }: SettingsProps) {
-  const { user } = useSession();
   const [visible, setVisible] = useState<boolean>(false);
+  const { user } = useSession();
+  const { t } = useTranslation();
   const show = () => setVisible(true);
   const hide = () => setVisible(false);
 
@@ -65,7 +67,12 @@ export default function Settings({ navigation }: SettingsProps) {
       {/* <NavItem icon={UserIcon} label='Edit profile' arrow /> */}
 
       {/* TODO: Show language modal */}
-      <NavItem icon={LanguageIcon} label='Language' arrow onPress={show} />
+      <NavItem
+        icon={LanguageIcon}
+        label={t('settings.nav.language')}
+        arrow
+        onPress={show}
+      />
       <LanguageModal visible={visible} onRequestClose={hide} />
 
       {/* TODO: Include in next version */}
@@ -75,11 +82,11 @@ export default function Settings({ navigation }: SettingsProps) {
       )} */}
 
       {/* TODO: Redirect to the store*/}
-      <NavItem icon={StarIcon} label='Rate app' arrow />
+      <NavItem icon={StarIcon} label={t('settings.nav.rate')} arrow />
 
       <NavItem
         icon={ArrowRightOnRectangleIcon}
-        label='Log out'
+        label={t('settings.nav.log_out')}
         type='Danger'
         onPress={handleLogout}
       />
