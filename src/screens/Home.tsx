@@ -10,6 +10,7 @@ import { useSession, useBoards } from '../hooks/';
 import BoardSkeleton from '../components/skeleton/Board';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SyncUserLocale } from '../utils/app';
+import { useTranslation } from 'react-i18next';
 
 interface HomeProps {
   navigation: AppNavigationProps;
@@ -17,20 +18,21 @@ interface HomeProps {
 export default function Home({ navigation }: HomeProps) {
   const { user } = useSession();
   const { boards } = useBoards();
+  const { t } = useTranslation();
 
   const handleRedirect = () => {
-    navigation.push('Settings', { title: 'Settings' });
+    navigation.push('Settings');
   };
 
   useEffect(() => {
+    // i18n.changeLanguage('es-MX');
     if (user?.locale) SyncUserLocale(user?.locale);
   }, [user?.locale]);
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.header}>
         <Heading type='Semibold' size={16}>
-          <Text>Hello</Text>
-          <Text>{` `}</Text>
+          <Text>{t('home.grettings')}</Text>
           <Text style={styles.hightlight}>{`${user?.display_name || ''}`}</Text>
         </Heading>
         <TouchableOpacity onPress={handleRedirect}>
@@ -46,7 +48,7 @@ export default function Home({ navigation }: HomeProps) {
 
       <View style={styles.container}>
         <Heading type='Medium' size={12}>
-          All collections {}
+          {t('home.boards')}
         </Heading>
         <Spacing size={20} />
 

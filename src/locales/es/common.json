@@ -1,0 +1,46 @@
+{
+  "app": {
+    "name": "Klever",
+    "settings": "Configuraciones"
+  },
+  "sign_in": {
+    "header": "Inicia sesión en ",
+    "form": {
+      "email": "Correo electrónico",
+      "email_placeholder": "Ingresa tu correo electrónico",
+      "password": "Contraseña",
+      "password_placeholder": "Ingresa tu contraseña",
+      "forgot_password": "¿Olvidaste tu contraseña?"
+    },
+    "confirm": "Iniciar sesión",
+    "google": "Continuar con Google",
+    "redirect": {
+      "1": "¿No tienes una cuenta? ",
+      "2": "Regístrate"
+    }
+  },
+  
+  "home": {
+    "grettings": "Hola ",
+    "boards": "Todas las colecciones",
+    "empty": {
+      "title": "Hmm, parece que está vacío",
+      "label": "¡Agrega nuevas colecciones en la sección de abajo!"
+    },
+    "new_item": "Crea una nueva lista aquí..."
+  },
+  "collection": {
+    "empty": {
+      "title": "¡Ups! Nada que ver aquí",
+      "label": "¡Agrega nuevos elementos con un toque o hablando!"
+    },
+    "new_item": "Agregar nuevos elementos..."
+  },
+  "settings": {
+    "nav": {
+      "language": "Cambiar idioma",
+      "rate": "Calificar app",
+      "log_out": "Cerrar sesión"
+    }
+  }
+}

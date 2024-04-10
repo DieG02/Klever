@@ -6,9 +6,11 @@ import { addCard } from '../services/firestore';
 import { addBoard } from '../services/firestore/board';
 import { AppNavigationProps } from '../types/navigation';
 import styles from '../styles/components/TextInputCustom';
+import { useTranslation } from 'react-i18next';
 
 export default function TextInputHome() {
   const [value, setValue] = useState<string>('');
+  const { t } = useTranslation();
   const navigation = useNavigation<AppNavigationProps>();
 
   const handleOnPress = async () => {
@@ -31,7 +33,7 @@ export default function TextInputHome() {
         <TextInput
           style={styles.input}
           maxLength={30}
-          placeholder='Create new list here!'
+          placeholder={t('home.new_item')}
           value={value}
           onChangeText={setValue}
         />

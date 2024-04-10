@@ -1,9 +1,11 @@
 import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import HomeBanner from '../assets/app/HomeBanner';
 import { Heading } from './common';
+import { useTranslation } from 'react-i18next';
 
 interface EmptyCardsProps {}
 export default function EmptyCards({}: EmptyCardsProps) {
+  const { t } = useTranslation();
   return (
     <KeyboardAvoidingView style={styles.container} behavior={'height'}>
       <View style={styles.inner}>
@@ -12,10 +14,10 @@ export default function EmptyCards({}: EmptyCardsProps) {
         </View>
         <View style={styles.center}>
           <Heading type='Semibold' size={16} color='Placeholder'>
-            Hmm, looks like it's empty
+            {t('home.empty.title')}
           </Heading>
           <Heading color='Placeholder' size={12}>
-            Add new collections in the section below!
+            {t('home.empty.label')}
           </Heading>
         </View>
       </View>
