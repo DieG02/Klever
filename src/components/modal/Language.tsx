@@ -11,6 +11,7 @@ import { Colors } from '../../styles/global';
 import { Heading } from '../common';
 import auth from '@react-native-firebase/auth';
 import { updateLocale } from '../../services/firestore/user';
+import { useTranslation } from 'react-i18next';
 
 interface LanguageModalProps {
   visible: boolean;
@@ -22,6 +23,7 @@ export default function LanguageModal({
   onRequestClose,
 }: LanguageModalProps) {
   const [locale, setLocale] = useState<string>(auth().languageCode);
+  const { t, i18n } = useTranslation();
   const options = {
     en: 'en-US',
     es: 'es-MX',
@@ -29,7 +31,10 @@ export default function LanguageModal({
 
   const handleSave = async () => {
     const { success } = await updateLocale(locale);
-    if (success) onRequestClose();
+    if (success) {
+      i18n.changeLanguage(locale);
+      onRequestClose();
+    }
   };
   return (
     <Modal
@@ -41,7 +46,7 @@ export default function LanguageModal({
       <SafeAreaView style={styles.wrapper}>
         <View style={styles.container}>
           <Heading color='Placeholder' size={10} style={styles.title}>
-            Select language
+            {t('modals.locale.label')}
           </Heading>
 
           <Pressable onPress={() => setLocale(options['en'])}>
@@ -54,7 +59,7 @@ export default function LanguageModal({
                 type='Medium'
                 style={styles.center}
                 color={locale === options['en'] ? 'Primary' : 'Label'}>
-                English
+                {t('modals.locale.options.en')}
               </Heading>
             </View>
           </Pressable>
@@ -69,7 +74,7 @@ export default function LanguageModal({
                 type='Medium'
                 style={styles.center}
                 color={locale === options['es'] ? 'Primary' : 'Label'}>
-                Spanish
+                {t('modals.locale.options.es')}
               </Heading>
             </View>
           </Pressable>
@@ -77,12 +82,12 @@ export default function LanguageModal({
           <View style={styles.buttons}>
             <TouchableOpacity style={styles.cancel} onPress={onRequestClose}>
               <Heading color='Label' size={12} type='Medium'>
-                Cancel
+                {t('modals.locale.cancel')}
               </Heading>
             </TouchableOpacity>
             <TouchableOpacity style={styles.save} onPress={handleSave}>
               <Heading color='Primary' size={12} type='Medium'>
-                Save
+                {t('modals.locale.confirm')}
               </Heading>
             </TouchableOpacity>
           </View>

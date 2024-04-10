@@ -23,6 +23,7 @@ import { AuthWithCredentials } from '../utils/auth';
 import { CommonActions } from '@react-navigation/native';
 import LanguageModal from '../components/modal/Language';
 import { LanguageIcon } from 'react-native-heroicons/mini';
+import { useTranslation } from 'react-i18next';
 
 interface CredentialsProps {
   email: string;
@@ -35,6 +36,7 @@ interface SignInProps {
 export default function SignIn({ navigation }: SignInProps) {
   const [keyboardShown, setKeyboardShown] = useState(false);
   const [modal, setModal] = useState<boolean>(false);
+  const { t, i18n } = useTranslation();
   const [credentials, setCredentials] = useState<CredentialsProps>({
     email: '',
     password: '',
@@ -63,6 +65,7 @@ export default function SignIn({ navigation }: SignInProps) {
   };
 
   useEffect(() => {
+    i18n.changeLanguage('es-MX');
     const KeyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
       () => setKeyboardShown(true),
@@ -95,19 +98,18 @@ export default function SignIn({ navigation }: SignInProps) {
       )}
 
       <Heading type='Semibold' style={styles.header}>
-        <Text>Sign in to</Text>
-        <Text>{` `}</Text>
-        <Text style={styles.hightlight}>Klever</Text>
+        <Text>{t('sign_in.header')}</Text>
+        <Text style={styles.hightlight}>{t('app.name')}</Text>
       </Heading>
 
       <InputField
-        label='Email'
-        placeholder={`Enter your email`}
+        label={t('forms.auth.email.label')}
+        placeholder={t('forms.auth.email.placeholder')}
         onChangeText={value => handleChange(value, 'email')}
       />
       <PasswordField
-        label='Password'
-        placeholder={`Enter your password`}
+        label={t('forms.auth.password.label')}
+        placeholder={t('forms.auth.password.placeholder')}
         onChangeText={value => handleChange(value, 'password')}
         marginb={10}
       />
@@ -120,15 +122,14 @@ export default function SignIn({ navigation }: SignInProps) {
 
       <Spacing size={20} />
 
-      <MainButton onPress={handleSignIn}>Sign in</MainButton>
+      <MainButton onPress={handleSignIn}>{t('sign_in.action')}</MainButton>
       <Spacing size={20} />
       <GoogleAuthButton />
 
       <Pressable onPress={handleRedirect} style={styles.footer}>
         <Heading type='Medium' color='Label' style={styles.link}>
-          <Text>Don't have an account?</Text>
-          <Text>{` `}</Text>
-          <Text style={styles.hightlight}>Sign up</Text>
+          <Text>{t('sign_in.redirect.label')}</Text>
+          <Text style={styles.hightlight}>{t('sign_in.redirect.to')}</Text>
         </Heading>
       </Pressable>
     </SafeAreaView>

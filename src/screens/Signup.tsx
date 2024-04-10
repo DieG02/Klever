@@ -22,6 +22,7 @@ import { AuthNavigationProps } from '../types/navigation';
 import { VerifyCredentials } from '../utils/auth';
 import { Colors } from '../styles/global';
 import styles from '../styles/screens/signup';
+import { useTranslation } from 'react-i18next';
 
 interface CredentialsProps {
   email: string;
@@ -34,6 +35,7 @@ interface SignUpProps {
 }
 export default function SignUp({ navigation }: SignUpProps) {
   const [keyboardShown, setKeyboardShown] = useState(false);
+  const { t } = useTranslation();
   const [credentials, setCredentials] = useState<CredentialsProps>({
     email: '',
     password: '',
@@ -99,35 +101,33 @@ export default function SignUp({ navigation }: SignUpProps) {
       )}
 
       <Heading type='Semibold' style={styles.header}>
-        <Text>Sign up to</Text>
-        <Text>{` `}</Text>
-        <Text style={styles.hightlight}>Klever</Text>
+        <Text>{t('sign_up.header')}</Text>
+        <Text style={styles.hightlight}>{t('app.name')}</Text>
       </Heading>
 
       <InputField
-        label='Email'
-        placeholder={`Enter your email`}
+        label={t('forms.auth.email.label')}
+        placeholder={t('forms.auth.email.placeholder')}
         onChangeText={value => handleChange(value, 'email')}
       />
       <PasswordField
-        label='Password'
-        placeholder={`Enter your password`}
+        label={t('forms.auth.password.label')}
+        placeholder={t('forms.auth.password.placeholder')}
         onChangeText={value => handleChange(value, 'password')}
       />
       <PasswordField
-        label='Confirm password'
-        placeholder={`Enter confirm password`}
+        label={t('forms.auth.confirm.label')}
+        placeholder={t('forms.auth.confirm.placeholder')}
         onChangeText={value => handleChange(value, 'confirm')}
       />
       <Spacing size={20} />
 
-      <MainButton onPress={handleSignUp}>Sign up</MainButton>
+      <MainButton onPress={handleSignUp}>{t('sign_up.action')}</MainButton>
 
       <Pressable onPress={handleRedirect} style={styles.footer}>
         <Heading type='Medium' color='Label' style={styles.link}>
-          <Text>Already have an account?</Text>
-          <Text>{` `}</Text>
-          <Text style={styles.hightlight}>Sign in</Text>
+          <Text>{t('sign_up.redirect.label')}</Text>
+          <Text style={styles.hightlight}>{t('sign_up.redirect.to')}</Text>
         </Heading>
       </Pressable>
     </SafeAreaView>

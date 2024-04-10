@@ -3,20 +3,49 @@
     "name": "Klever",
     "settings": "Settings"
   },
+  "forms": {
+    "auth": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      },
+      "confirm": {
+        "label": "Confirm password",
+        "placeholder": "Confirm your password"
+      }
+    }
+  },
+  "modals": {
+    "locale": {
+      "label": "Select language",
+      "options": {
+        "en": "English",
+        "es": "Spanish"
+      },
+      "cancel": "Cancel",
+      "confirm": "Save"
+    }
+  },
+
   "sign_in": {
     "header": "Sign in to ",
-    "form": {
-      "email": "Email",
-      "email_placeholder": "Enter your email",
-      "password": "Password",
-      "password_placeholder": "Enter your password",
-      "forgot_password": "Forgot password?"
-    },
-    "confirm": "Sign in",
+    "action": "Sign in",
     "google": "Continue with Google",
     "redirect": {
-      "1": "Don't have an account? ",
-      "2": "Sign up"
+      "label": "Don't have an account? ",
+      "to": "Sign up"
+    }
+  },
+  "sign_up": {
+    "header": "Sign up to ",
+    "action": "Sign up",
+    "redirect": {
+      "label": "Already have an account? ",
+      "to": "Sign in"
     }
   },
 

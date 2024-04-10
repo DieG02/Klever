@@ -3,23 +3,52 @@
     "name": "Klever",
     "settings": "Configuraciones"
   },
-  "sign_in": {
-    "header": "Inicia sesión en ",
-    "form": {
-      "email": "Correo electrónico",
-      "email_placeholder": "Ingresa tu correo electrónico",
-      "password": "Contraseña",
-      "password_placeholder": "Ingresa tu contraseña",
-      "forgot_password": "¿Olvidaste tu contraseña?"
-    },
-    "confirm": "Iniciar sesión",
-    "google": "Continuar con Google",
-    "redirect": {
-      "1": "¿No tienes una cuenta? ",
-      "2": "Regístrate"
+  "forms": {
+    "auth": {
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "Ingresa tu correo electrónico"
+      },
+      "password": {
+        "label": "Contraseña",
+        "placeholder": "Ingresa tu contraseña"
+      },
+      "confirm": {
+        "label": "Confirmar contraseña",
+        "placeholder": "Confirma tu contraseña"
+      }
     }
   },
-  
+  "modals": {
+    "locale": {
+      "label": "Seleccionar idioma",
+      "options": {
+        "en": "Inglés",
+        "es": "Español"
+      },
+      "cancel": "Cancelar",
+      "confirm": "Guardar"
+    }
+  },
+
+  "sign_in": {
+    "header": "Inicia sesión en ",
+    "action": "Iniciar sesión",
+    "google": "Continuar con Google",
+    "redirect": {
+      "label": "¿No tienes una cuenta? ",
+      "to": "Regístrate"
+    }
+  },  
+  "sign_up": {
+    "header": "Regístrate en ",
+    "action": "Registrarse",
+    "redirect": {
+      "label": "¿Ya tienes una cuenta? ",
+      "to": "Iniciar sesión"
+    }
+  },
+
   "home": {
     "grettings": "Hola ",
     "boards": "Todas las colecciones",
