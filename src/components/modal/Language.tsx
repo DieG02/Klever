@@ -1,16 +1,7 @@
-import { useState } from 'react';
-import {
-  StyleSheet,
-  View,
-  Modal,
-  SafeAreaView,
-  Pressable,
-  TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, View, Modal, SafeAreaView, Pressable } from 'react-native';
 import { Colors } from '../../styles/global';
 import { Heading } from '../common';
-import auth from '@react-native-firebase/auth';
-import { updateLocale } from '../../services/firestore/user';
+import { updateUserLocale } from '../../services/firestore/user';
 import { useTranslation } from 'react-i18next';
 
 interface LanguageModalProps {
@@ -22,19 +13,15 @@ export default function LanguageModal({
   visible,
   onRequestClose,
 }: LanguageModalProps) {
-  const [locale, setLocale] = useState<string>(auth().languageCode);
   const { t, i18n } = useTranslation();
   const options = {
     en: 'en-US',
     es: 'es-MX',
   };
 
-  const handleSave = async () => {
-    const { success } = await updateLocale(locale);
-    if (success) {
-      i18n.changeLanguage(locale);
-      onRequestClose();
-    }
+  const handleUpdate = async (locale: string) => {
+    await updateUserLocale(locale);
+    onRequestClose();
   };
   return (
     <Modal
@@ -49,37 +36,38 @@ export default function LanguageModal({
             {t('modals.locale.label')}
           </Heading>
 
-          <Pressable onPress={() => setLocale(options['en'])}>
+          <Pressable onPress={() => handleUpdate(options['en'])}>
             <View
               style={[
                 styles.item,
-                locale === options['en'] && styles.selected,
+                { marginBottom: 5 },
+                i18n.language === options['en'] && styles.selected,
               ]}>
               <Heading
                 type='Medium'
                 style={styles.center}
-                color={locale === options['en'] ? 'Primary' : 'Label'}>
+                color={i18n.language === options['en'] ? 'Primary' : 'Label'}>
                 {t('modals.locale.options.en')}
               </Heading>
             </View>
           </Pressable>
 
-          <Pressable onPress={() => setLocale(options['es'])}>
+          <Pressable onPress={() => handleUpdate(options['es'])}>
             <View
               style={[
                 styles.item,
-                locale === options['es'] && styles.selected,
+                i18n.language === options['es'] && styles.selected,
               ]}>
               <Heading
                 type='Medium'
                 style={styles.center}
-                color={locale === options['es'] ? 'Primary' : 'Label'}>
+                color={i18n.language === options['es'] ? 'Primary' : 'Label'}>
                 {t('modals.locale.options.es')}
               </Heading>
             </View>
           </Pressable>
 
-          <View style={styles.buttons}>
+          {/* <View style={styles.buttons}>
             <TouchableOpacity style={styles.cancel} onPress={onRequestClose}>
               <Heading color='Label' size={12} type='Medium'>
                 {t('modals.locale.cancel')}
@@ -90,7 +78,7 @@ export default function LanguageModal({
                 {t('modals.locale.confirm')}
               </Heading>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </SafeAreaView>
     </Modal>
@@ -116,7 +104,6 @@ const styles = StyleSheet.create({
   item: {
     paddingVertical: 10,
     paddingHorizontal: 15,
-    marginBottom: 5,
     borderRadius: 8,
     backgroundColor: Colors.White,
   },
@@ -128,6 +115,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     flexDirection: 'row',
     height: 30,
+    // uncomment for build Custom Modal Component
+    display: 'none',
   },
   cancel: {
     flex: 1,

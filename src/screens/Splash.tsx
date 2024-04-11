@@ -3,11 +3,13 @@ import { SafeAreaView, StatusBar, Text, View } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import { SplashProps } from '../types/screens';
 import styles from '../styles/screens/splash';
-import { SyncUserLocale } from '../utils/app';
 import { Colors } from '../styles/global';
+import { getDeviceLocale } from '../utils/app';
+import { useTranslation } from 'react-i18next';
 
 export default function Splash({ navigation }: SplashProps) {
   const [initializing, setInitializing] = useState(true);
+  const { i18n } = useTranslation();
   const [user, setUser] = useState();
 
   const handleAuthStateChanged = (user: any) => {
@@ -16,9 +18,9 @@ export default function Splash({ navigation }: SplashProps) {
   };
 
   const onRedirect = async () => {
+    const locale = await getDeviceLocale();
+    i18n.changeLanguage(locale);
     if (!user) {
-      const locale = auth().languageCode;
-      if (!locale) await SyncUserLocale('en-US');
       navigation.replace('SignIn');
     } else {
       navigation.reset({

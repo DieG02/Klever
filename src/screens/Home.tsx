@@ -9,7 +9,6 @@ import AvatarSVG from '../assets/svg/Avatar';
 import { useSession, useBoards } from '../hooks/';
 import BoardSkeleton from '../components/skeleton/Board';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { SyncUserLocale } from '../utils/app';
 import { useTranslation } from 'react-i18next';
 
 interface HomeProps {
@@ -18,15 +17,15 @@ interface HomeProps {
 export default function Home({ navigation }: HomeProps) {
   const { user } = useSession();
   const { boards } = useBoards();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const handleRedirect = () => {
     navigation.push('Settings');
   };
 
   useEffect(() => {
-    // i18n.changeLanguage('es-MX');
-    if (user?.locale) SyncUserLocale(user?.locale);
+    console.log({ home: user?.locale });
+    if (user?.locale) i18n.changeLanguage(user?.locale);
   }, [user?.locale]);
   return (
     <SafeAreaView style={styles.wrapper}>

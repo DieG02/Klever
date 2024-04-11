@@ -1,6 +1,7 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { UserModel } from '../../types/models';
+import { changeLanguage } from 'i18next';
 
 type AuthProviders = 'google' | 'email';
 export const createNewUser = async (user: any, provider: AuthProviders) => {
@@ -27,20 +28,18 @@ export const createNewUser = async (user: any, provider: AuthProviders) => {
   return userDocRef;
 };
 
-export const updateLocale = async (locale: string) => {
+export const updateUserLocale = async (locale: string) => {
   try {
     const user = auth().currentUser;
-    if (!!user) {
-      const userDocRef = firestore().collection('users').doc(user.uid);
-      await userDocRef.update({
+    changeLanguage(locale);
+    if (user) {
+      const userDocRef = firestore().collection('users').doc(user?.uid);
+      userDocRef.update({
         locale: locale,
         updated_at: firestore.FieldValue.serverTimestamp(),
       });
     }
-    await auth().setLanguageCode(locale);
-    return { success: true };
   } catch (error) {
     console.error('Error updating user locale:', error);
-    return { success: false, error };
   }
 };

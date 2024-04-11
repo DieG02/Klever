@@ -65,7 +65,6 @@ export default function SignIn({ navigation }: SignInProps) {
   };
 
   useEffect(() => {
-    i18n.changeLanguage('es-MX');
     const KeyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
       () => setKeyboardShown(true),
