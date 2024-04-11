@@ -32,7 +32,7 @@ export default function Home({ navigation }: HomeProps) {
       <View style={styles.header}>
         <Heading type='Semibold' size={16}>
           <Text>{t('home.grettings')}</Text>
-          <Text style={styles.hightlight}>{`${user?.display_name || ''}`}</Text>
+          <Text style={styles.hightlight}>{user?.display_name || ''}</Text>
         </Heading>
         <TouchableOpacity onPress={handleRedirect}>
           {user?.avatar ? (
