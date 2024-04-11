@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { FlatList, Image, SafeAreaView, Text, View } from 'react-native';
 import { Card, TextInputHome } from '../components';
-import { Spacing, Heading } from '../components/common';
+import { Spacing, Heading, TouchableDebounce } from '../components/common';
 import styles from '../styles/screens/home';
 import { AppNavigationProps } from '../types/navigation';
 import EmptyCards from '../components/EmptyCards';
 import AvatarSVG from '../assets/svg/Avatar';
 import { useSession, useBoards } from '../hooks/';
 import BoardSkeleton from '../components/skeleton/Board';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useTranslation } from 'react-i18next';
 
 interface HomeProps {
@@ -16,7 +15,7 @@ interface HomeProps {
 }
 export default function Home({ navigation }: HomeProps) {
   const { user } = useSession();
-  const { boards } = useBoards();
+  const { boards, isLoading } = useBoards();
   const { t, i18n } = useTranslation();
 
   const handleRedirect = () => {
@@ -24,7 +23,6 @@ export default function Home({ navigation }: HomeProps) {
   };
 
   useEffect(() => {
-    console.log({ home: user?.locale });
     if (user?.locale) i18n.changeLanguage(user?.locale);
   }, [user?.locale]);
   return (
@@ -34,13 +32,13 @@ export default function Home({ navigation }: HomeProps) {
           <Text>{t('home.grettings')}</Text>
           <Text style={styles.hightlight}>{user?.display_name || ''}</Text>
         </Heading>
-        <TouchableOpacity onPress={handleRedirect}>
+        <TouchableDebounce onPress={handleRedirect}>
           {user?.avatar ? (
             <Image source={{ uri: user?.avatar }} style={styles.avatar} />
           ) : (
             <AvatarSVG width={35} height={35} />
           )}
-        </TouchableOpacity>
+        </TouchableDebounce>
       </View>
       <View style={styles.placeholder} />
       <Spacing size={20} />
@@ -51,17 +49,15 @@ export default function Home({ navigation }: HomeProps) {
         </Heading>
         <Spacing size={20} />
 
-        {boards && (
-          <FlatList
-            data={boards}
-            renderItem={({ item }) => <Card item={item} />}
-            ItemSeparatorComponent={Spacing}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={item => item?.id}
-            ListEmptyComponent={EmptyCards}
-            contentContainerStyle={styles.flatlist}
-          />
-        )}
+        <FlatList
+          data={boards}
+          renderItem={({ item }) => <Card item={item} />}
+          ItemSeparatorComponent={Spacing}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={item => item?.id}
+          ListEmptyComponent={EmptyCards}
+          contentContainerStyle={styles.flatlist}
+        />
         {!boards && [0, 1, 2, 3].map(i => <BoardSkeleton key={i} />)}
       </View>
 

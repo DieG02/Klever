@@ -1,7 +1,9 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { Heading } from './common';
 import CollectionBanner from '../assets/app/CollectionBanner';
 import { useTranslation } from 'react-i18next';
+
+const { height } = Dimensions.get('window');
 
 interface EmptyCollectionProps {}
 export default function EmptyCollection({}: EmptyCollectionProps) {
@@ -25,8 +27,7 @@ export default function EmptyCollection({}: EmptyCollectionProps) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    top: (height - 300 / 2) * 0.25,
   },
   banner: {
     alignItems: 'center',

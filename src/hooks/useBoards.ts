@@ -5,12 +5,14 @@ import { BoardModel } from '../types/models';
 
 const useBoards = () => {
   const [boards, setBoards] = useState<BoardModel[] | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
 
   useEffect(() => {
     try {
       const user_id = auth().currentUser?.uid;
       if (!user_id) return;
+      setIsLoading(true);
 
       const unsubscribe = firestore()
         .collection('boards')
@@ -29,10 +31,12 @@ const useBoards = () => {
     } catch (error) {
       setError(error);
       console.error('Error fetching user boards:', error);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
-  return { boards, error };
+  return { boards, isLoading, error };
 };
 
 export default useBoards;
