@@ -15,6 +15,7 @@ export default function GoogleAuthButton({}: GoogleAuthButtonProps) {
 
   const handleGoogleAuth = async () => {
     const userCredentials = await AuthWithGoogle();
+    if (!userCredentials) return null;
     const isNewUser = userCredentials?.additionalUserInfo?.isNewUser;
     if (isNewUser) {
       await createNewUser(userCredentials.user, 'google');

@@ -11,12 +11,15 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import RootStack from './src/navigation/RootStack';
+import Toast from 'react-native-toast-message';
+import { toastConfig } from './src/config/ToastMessage';
 import './src/config/GoogleServices';
 
-export default function App () {
+export default function App() {
   return (
     <NavigationContainer>
-      <RootStack/>
+      <RootStack />
+      <Toast config={toastConfig} />
     </NavigationContainer>
-  )
-};
+  );
+}

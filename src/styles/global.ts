@@ -8,6 +8,9 @@ export enum Colors {
   Gold = '#FFAB49',
   Amber = '#FFEDDA',
 
+  Forest = '#34C760',
+  Tea = '#E3FFE1',
+
   Text = '#444444',
   Label = '#666666',
   Background = '#FBFBFB',

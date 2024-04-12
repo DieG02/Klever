@@ -3,6 +3,7 @@ import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
+import Toast from 'react-native-toast-message';
 
 export const AuthWithGoogle = async () => {
   try {
@@ -16,20 +17,35 @@ export const AuthWithGoogle = async () => {
     // Sign-in the user with the credential
     return auth().signInWithCredential(googleCredential);
   } catch (error: any) {
-    switch (error.code) {
-      case statusCodes.SIGN_IN_CANCELLED:
-        console.log('Cancelled');
-        break;
-      case error.code === statusCodes.IN_PROGRESS:
-        console.log('In progress...');
-        break;
-      case error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-        console.log('Play services not available');
-        break;
-      default:
-        console.log('Some error', error);
-        break;
-    }
+    const data = {
+      [statusCodes.SIGN_IN_CANCELLED]: {
+        title: 'Error',
+        message: 'Sign in process was cancelled!',
+        type: 'error',
+      },
+      [statusCodes.IN_PROGRESS]: {
+        title: 'Info',
+        message: 'Another process in progress',
+        type: 'info',
+      },
+      [statusCodes.PLAY_SERVICES_NOT_AVAILABLE]: {
+        title: 'Error',
+        message: 'Play services not available',
+        type: 'error',
+      },
+      default: {
+        title: 'Warning',
+        message: 'Something went wrong, check your network connection',
+        type: 'warning',
+      },
+    };
+    const toastRef = data[error.code] || data.default;
+    Toast.show({
+      text1: toastRef.title,
+      text2: toastRef.message,
+      type: toastRef.type,
+      position: 'bottom',
+    });
   }
 };
 
