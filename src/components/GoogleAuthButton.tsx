@@ -1,6 +1,7 @@
-import { Pressable, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
-import { Heading } from './common';
+import { Heading, TouchableDebounce } from './common';
 import { NavigationProps } from '../types/navigation';
 import GoogleSVG from '../assets/svg/Google';
 import { Colors } from '../styles/global';
@@ -8,8 +9,9 @@ import { AuthWithGoogle } from '../utils/auth';
 import { createNewUser } from '../services/firestore/user';
 
 interface GoogleAuthButtonProps {}
-export default function GoogleAuthButton() {
+export default function GoogleAuthButton({}: GoogleAuthButtonProps) {
   const navigation = useNavigation<NavigationProps>();
+  const { t } = useTranslation();
 
   const handleGoogleAuth = async () => {
     const userCredentials = await AuthWithGoogle();
@@ -25,12 +27,12 @@ export default function GoogleAuthButton() {
   };
 
   return (
-    <Pressable style={styles.container} onPress={handleGoogleAuth}>
+    <TouchableDebounce style={styles.container} onPress={handleGoogleAuth}>
       <GoogleSVG width={24} height={24} />
       <Heading color='Placeholder' type='Medium' style={styles.label}>
-        Continue with Google
+        {t('sign_in.google')}
       </Heading>
-    </Pressable>
+    </TouchableDebounce>
   );
 }
 

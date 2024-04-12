@@ -1,14 +1,14 @@
 import {
-  Pressable,
-  PressableProps,
+  TouchableOpacityProps,
   StyleProp,
   StyleSheet,
   ViewStyle,
 } from 'react-native';
 import Heading from './Heading';
 import { Colors } from '../../styles/global';
+import TouchableDebounce from './TouchableDebounce';
 
-interface ButtonProps extends PressableProps {
+interface ButtonProps extends TouchableOpacityProps {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
 }
@@ -24,10 +24,10 @@ export default function Button({ children, style, ...props }: ButtonProps) {
     style,
   );
   return (
-    <Pressable style={styles} {...props}>
+    <TouchableDebounce style={styles} {...props}>
       <Heading color='White' type='Semibold'>
         {children}
       </Heading>
-    </Pressable>
+    </TouchableDebounce>
   );
 }

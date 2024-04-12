@@ -19,7 +19,7 @@ export default function Card({ item }: { item: BoardModel }) {
   const navigation = useNavigation<AppNavigationProps>();
 
   const onRedirect = () => {
-    navigation.push('Collection', { id, title });
+    navigation.navigate('Collection', { id, title });
   };
 
   const getProgress = (current: number, total: number): number => {

@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Heading } from './common';
+import { Heading, TouchableDebounce } from './common';
 import { ChevronRightIcon } from 'react-native-heroicons/mini';
 import { Colors } from '../styles/global';
 import {
@@ -37,7 +37,7 @@ export default function NavItem({
     },
   };
   return (
-    <TouchableOpacity style={{ marginBottom: 20 }} {...props}>
+    <TouchableDebounce style={{ marginBottom: 20 }} {...props}>
       <View style={styles.option}>
         <View
           style={[styles.icon, { backgroundColor: Palette[type].background }]}>
@@ -50,7 +50,7 @@ export default function NavItem({
           {!!arrow && <ChevronRightIcon color={Colors.Black} />}
         </View>
       </View>
-    </TouchableOpacity>
+    </TouchableDebounce>
   );
 }
 

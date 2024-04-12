@@ -1,7 +1,14 @@
 import { useEffect } from 'react';
-import { FlatList, Image, SafeAreaView, Text, View } from 'react-native';
+import {
+  FlatList,
+  Image,
+  SafeAreaView,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import { Card, TextInputHome } from '../components';
-import { Spacing, Heading, TouchableDebounce } from '../components/common';
+import { Spacing, Heading } from '../components/common';
 import styles from '../styles/screens/home';
 import { AppNavigationProps } from '../types/navigation';
 import EmptyCards from '../components/EmptyCards';
@@ -19,7 +26,7 @@ export default function Home({ navigation }: HomeProps) {
   const { t, i18n } = useTranslation();
 
   const handleRedirect = () => {
-    navigation.push('Settings');
+    navigation.navigate('Settings');
   };
 
   useEffect(() => {
@@ -32,13 +39,13 @@ export default function Home({ navigation }: HomeProps) {
           <Text>{t('home.grettings')}</Text>
           <Text style={styles.hightlight}>{user?.display_name || ''}</Text>
         </Heading>
-        <TouchableDebounce onPress={handleRedirect}>
+        <TouchableOpacity onPress={handleRedirect}>
           {user?.avatar ? (
             <Image source={{ uri: user?.avatar }} style={styles.avatar} />
           ) : (
             <AvatarSVG width={35} height={35} />
           )}
-        </TouchableDebounce>
+        </TouchableOpacity>
       </View>
       <View style={styles.placeholder} />
       <Spacing size={20} />

@@ -6,19 +6,26 @@ import {
 } from 'react-native';
 
 interface TouchableDebounceProps extends TouchableOpacityProps {
-  onPress: (event: GestureResponderEvent) => void;
+  onPress?: (event: GestureResponderEvent) => void;
   delay?: number;
 }
-const TouchableDebounce = ({
-  onPress,
+
+/**
+ * Custom TextInput component extended from RNTextInput
+ * @param onPress Native prop to handle press event
+ * @param delay Optional number in miliseconds. Default `500`
+ * @returns {JSX.Element} A JSX element representing the custom touchable debounce
+ */
+export default function TouchableDebounce({
   children,
   delay = 1000,
+  onPress = () => {},
   ...props
-}: TouchableDebounceProps) => {
+}: TouchableDebounceProps): JSX.Element {
   const [debounce, setDebounce] = useState<boolean>(false);
   const timeout = useRef<number | null>(null);
 
-  const _onPress = (e: GestureResponderEvent) => {
+  const onDebouncePress = (e: GestureResponderEvent) => {
     if (debounce) return;
     if (timeout.current) clearTimeout(timeout.current);
     setDebounce(true);
@@ -29,10 +36,8 @@ const TouchableDebounce = ({
     }, delay);
   };
   return (
-    <TouchableOpacity onPress={_onPress} {...props}>
+    <TouchableOpacity onPress={onDebouncePress} {...props}>
       {children}
     </TouchableOpacity>
   );
-};
-
-export default TouchableDebounce;
+}
