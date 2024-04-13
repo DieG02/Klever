@@ -121,7 +121,11 @@ export default function SignIn({ navigation }: SignInProps) {
 
       <Spacing size={20} />
 
-      <MainButton onPress={handleSignIn}>{t('sign_in.action')}</MainButton>
+      <MainButton
+        disabled={!credentials.email || !credentials.password}
+        onPress={handleSignIn}>
+        {t('sign_in.action')}
+      </MainButton>
       <Spacing size={20} />
       <GoogleAuthButton />
 
