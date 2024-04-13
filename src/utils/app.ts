@@ -1,18 +1,22 @@
 import { Platform, NativeModules } from 'react-native';
-import auth from '@react-native-firebase/auth';
 
 type SupportedDevices = 'ios' | 'android';
 const device = Platform.OS as SupportedDevices;
 
 export const getDeviceLocale = () => {
-  if (device === 'android') {
-    const locale = NativeModules.I18nManager.localeIdentifier;
-    return locale.replace('_', '-');
-  } else if (device === 'ios') {
-    const locale =
-      NativeModules.SettingsManager.settings.AppleLocale ||
-      NativeModules.SettingsManager.settings.AppleLanguages[0];
-    return locale.replace('_', '-');
+  const native =
+    device === 'ios'
+      ? NativeModules.SettingsManager.settings.AppleLocale ||
+        NativeModules.SettingsManager.settings.AppleLanguages[0]
+      : NativeModules.I18nManager.localeIdentifier;
+
+  const locale = native.replace('_', '-');
+
+  if (locale.startsWith('es')) {
+    // Spanish handler
+    return 'es-MX';
+  } else {
+    // Set english by default
+    return 'en-US';
   }
-  return 'en-US';
 };

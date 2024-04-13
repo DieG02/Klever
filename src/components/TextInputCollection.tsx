@@ -22,7 +22,7 @@ export default function TextInputCollection({
   const [error, setError] = useState('');
   const [recording, setRecording] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const _clearState = () => {
     setRecording(false);
@@ -38,7 +38,7 @@ export default function TextInputCollection({
   const _startRecognizing = async () => {
     _clearState();
     try {
-      await Voice.start('es-MX');
+      await Voice.start(i18n.language);
     } catch (e) {
       console.error(e);
     }

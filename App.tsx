@@ -19,7 +19,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <RootStack />
-      <Toast config={toastConfig} />
+      <Toast config={toastConfig} visibilityTime={2500} />
     </NavigationContainer>
   );
 }
