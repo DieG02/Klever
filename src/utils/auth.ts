@@ -3,6 +3,7 @@ import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
+import { t } from 'i18next';
 import Toast from 'react-native-toast-message';
 
 export const AuthWithGoogle = async () => {
@@ -20,22 +21,22 @@ export const AuthWithGoogle = async () => {
     const data = {
       [statusCodes.SIGN_IN_CANCELLED]: {
         title: 'Error',
-        message: 'Sign in process was cancelled!',
+        message: t('toast.auth.google.SIGN_IN_CANCELLED'),
         type: 'error',
       },
       [statusCodes.IN_PROGRESS]: {
         title: 'Info',
-        message: 'Another process in progress',
+        message: t('toast.auth.google.IN_PROGRESS'),
         type: 'info',
       },
       [statusCodes.PLAY_SERVICES_NOT_AVAILABLE]: {
         title: 'Error',
-        message: 'Play services not available',
+        message: t('toast.auth.google.PLAY_SERVICES_NOT_AVAILABLE'),
         type: 'error',
       },
       default: {
         title: 'Warning',
-        message: 'Something went wrong, check your network connection',
+        message: t('toast.auth.google.DEFAULT'),
         type: 'warning',
       },
     };
@@ -59,28 +60,24 @@ export const AuthWithCredentials = async (
         credentials.email,
         credentials.password,
       );
-      // WORKS!!!! Now redirect to home screen with data loaded.
       await userCredentials.user.sendEmailVerification();
-      console.log('User account created!');
       return userCredentials;
     } else {
       const userCredentials = await auth().signInWithEmailAndPassword(
         credentials.email,
         credentials.password,
       );
-      console.log('User signed in!');
       return userCredentials;
     }
   } catch (error: any) {
-    if (error.code === 'auth/email-already-in-use') {
-      console.log('That email address is already in use!');
-    }
-    if (error.code === 'auth/invalid-email') {
-      console.log('That email address is invalid!');
-    }
-    if (error.code === 'auth/invalid-credential') {
-      console.error(error);
-    }
+    const code = error.code;
+    Toast.show({
+      text1: 'Error',
+      text2: t([`toast.auth.email.${code}`, 'toast.auth.email.DEFAULT']),
+      type: 'error',
+      position: 'bottom',
+    });
+    return;
   }
 };
 
@@ -89,7 +86,15 @@ export const AuthLogOut = async () => {
   // Show popup or not before init new login
   if (user?.displayName) GoogleSignin.revokeAccess();
   await auth().signOut();
-  return auth().currentUser;
+  const currentUser = auth().currentUser;
+  currentUser === null &&
+    Toast.show({
+      text1: 'Log out',
+      text2: 'The session has been closed, to continue, please log in again',
+      type: 'info',
+      position: 'bottom',
+    });
+  return currentUser;
 };
 
 interface CredentialsProps {
@@ -102,17 +107,41 @@ export const VerifyCredentials = (credentials: CredentialsProps): boolean => {
   const minLength = 8;
 
   // Password validation rules
-  const validationRules = [
-    password.length >= minLength,
-    // /[!@#$%^&*(),.?":{}|<>]/.test(password), // Has special char
-    // /\d/.test(password), // Has number
-    // /[a-z]/.test(password), // Has lower case
-    // /[A-Z]/.test(password), // Has upper case
-    password === confirm,
-  ];
+  const validationRules = {
+    minLength: password.length >= minLength,
+    // hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+    // hasNumber: /\d/.test(password),
+    // hasLowerCase: /[a-z]/.test(password),
+    // hasUpperCase: /[A-Z]/.test(password),
+    confirmPassword: password === confirm,
+  };
 
-  // Confirm that all rules are passed
-  const isSecure = validationRules.every(rule => rule);
+  // Find the failed rule and return corresponding error code
+  const failedRule = Object.entries(validationRules).find(
+    ([rule, passed]) => !passed,
+  );
 
-  return isSecure;
+  if (failedRule) {
+    const [ruleName, _] = failedRule;
+    const errorCodes: any = {
+      minLength: 'PASSWORD_TOO_SHORT',
+      // hasSpecialChar: 'PASSWORD_NO_SPECIAL_CHAR',
+      // hasNumber: 'PASSWORD_NO_NUMBER',
+      // hasLowerCase: 'PASSWORD_NO_LOWER_CASE',
+      // hasUpperCase: 'PASSWORD_NO_UPPER_CASE',
+      confirmPassword: 'PASSWORDS_DO_NOT_MATCH',
+    };
+    const code = errorCodes[ruleName];
+    Toast.show({
+      text1: 'Oops',
+      text2: t(
+        `toast.auth.password.${code}`,
+        'toast.auth.password.UNKNOWN_ERROR',
+      ),
+      type: 'warning',
+      position: 'bottom',
+    });
+    return false;
+  }
+  return true;
 };

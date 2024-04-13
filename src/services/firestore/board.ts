@@ -1,57 +1,7 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { BoardModel } from '../../types/models';
-import { getUser } from './user';
-
-// Deprecated!
-export const getCard = (id: string) => {
-  const cardRef = firestore().collection('cards').doc(id);
-  return cardRef;
-};
-// Deprecated!
-export const addCard = async (title: string) => {
-  const batch = firestore().batch();
-
-  const cardRef = firestore().collection('cards').doc();
-  const card_id = cardRef.id;
-  const card: BoardModel = {
-    user_id: 'user',
-    id: card_id,
-    title: title,
-    description: '',
-    category: '',
-    total: 0,
-    current: 0,
-    created_at: firestore.FieldValue.serverTimestamp(),
-    updated_at: firestore.FieldValue.serverTimestamp(),
-  };
-
-  batch.set(cardRef, card);
-
-  const userRef = getUser();
-  batch.update(userRef, {
-    cards: firestore.FieldValue.arrayUnion(card_id),
-  });
-
-  await batch.commit();
-  return cardRef;
-};
-// Deprecated!
-export const removeCard = async (id: string) => {
-  const batch = firestore().batch();
-
-  // Remove card
-  const cardRef = firestore().collection('cards').doc(id);
-  batch.delete(cardRef);
-
-  // Remove the card reference from the user's array 'cards'.
-  const userRef = getUser();
-  batch.update(userRef, {
-    cards: firestore.FieldValue.arrayRemove(id),
-  });
-
-  await batch.commit();
-};
+import Toast from 'react-native-toast-message';
 
 export const getBoards = async () => {
   const user_id = auth().currentUser!.uid;
@@ -100,4 +50,10 @@ export const removeBoard = async (id: string | string[]) => {
   });
 
   await batch.commit();
+  Toast.show({
+    text1: 'Sucess',
+    text2: 'A collection has been successfully deleted',
+    type: 'success',
+    position: 'bottom',
+  });
 };

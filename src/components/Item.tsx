@@ -48,11 +48,7 @@ export default function Item({ item }: { item: ItemModel }) {
 
   return (
     <Swipeable renderRightActions={RightSideActions}>
-      <TouchableOpacity
-        style={styles.item}
-        onPress={handlePress}
-        // onLongPress={handleDelete}
-      >
+      <TouchableOpacity style={styles.item} onPress={handlePress}>
         <View style={checked ? styles.itemChecked : styles.itemButton}>
           <CheckIcon
             color={checked ? Colors.White : 'transparent'}
@@ -74,7 +70,7 @@ export default function Item({ item }: { item: ItemModel }) {
   );
 }
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   item: {
     display: 'flex',
     flexDirection: 'row',

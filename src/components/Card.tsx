@@ -30,7 +30,6 @@ export default function Card({ item }: { item: BoardModel }) {
   const completed = progress === 100;
 
   const handleDelete = () => {
-    console.log({ card: item.id });
     removeBoard(item.id);
   };
 
@@ -45,7 +44,7 @@ export default function Card({ item }: { item: BoardModel }) {
     });
     return (
       <View style={{ flexDirection: 'column', justifyContent: 'space-evenly' }}>
-        <TouchableOpacity onPress={handleEdit}>
+        {/* <TouchableOpacity onPress={handleEdit}>
           <View
             style={{
               justifyContent: 'center',
@@ -64,7 +63,7 @@ export default function Card({ item }: { item: BoardModel }) {
               <PencilIcon color={Colors.Gold} />
             </Animated.View>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity onPress={handleDelete}>
           <View
             style={{

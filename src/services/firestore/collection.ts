@@ -1,5 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import { ItemModel } from '../../types/models';
+import Toast from 'react-native-toast-message';
 
 export const addItem = async (parent_id: string, item: Partial<ItemModel>) => {
   const batch = firestore().batch();
@@ -75,4 +76,10 @@ export const removeItem = async (parent_id: string, item: ItemModel) => {
   });
 
   await batch.commit();
+  Toast.show({
+    text1: 'Sucess',
+    text2: 'One item was successfully deleted',
+    type: 'success',
+    position: 'bottom',
+  });
 };

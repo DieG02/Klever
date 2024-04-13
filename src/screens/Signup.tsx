@@ -122,7 +122,9 @@ export default function SignUp({ navigation }: SignUpProps) {
       />
       <Spacing size={20} />
 
-      <MainButton onPress={handleSignUp}>{t('sign_up.action')}</MainButton>
+      <MainButton disabled={!credentials.email} onPress={handleSignUp}>
+        {t('sign_up.action')}
+      </MainButton>
 
       <Pressable onPress={handleRedirect} style={styles.footer}>
         <Heading type='Medium' color='Label' style={styles.link}>

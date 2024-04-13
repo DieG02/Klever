@@ -30,6 +30,28 @@
       "confirm": "Guardar"
     }
   },
+  "toast": {
+    "auth": {
+      "password": {
+        "PASSWORD_TOO_SHORT": "La contraseña debe contener al menos 8 caracteres",
+        "PASSWORDS_DO_NOT_MATCH": "Las contraseñas ingresadas no coinciden",
+        "UNKNOWN_ERROR": "Algo salió mal"
+      },
+      "email": {
+        "auth/email-already-in-use": "Esa dirección de correo electrónico ya está en uso",
+        "auth/invalid-email": "Esa dirección de correo electrónico es inválida",
+        "auth/invalid-credential": "Credenciales inválidas, por favor inténtalo de nuevo",
+        "auth/network-request-failed": "Por favor, verifica tu conexión de red",
+        "DEFAULT": "Algo salió mal"
+      },
+      "google": {
+        "SIGN_IN_CANCELLED": "El proceso de inicio de sesión fue cancelado",
+        "IN_PROGRESS": "Otro proceso en curso",
+        "PLAY_SERVICES_NOT_AVAILABLE": "Servicios de Google Play no disponibles",
+        "DEFAULT": "Algo salió mal, verifica tu conexión de red"
+      }
+    }
+  },
 
   "sign_in": {
     "header": "Inicia sesión en ",

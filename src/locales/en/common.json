@@ -30,6 +30,28 @@
       "confirm": "Save"
     }
   },
+  "toast": {
+    "auth": {
+      "password": {
+        "PASSWORD_TOO_SHORT": "Password must contain at least 8 characters",
+        "PASSWORDS_DO_NOT_MATCH": "Passwords entered don't match",
+        "UNKNOWN_ERROR": "Something went wrong"
+      },
+      "email": {
+        "auth/email-already-in-use": "That email address is already in use",
+        "auth/invalid-email": "That email address is invalid",
+        "auth/invalid-credential": "Invalid credentials, please try again",
+        "auth/network-request-failed": "Please check your network connection",
+        "DEFAULT": "Something went wrong"
+      },
+      "google": {
+        "SIGN_IN_CANCELLED": "Sign in process was cancelled",
+        "IN_PROGRESS": "Another process in progress",
+        "PLAY_SERVICES_NOT_AVAILABLE": "Play services not available",
+        "DEFAULT": "Something went wrong, check your network connection"
+      }
+    }
+  },
 
   "sign_in": {
     "header": "Sign in to ",
