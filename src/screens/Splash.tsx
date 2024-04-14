@@ -41,9 +41,8 @@ export default function Splash({ navigation }: SplashProps) {
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <StatusBar backgroundColor={Colors.Primary} barStyle='light-content' />
+      <StatusBar backgroundColor={Colors.White} barStyle='dark-content' />
       <View style={styles.brand}>
-        <View style={styles.logo} />
         <Text style={styles.klever}>Klever</Text>
       </View>
       <View style={styles.footer}>

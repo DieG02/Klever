@@ -4,7 +4,7 @@ import { Colors, Poppins } from '../global';
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: Colors.Primary,
+    backgroundColor: Colors.White,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
   },
   klever: {
     fontFamily: Poppins.Semibold,
-    fontSize: 24,
-    color: Colors.White,
+    fontSize: 32,
+    color: Colors.Primary,
   },
   footer: {
     position: 'absolute',
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 12,
-    color: Colors.White,
+    color: Colors.Primary,
   },
   company: {
     fontFamily: Poppins.Semibold,
