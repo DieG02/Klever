@@ -6,6 +6,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import { Card, TextInputHome } from '../components';
 import { Spacing, Heading } from '../components/common';
@@ -16,13 +17,14 @@ import AvatarSVG from '../assets/svg/Avatar';
 import { useSession, useBoards } from '../hooks/';
 import BoardSkeleton from '../components/skeleton/Board';
 import { useTranslation } from 'react-i18next';
+import { Colors } from '../styles/global';
 
 interface HomeProps {
   navigation: AppNavigationProps;
 }
 export default function Home({ navigation }: HomeProps) {
   const { user } = useSession();
-  const { boards, isLoading } = useBoards();
+  const { boards } = useBoards();
   const { t, i18n } = useTranslation();
 
   const handleRedirect = () => {
@@ -34,6 +36,7 @@ export default function Home({ navigation }: HomeProps) {
   }, [user?.locale]);
   return (
     <SafeAreaView style={styles.wrapper}>
+      <StatusBar backgroundColor={Colors.White} barStyle='dark-content' />
       <View style={styles.header}>
         <Heading type='Semibold' size={16}>
           <Text>{t('home.grettings')}</Text>
