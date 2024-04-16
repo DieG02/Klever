@@ -1,12 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  Keyboard,
-  Pressable,
-  SafeAreaView,
-  StatusBar,
-  Text,
-  View,
-} from 'react-native';
+import { Keyboard, Pressable, Text, View } from 'react-native';
 import SignUpBanner from '../assets/app/SignUpBanner';
 import {
   Heading,
@@ -14,13 +7,13 @@ import {
   InputField,
   PasswordField,
   Spacing,
+  Layout,
 } from '../components/common';
 import { AuthWithCredentials } from '../utils/auth';
 import { createNewUser } from '../services/firestore/user';
 import { CommonActions } from '@react-navigation/native';
 import { AuthNavigationProps } from '../types/navigation';
 import { VerifyCredentials } from '../utils/auth';
-import { Colors } from '../styles/global';
 import styles from '../styles/screens/signup';
 import { useTranslation } from 'react-i18next';
 
@@ -92,46 +85,47 @@ export default function SignUp({ navigation }: SignUpProps) {
     };
   }, []);
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <StatusBar backgroundColor={Colors.White} barStyle='dark-content' />
-      {!keyboardShown && (
-        <View style={styles.banner}>
-          <SignUpBanner height={190} />
-        </View>
-      )}
+    <Layout backgroundColor='White' barStyle='dark-content'>
+      <View style={styles.wrapper}>
+        {!keyboardShown && (
+          <View style={styles.banner}>
+            <SignUpBanner height={190} />
+          </View>
+        )}
 
-      <Heading type='Semibold' style={styles.header}>
-        <Text>{t('sign_up.header')}</Text>
-        <Text style={styles.hightlight}>{t('app.name')}</Text>
-      </Heading>
-
-      <InputField
-        label={t('forms.auth.email.label')}
-        placeholder={t('forms.auth.email.placeholder')}
-        onChangeText={value => handleChange(value, 'email')}
-      />
-      <PasswordField
-        label={t('forms.auth.password.label')}
-        placeholder={t('forms.auth.password.placeholder')}
-        onChangeText={value => handleChange(value, 'password')}
-      />
-      <PasswordField
-        label={t('forms.auth.confirm.label')}
-        placeholder={t('forms.auth.confirm.placeholder')}
-        onChangeText={value => handleChange(value, 'confirm')}
-      />
-      <Spacing size={20} />
-
-      <MainButton disabled={!credentials.email} onPress={handleSignUp}>
-        {t('sign_up.action')}
-      </MainButton>
-
-      <Pressable onPress={handleRedirect} style={styles.footer}>
-        <Heading type='Medium' color='Label' style={styles.link}>
-          <Text>{t('sign_up.redirect.label')}</Text>
-          <Text style={styles.hightlight}>{t('sign_up.redirect.to')}</Text>
+        <Heading type='Semibold' style={styles.header}>
+          <Text>{t('sign_up.header')}</Text>
+          <Text style={styles.hightlight}>{t('app.name')}</Text>
         </Heading>
-      </Pressable>
-    </SafeAreaView>
+
+        <InputField
+          label={t('forms.auth.email.label')}
+          placeholder={t('forms.auth.email.placeholder')}
+          onChangeText={value => handleChange(value, 'email')}
+        />
+        <PasswordField
+          label={t('forms.auth.password.label')}
+          placeholder={t('forms.auth.password.placeholder')}
+          onChangeText={value => handleChange(value, 'password')}
+        />
+        <PasswordField
+          label={t('forms.auth.confirm.label')}
+          placeholder={t('forms.auth.confirm.placeholder')}
+          onChangeText={value => handleChange(value, 'confirm')}
+        />
+        <Spacing size={20} />
+
+        <MainButton disabled={!credentials.email} onPress={handleSignUp}>
+          {t('sign_up.action')}
+        </MainButton>
+
+        <Pressable onPress={handleRedirect} style={styles.footer}>
+          <Heading type='Medium' color='Label' style={styles.link}>
+            <Text>{t('sign_up.redirect.label')}</Text>
+            <Text style={styles.hightlight}>{t('sign_up.redirect.to')}</Text>
+          </Heading>
+        </Pressable>
+      </View>
+    </Layout>
   );
 }

@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react';
-import {
-  Keyboard,
-  Pressable,
-  SafeAreaView,
-  StatusBar,
-  Text,
-  View,
-} from 'react-native';
+import { Keyboard, Pressable, Text, View } from 'react-native';
 import SignInBanner from '../assets/app/SignInBanner';
 import {
   Heading,
-  MainButton,
   InputField,
-  Spacing,
+  Layout,
+  MainButton,
   PasswordField,
+  Spacing,
 } from '../components/common';
 import { AuthNavigationProps } from '../types/navigation';
 import styles from '../styles/screens/signin';
@@ -36,7 +30,7 @@ interface SignInProps {
 export default function SignIn({ navigation }: SignInProps) {
   const [keyboardShown, setKeyboardShown] = useState(false);
   const [modal, setModal] = useState<boolean>(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [credentials, setCredentials] = useState<CredentialsProps>({
     email: '',
     password: '',
@@ -79,62 +73,63 @@ export default function SignIn({ navigation }: SignInProps) {
     };
   }, []);
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <StatusBar backgroundColor={Colors.White} barStyle='dark-content' />
-      {!keyboardShown && (
-        <>
-          <Pressable onPress={() => setModal(true)} style={styles.locale}>
-            <LanguageIcon color={Colors.Primary} />
-          </Pressable>
-          <LanguageModal
-            visible={modal}
-            onRequestClose={() => setModal(false)}
-          />
-          <View style={styles.banner}>
-            <SignInBanner height={200} />
-          </View>
-        </>
-      )}
+    <Layout backgroundColor='White' barStyle='dark-content'>
+      <View style={styles.wrapper}>
+        {!keyboardShown && (
+          <>
+            <Pressable onPress={() => setModal(true)} style={styles.locale}>
+              <LanguageIcon color={Colors.Primary} />
+            </Pressable>
+            <LanguageModal
+              visible={modal}
+              onRequestClose={() => setModal(false)}
+            />
+            <View style={styles.banner}>
+              <SignInBanner height={200} />
+            </View>
+          </>
+        )}
 
-      <Heading type='Semibold' style={styles.header}>
-        <Text>{t('sign_in.header')}</Text>
-        <Text style={styles.hightlight}>{t('app.name')}</Text>
-      </Heading>
+        <Heading type='Semibold' style={styles.header}>
+          <Text>{t('sign_in.header')}</Text>
+          <Text style={styles.hightlight}>{t('app.name')}</Text>
+        </Heading>
 
-      <InputField
-        label={t('forms.auth.email.label')}
-        placeholder={t('forms.auth.email.placeholder')}
-        onChangeText={value => handleChange(value, 'email')}
-      />
-      <PasswordField
-        label={t('forms.auth.password.label')}
-        placeholder={t('forms.auth.password.placeholder')}
-        onChangeText={value => handleChange(value, 'password')}
-        marginb={10}
-      />
+        <InputField
+          label={t('forms.auth.email.label')}
+          placeholder={t('forms.auth.email.placeholder')}
+          onChangeText={value => handleChange(value, 'email')}
+        />
+        <PasswordField
+          label={t('forms.auth.password.label')}
+          placeholder={t('forms.auth.password.placeholder')}
+          onChangeText={value => handleChange(value, 'password')}
+          marginb={10}
+        />
 
-      {/* <Pressable onPress={onRedirect}> // TODO: Handle forgotten password
+        {/* <Pressable onPress={onRedirect}> // TODO: Handle forgotten password
         <Heading type='Medium' color='Label' style={styles.password}>
           Forgot password?
         </Heading>
       </Pressable> */}
 
-      <Spacing size={20} />
+        <Spacing size={20} />
 
-      <MainButton
-        disabled={!credentials.email || !credentials.password}
-        onPress={handleSignIn}>
-        {t('sign_in.action')}
-      </MainButton>
-      <Spacing size={20} />
-      <GoogleAuthButton />
+        <MainButton
+          disabled={!credentials.email || !credentials.password}
+          onPress={handleSignIn}>
+          {t('sign_in.action')}
+        </MainButton>
+        <Spacing size={20} />
+        <GoogleAuthButton />
 
-      <Pressable onPress={handleRedirect} style={styles.footer}>
-        <Heading type='Medium' color='Label' style={styles.link}>
-          <Text>{t('sign_in.redirect.label')}</Text>
-          <Text style={styles.hightlight}>{t('sign_in.redirect.to')}</Text>
-        </Heading>
-      </Pressable>
-    </SafeAreaView>
+        <Pressable onPress={handleRedirect} style={styles.footer}>
+          <Heading type='Medium' color='Label' style={styles.link}>
+            <Text>{t('sign_in.redirect.label')}</Text>
+            <Text style={styles.hightlight}>{t('sign_in.redirect.to')}</Text>
+          </Heading>
+        </Pressable>
+      </View>
+    </Layout>
   );
 }
