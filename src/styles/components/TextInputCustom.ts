@@ -1,6 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { Colors, Poppins } from '../global';
 
+const ios = Platform.OS === 'ios';
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 6,
@@ -15,12 +16,12 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     paddingHorizontal: 10,
-    paddingVertical: 0,
-    fontSize: 13,
+    paddingVertical: ios ? 10 : 0,
+    height: 40,
+    fontSize: ios ? 13 : 12,
     color: Colors.Text,
     fontFamily: Poppins.Regular,
     borderRadius: 20,
-    height: 40,
     backgroundColor: Colors.Background,
     marginRight: 5,
   },

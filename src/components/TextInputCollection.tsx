@@ -109,7 +109,6 @@ export default function TextInputCollection({
           maxLength={75}
           placeholder={t('collection.new_item')}
           value={value}
-          multiline
           onChangeText={setValue}
         />
         {value ? (

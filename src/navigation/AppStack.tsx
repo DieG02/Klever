@@ -13,7 +13,22 @@ const AppStack = createStackNavigator<AppStackParamList>();
 export default function AppNavigator() {
   const { t } = useTranslation();
   return (
-    <AppStack.Navigator>
+    <AppStack.Navigator
+      screenOptions={{
+        headerBackTitleVisible: false,
+        headerStyle: {
+          backgroundColor: Colors.White,
+          elevation: 0,
+          shadowOpacity: 0,
+        },
+        headerTitleStyle: {
+          fontFamily: Poppins.Semibold,
+          fontSize: 16,
+        },
+        headerTintColor: Colors.Black,
+        headerTitleAlign: 'center',
+        headerBackImage: () => <ChevronLeftIconMini color={Colors.Black} />,
+      }}>
       <AppStack.Screen
         name='Home'
         component={Home}
@@ -24,17 +39,6 @@ export default function AppNavigator() {
         component={Collection}
         options={({ route }) => ({
           title: route.params.title,
-          headerStyle: {
-            backgroundColor: Colors.White,
-            elevation: 0,
-          },
-          headerTintColor: Colors.Black,
-          headerTitleStyle: {
-            fontFamily: Poppins.Semibold,
-            fontSize: 16,
-          },
-          headerTitleAlign: 'center',
-          headerBackImage: () => <ChevronLeftIconMini color={Colors.Black} />,
         })}
       />
       <AppStack.Screen
@@ -42,17 +46,6 @@ export default function AppNavigator() {
         component={Settings}
         options={({ route }) => ({
           title: t('app.settings'),
-          headerStyle: {
-            backgroundColor: Colors.White,
-            elevation: 0,
-          },
-          headerTintColor: Colors.Black,
-          headerTitleStyle: {
-            fontFamily: Poppins.Semibold,
-            fontSize: 16,
-          },
-          headerTitleAlign: 'center',
-          headerBackImage: () => <ChevronLeftIconMini color={Colors.Black} />,
         })}
       />
     </AppStack.Navigator>
