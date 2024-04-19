@@ -1,139 +1,88 @@
 import { View, StyleSheet } from 'react-native';
+import { BaseToast, BaseToastProps } from 'react-native-toast-message';
+import { Colors, Poppins } from '../styles/global';
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
   InformationCircleIcon,
   XCircleIcon,
 } from 'react-native-heroicons/mini';
-import { BaseToast, BaseToastProps } from 'react-native-toast-message';
-import { Colors } from '../styles/global';
 
-const palette = {
-  success: {
-    color: Colors.Forest,
-    background: Colors.Tea,
-  },
-  info: {
-    color: Colors.Primary,
-    background: Colors.Light,
-  },
-  warning: {
-    color: Colors.Gold,
-    background: Colors.Amber,
-  },
-  error: {
-    color: Colors.Danger,
-    background: Colors.Pastel,
-  },
+interface Palette {
+  [key: string]: { color: string; background: string };
+}
+
+const palette: Palette = {
+  success: { color: Colors.Forest, background: Colors.Tea },
+  info: { color: Colors.Primary, background: Colors.Light },
+  warning: { color: Colors.Gold, background: Colors.Amber },
+  error: { color: Colors.Danger, background: Colors.Pastel },
 };
 
-export function SuccessToast({
-  text1: title,
-  text2: message,
-  ...props
-}: BaseToastProps) {
-  const { color, background } = palette['success'];
-  return (
-    <BaseToast
-      style={styles.wrapper}
-      contentContainerStyle={styles.container}
-      renderLeadingIcon={() => (
-        <View style={[styles.icon, { backgroundColor: background }]}>
-          <CheckCircleIcon height={24} width={24} color={color} />
-        </View>
-      )}
-      text1={title}
-      text2={message}
-      text2NumberOfLines={1}
-      {...props}
-    />
-  );
-}
+const renderIcon = (
+  IconComponent: React.ComponentType<any>,
+  color: string,
+  background: string,
+) => (
+  <View style={[styles.icon, { backgroundColor: background }]}>
+    <IconComponent height={24} width={24} color={color} />
+  </View>
+);
 
-export function InfoToast({
-  text1: title,
-  text2: message,
-  ...props
-}: BaseToastProps) {
-  const { color, background } = palette['info'];
-  return (
-    <BaseToast
-      style={styles.wrapper}
-      contentContainerStyle={styles.container}
-      renderLeadingIcon={() => (
-        <View style={[styles.icon, { backgroundColor: background }]}>
-          <InformationCircleIcon height={24} width={24} color={color} />
-        </View>
-      )}
-      text1={title}
-      text2={message}
-      text2NumberOfLines={1}
-      {...props}
-    />
-  );
-}
+const createToast =
+  (type: keyof Palette, IconComponent: React.ComponentType<any>) =>
+  ({
+    text1: title,
+    text2: message,
+    text1Style,
+    text2Style,
+    ...props
+  }: BaseToastProps) => {
+    const { color, background } = palette[type];
+    return (
+      <BaseToast
+        style={styles.wrapper}
+        contentContainerStyle={styles.container}
+        renderLeadingIcon={() => renderIcon(IconComponent, color, background)}
+        text1={title}
+        text2={message}
+        text2NumberOfLines={2}
+        text1Style={[text1Style, styles.title]}
+        text2Style={[text2Style, styles.message]}
+        {...props}
+      />
+    );
+  };
 
-export function WarningToast({
-  text1: title,
-  text2: message,
-  ...props
-}: BaseToastProps) {
-  const { color, background } = palette['warning'];
-  return (
-    <BaseToast
-      style={styles.wrapper}
-      contentContainerStyle={styles.container}
-      renderLeadingIcon={() => (
-        <View style={[styles.icon, { backgroundColor: background }]}>
-          <ExclamationCircleIcon height={24} width={24} color={color} />
-        </View>
-      )}
-      text1={title}
-      text2={message}
-      text2NumberOfLines={1}
-      {...props}
-    />
-  );
-}
-
-export function ErrorToast({
-  text1: title,
-  text2: message,
-  ...props
-}: BaseToastProps) {
-  const { color, background } = palette['error'];
-  return (
-    <BaseToast
-      style={styles.wrapper}
-      contentContainerStyle={styles.container}
-      renderLeadingIcon={() => (
-        <View style={[styles.icon, { backgroundColor: background }]}>
-          <XCircleIcon height={24} width={24} color={color} />
-        </View>
-      )}
-      text1={title}
-      text2={message}
-      text2NumberOfLines={1}
-      {...props}
-    />
-  );
-}
+export const SuccessToast = createToast('success', CheckCircleIcon);
+export const InfoToast = createToast('info', InformationCircleIcon);
+export const WarningToast = createToast('warning', ExclamationCircleIcon);
+export const ErrorToast = createToast('error', XCircleIcon);
 
 const styles = StyleSheet.create({
   wrapper: {
     borderLeftWidth: 0,
     height: 50,
     alignItems: 'center',
+    borderRadius: 10,
   },
   container: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 0,
   },
   icon: {
-    width: 40,
-    height: 40,
-    marginLeft: 5,
-    borderRadius: 6,
+    width: 35,
+    height: 35,
+    marginHorizontal: 10,
+    borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  title: {
+    fontFamily: Poppins.Semibold,
+    color: Colors.Text,
+  },
+  message: {
+    fontFamily: Poppins.Medium,
+    color: Colors.Placeholder,
   },
 });

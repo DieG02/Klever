@@ -12,7 +12,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import RootStack from './src/navigation/RootStack';
 import Toast from 'react-native-toast-message';
-import { toastConfig } from './src/config/ToastMessage';
+import { toastConfig } from './src/config/ToastManager';
 import './src/config/GoogleServices';
 
 export default function App() {
