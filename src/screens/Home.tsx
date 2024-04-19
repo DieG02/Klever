@@ -8,11 +8,10 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { Card, TextInputHome } from '../components';
+import { Card, TextInputHome, EmptyCards, Summary } from '../components';
 import { Spacing, Heading, Layout } from '../components/common';
 import styles from '../styles/screens/home';
 import { AppNavigationProps } from '../types/navigation';
-import EmptyCards from '../components/EmptyCards';
 import AvatarSVG from '../assets/svg/Avatar';
 import { useSession, useBoards } from '../hooks/';
 import BoardSkeleton from '../components/skeleton/Board';
@@ -37,7 +36,7 @@ export default function Home({ navigation }: HomeProps) {
     <Layout>
       <KeyboardAvoidingView
         style={styles.wrapper}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <View style={styles.header}>
           <Heading type='Semibold' size={16}>
             <Text>{t('home.grettings')}</Text>
@@ -51,7 +50,7 @@ export default function Home({ navigation }: HomeProps) {
             )}
           </TouchableOpacity>
         </View>
-        <View style={styles.placeholder} />
+        <Summary />
         <Spacing size={20} />
 
         <View style={styles.container}>
@@ -60,15 +59,17 @@ export default function Home({ navigation }: HomeProps) {
           </Heading>
           <Spacing size={20} />
 
-          <FlatList
-            data={boards}
-            renderItem={({ item }) => <Card item={item} />}
-            ItemSeparatorComponent={Spacing}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={item => item?.id}
-            ListEmptyComponent={EmptyCards}
-            contentContainerStyle={styles.flatlist}
-          />
+          {boards && (
+            <FlatList
+              data={boards}
+              renderItem={({ item }) => <Card item={item} />}
+              ItemSeparatorComponent={Spacing}
+              showsVerticalScrollIndicator={false}
+              keyExtractor={item => item?.id}
+              ListEmptyComponent={EmptyCards}
+              contentContainerStyle={styles.flatlist}
+            />
+          )}
           {!boards && [0, 1, 2, 3].map(i => <BoardSkeleton key={i} />)}
         </View>
 

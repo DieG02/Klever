@@ -36,14 +36,16 @@ export default function Collection({ route }: CollectionProps) {
         keyboardVerticalOffset={headerHeight}
         behavior={BEHAVIOR}>
         <View style={styles.container}>
-          <FlatList
-            data={items}
-            renderItem={Item}
-            ItemSeparatorComponent={Separator}
-            showsVerticalScrollIndicator={false}
-            ListEmptyComponent={EmptyCollection}
-            contentContainerStyle={styles.flatlist}
-          />
+          {items && (
+            <FlatList
+              data={items}
+              renderItem={Item}
+              ItemSeparatorComponent={Separator}
+              showsVerticalScrollIndicator={false}
+              ListEmptyComponent={EmptyCollection}
+              contentContainerStyle={styles.flatlist}
+            />
+          )}
           {!items && [0, 1, 2, 3, 4].map(i => <ItemSkeleton key={i} />)}
         </View>
         <TextInputCollection collectionId={parent_id} />
