@@ -1,7 +1,7 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { UserModel } from '../../types/models';
-import { changeLanguage } from 'i18next';
+import i18next, { t, changeLanguage } from 'i18next';
 import Toast from 'react-native-toast-message';
 
 type AuthProviders = 'google' | 'email';
@@ -32,6 +32,9 @@ export const createNewUser = async (user: any, provider: AuthProviders) => {
 export const updateUserLocale = async (locale: string) => {
   try {
     const user = auth().currentUser;
+    const currentLocale = i18next.language;
+    if (currentLocale === locale) return;
+
     changeLanguage(locale);
     if (user) {
       const userDocRef = firestore().collection('users').doc(user?.uid);
@@ -41,8 +44,8 @@ export const updateUserLocale = async (locale: string) => {
       });
     }
     Toast.show({
-      text1: 'App changes',
-      text2: 'App language has been updated',
+      text1: t('toast.user.locale.update.title'),
+      text2: t('toast.user.locale.update.message'),
       type: 'success',
       position: 'bottom',
     });
