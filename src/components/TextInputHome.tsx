@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { TouchableOpacity, TextInput, View } from 'react-native';
 import { ArrowRightIcon } from 'react-native-heroicons/mini';
 import { useNavigation } from '@react-navigation/native';
-import { addCard } from '../services/firestore';
 import { addBoard } from '../services/firestore/board';
 import { AppNavigationProps } from '../types/navigation';
 import styles from '../styles/components/TextInputCustom';

@@ -5,12 +5,10 @@ import {
   StyleSheet,
   ViewStyle,
 } from 'react-native';
-import { Colors } from '../../styles/global';
-
-type ColorsType = keyof typeof Colors;
+import { Colors, ColorPalette } from '../../styles/global';
 
 interface LayoutProps extends StatusBarProps {
-  backgroundColor?: ColorsType;
+  backgroundColor?: ColorPalette;
   style?: ViewStyle;
   children?: React.ReactNode;
 }

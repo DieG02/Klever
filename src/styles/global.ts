@@ -20,26 +20,12 @@ export enum Colors {
   Black = '#252525',
 }
 
-// export enum FigmaColors {
-//   Primary = '#4378FE',
-//   Alternative = '#F7F9FF',
-//   Danger = '#F35F5F',
-//   Text = '#666666',
-//   Link = '#4378FE',
-//   Placeholder = '#999999',
-//   Background = '#FAFAFA',
-//   White = '#FFFFFF',
-//   Light = '#F7F9FF',
-//   Pastel = '#FFEBEB',
-//   Sky = '#E3EFFC',
-//   Gray = '#CCCCCC',
-//   Dark = '#444444',
-//   Black = '#252525',
-// }
-
 export enum Poppins {
   Regular = 'Poppins-Regular',
   Medium = 'Poppins-Medium',
   Semibold = 'Poppins-SemiBold',
   Bold = 'Poppins-Bold',
 }
+
+export type FontFamily = keyof typeof Poppins;
+export type ColorPalette = keyof typeof Colors;

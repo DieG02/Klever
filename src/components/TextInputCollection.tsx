@@ -9,7 +9,6 @@ import {
   PlusIcon,
   StopIcon,
 } from 'react-native-heroicons/mini';
-// import { addItem } from '../services/firestore';
 import { addItem } from '../services/firestore/collection';
 import styles from '../styles/components/TextInputCustom';
 import { useTranslation } from 'react-i18next';

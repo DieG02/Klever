@@ -1,7 +1,7 @@
 import { StyleSheet, View, Modal, SafeAreaView, Pressable } from 'react-native';
 import { Colors } from '../../styles/global';
 import { Heading } from '../common';
-import { updateUserLocale } from '../../services/firestore/user';
+import { updateLocale } from '../../services/firestore/user';
 import { useTranslation } from 'react-i18next';
 
 interface LanguageModalProps {
@@ -20,7 +20,7 @@ export default function LanguageModal({
   };
 
   const handleUpdate = async (locale: string) => {
-    await updateUserLocale(locale);
+    await updateLocale(locale);
     onRequestClose();
   };
   return (

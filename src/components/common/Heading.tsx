@@ -5,14 +5,11 @@ import {
   StyleSheet,
   StyleProp,
 } from 'react-native';
-import { Colors, Poppins } from '../../styles/global';
-
-type PoppinsType = keyof typeof Poppins;
-type ColorsType = keyof typeof Colors;
+import { Colors, ColorPalette, Poppins, FontFamily } from '../../styles/global';
 
 interface HeadingProps extends TextProps {
-  type?: PoppinsType;
-  color?: ColorsType;
+  type?: FontFamily;
+  color?: ColorPalette;
   size?: number;
   style?: StyleProp<TextStyle>;
   children: React.ReactNode;

@@ -45,7 +45,6 @@ export const AuthWithGoogle = async () => {
       text1: toastRef.title,
       text2: toastRef.message,
       type: toastRef.type,
-      position: 'bottom',
     });
   }
 };
@@ -75,7 +74,6 @@ export const AuthWithCredentials = async (
       text1: 'Error',
       text2: t([`toast.auth.email.${code}`, 'toast.auth.email.DEFAULT']),
       type: 'error',
-      position: 'bottom',
     });
     return;
   }
@@ -85,16 +83,7 @@ export const AuthLogOut = async () => {
   const user = auth().currentUser;
   // Show popup or not before init new login
   if (user?.displayName) GoogleSignin.revokeAccess();
-  await auth().signOut();
-  const currentUser = auth().currentUser;
-  currentUser === null &&
-    Toast.show({
-      text1: 'Log out',
-      text2: 'The session has been closed, to continue, please log in again',
-      type: 'info',
-      position: 'bottom',
-    });
-  return currentUser;
+  return await auth().signOut();
 };
 
 interface CredentialsProps {
@@ -139,7 +128,6 @@ export const VerifyCredentials = (credentials: CredentialsProps): boolean => {
         'toast.auth.password.UNKNOWN_ERROR',
       ),
       type: 'warning',
-      position: 'bottom',
     });
     return false;
   }

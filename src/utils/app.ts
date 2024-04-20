@@ -1,6 +1,6 @@
 import { Platform, NativeModules } from 'react-native';
+import { SupportedDevices } from '../types';
 
-type SupportedDevices = 'ios' | 'android';
 const device = Platform.OS as SupportedDevices;
 
 export const getDeviceLocale = () => {
