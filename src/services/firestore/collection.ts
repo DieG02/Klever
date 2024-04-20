@@ -27,24 +27,6 @@ export const addItem = async (parent_id: string, item: Partial<ItemModel>) => {
   return itemRef;
 };
 
-// Deprecated!
-export const toggleItem = async (itemId: string, check: boolean) => {
-  const itemRef = firestore().collection('items').doc(itemId);
-  await itemRef.update({
-    check: check,
-  });
-
-  const itemSnapshot = await itemRef.get();
-  const parentId = itemSnapshot.data()?.parentId;
-  if (parentId) {
-    const cardRef = firestore().collection('cards').doc(parentId);
-
-    await cardRef.update({
-      current: firestore.FieldValue.increment(check ? 1 : -1),
-    });
-  }
-};
-
 export const toogleItemStatus = async (parent_id: string, item: ItemModel) => {
   const batch = firestore().batch();
   const boardRef = firestore().collection('boards').doc(parent_id);

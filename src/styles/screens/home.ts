@@ -19,12 +19,6 @@ const styles = StyleSheet.create({
     width: 35,
     borderRadius: 20,
   },
-  placeholder: {
-    height: 100,
-    borderRadius: 15,
-    backgroundColor: Colors.Placeholder,
-    marginHorizontal: 20,
-  },
   container: {
     flex: 1,
     marginHorizontal: 20,

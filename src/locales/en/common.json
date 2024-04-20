@@ -50,6 +50,14 @@
         "PLAY_SERVICES_NOT_AVAILABLE": "Play services not available",
         "DEFAULT": "Something went wrong, check your network connection"
       }
+    },
+    "user": {
+      "locale": {
+        "update": {
+          "title":  "Success",
+          "message":  "App language has been updated"
+        }
+      }
     }
   },
 
@@ -78,7 +86,38 @@
       "title": "Hmm, looks like it's empty",
       "label": "Add new collections in the section below!"
     },
-    "new_item": "Create new list here..."
+    "new_item": "Create new list here...",
+
+    "summary": {
+      "0": {
+        "title": "Let's get started!",
+        "message": "You're off to a great start! Begin tackling your checklists and watch your progress grow."
+      },
+      "15": {
+        "title": "Making progress!",
+        "message": "You've completed {{percent}} of your checklists. Keep up the momentum and keep checking tasks off!"
+      },
+      "30": {
+        "title": "Halfway there!",
+        "message": "You've reached {{percent}} of your checklists. You're making steady progress, keep it up!"
+      },
+      "50": {
+        "title": "Halfway mark!",
+        "message": "Congratulations! You've completed {{percent}} of your checklists. You're halfway there, keep pushing forward!"
+      },
+      "75": {
+        "title": "Almost done!",
+        "message": "Fantastic job! You've completed {{percent}} of your checklists. You're almost at the finish line, keep going strong!"
+      },
+      "90": {
+        "title": "Home stretch!",
+        "message": "You're almost there! With {{percent}} of your checklists completed, the finish line is in sight. Keep up the great work!"
+      },
+      "100": {
+        "title": "Congratulations!",
+        "message": "You did it! You've completed 100% of your checklists. What an achievement! Take a moment to celebrate your success!"
+      }
+    }
   },
   "collection": {
     "empty": {

@@ -50,6 +50,14 @@
         "PLAY_SERVICES_NOT_AVAILABLE": "Servicios de Google Play no disponibles",
         "DEFAULT": "Algo salió mal, verifica tu conexión de red"
       }
+    },
+    "user": {
+      "locale": {
+        "update": {
+          "title":  "Éxito",
+          "message":  "Se ha actualizado el idioma de la aplicación"
+        }
+      }
     }
   },
 
@@ -78,7 +86,38 @@
       "title": "Hmm, parece que está vacío",
       "label": "¡Agrega nuevas colecciones en la sección de abajo!"
     },
-    "new_item": "Crea una nueva lista aquí..."
+    "new_item": "Crea una nueva lista aquí...",
+
+    "summary": {
+      "0": {
+        "title": "¡Comencemos!",
+        "message": "¡Has comenzado por buen camino! Empieza a completar tus listas y observa cómo crece tu progreso."
+      },
+      "15": {
+        "title": "¡Sigue avanzando!",
+        "message": "Has completado el {{percent}} de tus listas. ¡Mantén el impulso y sigue marcando tareas!"
+      },
+      "30": {
+        "title": "¡Ya vamos a la mitad!",
+        "message": "Has alcanzado el {{percent}} de tus listas. Estás haciendo un progreso constante, ¡sigue así!"
+      },
+      "50": {
+        "title": "¡Punto intermedio!",
+        "message": "¡Felicidades! Has completado el {{percent}} de tus listas. Estás a medio camino, ¡sigue adelante!"
+      },
+      "75": {
+        "title": "¡Casi terminado!",
+        "message": "¡Fantástico trabajo! Has completado el {{percent}} de tus listas. Estás casi en la línea de meta, ¡sigue adelante con fuerza!"
+      },
+      "90": {
+        "title": "¡Último esfuerzo!",
+        "message": "¡Ya casi estás ahí! Con el {{percent}} de tus listas completadas, la línea de meta está a la vista. ¡Sigue con el gran trabajo!"
+      },
+      "100": {
+        "title": "¡Felicidades!",
+        "message": "¡Lo lograste! Has completado el 100% de tus listas. ¡Qué logro! Tómate un momento para celebrar tu éxito."
+      }
+    }      
   },
   "collection": {
     "empty": {
