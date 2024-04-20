@@ -1,6 +1,7 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { BoardModel } from '../../types/models';
+import { t } from 'i18next';
 import Toast from 'react-native-toast-message';
 
 export const getBoards = async () => {
@@ -51,9 +52,8 @@ export const removeBoard = async (id: string | string[]) => {
 
   await batch.commit();
   Toast.show({
-    text1: 'Sucess',
-    text2: 'A collection has been successfully deleted',
+    text1: t('toast.user.board.delete.title'),
+    text2: t('toast.user.board.delete.message'),
     type: 'success',
-    position: 'bottom',
   });
 };

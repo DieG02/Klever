@@ -1,3 +1,4 @@
+import { ToastConfig } from 'react-native-toast-message';
 import {
   SuccessToast,
   InfoToast,
@@ -5,7 +6,7 @@ import {
   ErrorToast,
 } from '../components/Toast';
 
-export const toastConfig = {
+export const toastConfig: ToastConfig = {
   success: SuccessToast,
   info: InfoToast,
   warning: WarningToast,

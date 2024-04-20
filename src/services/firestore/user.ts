@@ -29,7 +29,7 @@ export const createNewUser = async (user: any, provider: AuthProviders) => {
   return userDocRef;
 };
 
-export const updateUserLocale = async (locale: string) => {
+export const updateLocale = async (locale: string) => {
   try {
     const user = auth().currentUser;
     const currentLocale = i18next.language;
@@ -47,7 +47,6 @@ export const updateUserLocale = async (locale: string) => {
       text1: t('toast.user.locale.update.title'),
       text2: t('toast.user.locale.update.message'),
       type: 'success',
-      position: 'bottom',
     });
   } catch (error) {
     console.error('Error updating user locale:', error);

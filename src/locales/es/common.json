@@ -54,8 +54,20 @@
     "user": {
       "locale": {
         "update": {
-          "title":  "Éxito",
-          "message":  "Se ha actualizado el idioma de la aplicación"
+          "title": "Éxito",
+          "message": "Se ha actualizado el idioma de la aplicación"
+        }
+      },
+      "board": {
+        "delete": {
+          "title": "Éxito",
+          "message": "Se ha eliminado un tablero"
+        }
+      },
+      "collection": {
+        "delete": {
+          "title": "Éxito",
+          "message": "Se ha eliminado un artículo de la colección"
         }
       }
     }

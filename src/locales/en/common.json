@@ -57,6 +57,18 @@
           "title":  "Success",
           "message":  "App language has been updated"
         }
+      },
+      "board": {
+        "delete": {
+          "title": "Success",
+          "message": "A board has been deleted"
+        }
+      },
+      "collection": {
+        "delete": {
+          "title": "Success",
+          "message": "An item has been deleted from checklist"
+        }
       }
     }
   },
