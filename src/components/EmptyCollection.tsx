@@ -11,13 +11,13 @@ export default function EmptyCollection({}: EmptyCollectionProps) {
   return (
     <View style={styles.container}>
       <View style={styles.banner}>
-        <CollectionBanner height={225} width={225} />
+        <CollectionBanner height={150} width={150} />
       </View>
       <View style={styles.center}>
-        <Heading type='Semibold' size={16} color='Placeholder'>
+        <Heading type='Semibold' size={14} color='Placeholder'>
           {t('collection.empty.title')}
         </Heading>
-        <Heading color='Placeholder' size={12}>
+        <Heading color='Placeholder' size={10}>
           {t('collection.empty.label')}
         </Heading>
       </View>
@@ -27,7 +27,7 @@ export default function EmptyCollection({}: EmptyCollectionProps) {
 
 const styles = StyleSheet.create({
   container: {
-    top: (height - 300 / 2) * 0.25,
+    top: (height - 300 / 2) * 0.33,
   },
   banner: {
     alignItems: 'center',
