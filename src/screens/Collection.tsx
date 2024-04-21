@@ -6,7 +6,7 @@ import { Layout, Separator } from '../components/common';
 import styles from '../styles/screens/collection';
 import { AppNavigationProps, AppRouteProps } from '../types/navigation';
 import EmptyCollection from '../components/EmptyCollection';
-import useCollection from '../hooks/useCollection';
+import { useCollection } from '../hooks';
 import ItemSkeleton from '../components/skeleton/Item';
 import { useHeaderHeight } from '@react-navigation/elements';
 

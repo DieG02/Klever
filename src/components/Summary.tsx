@@ -4,7 +4,7 @@ import { Heading } from './common';
 import { Circle as ProgressCircle } from 'react-native-progress';
 import { Colors } from '../styles/global';
 import { useTranslation } from 'react-i18next';
-import useProgress from '../hooks/useProgress';
+import { useProgress } from '../hooks';
 import { mapValueToBreakpoint } from '../utils/app';
 
 export default function Summary(): JSX.Element {

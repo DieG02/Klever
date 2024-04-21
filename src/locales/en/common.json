@@ -25,9 +25,7 @@
       "options": {
         "en": "English",
         "es": "Spanish"
-      },
-      "cancel": "Cancel",
-      "confirm": "Save"
+      }
     }
   },
   "toast": {
@@ -54,8 +52,8 @@
     "user": {
       "locale": {
         "update": {
-          "title":  "Success",
-          "message":  "App language has been updated"
+          "title": "Success",
+          "message": "App language has been updated"
         }
       },
       "board": {
@@ -98,7 +96,7 @@
       "title": "Hmm, looks like it's empty",
       "label": "Add new collections in the section below!"
     },
-    "new_item": "Create new list here...",
+    "new_item": "Create new collection here...",
 
     "summary": {
       "0": {
@@ -140,9 +138,9 @@
   },
   "settings": {
     "nav": {
-      "language": "Change language",
+      "language": "Language",
       "rate": "Rate app",
-      "log_out": " Log out"
+      "log_out": "Log out"
     }
   }
 }
