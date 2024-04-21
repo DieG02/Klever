@@ -75,7 +75,6 @@ export const AuthWithCredentials = async (
       text2: t([`toast.auth.email.${code}`, 'toast.auth.email.DEFAULT']),
       type: 'error',
     });
-    return;
   }
 };
 

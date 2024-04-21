@@ -7,7 +7,7 @@ import Toast from 'react-native-toast-message';
 
 export const createNewUser = async (user: any, provider: AuthProviders) => {
   const userDocRef = firestore().collection('users').doc(user.uid);
-  const locale = auth().languageCode;
+  const locale = i18next.language;
   const displayName =
     user.displayName?.split(' ')[0] || user.email.split('@')[0];
 

@@ -8,15 +8,9 @@ const RootStack = createStackNavigator<RootStackParamList>();
 
 export default function RootNavigator() {
   return (
-    <RootStack.Navigator>
-      <RootStack.Screen
-        name='AuthStack'
-        component={AuthStack}
-        options={{ headerShown: false }}/>
-      <RootStack.Screen
-        name='AppStack'
-        component={AppStack}
-        options={{ headerShown: false }}/>
+    <RootStack.Navigator screenOptions={{ headerShown: false }}>
+      <RootStack.Screen name='AuthStack' component={AuthStack} />
+      <RootStack.Screen name='AppStack' component={AppStack} />
     </RootStack.Navigator>
-  )
-};
+  );
+}
