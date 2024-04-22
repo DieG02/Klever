@@ -30,15 +30,13 @@ export default function Settings({ navigation }: SettingsProps) {
   const hide = () => setVisible(false);
 
   const handleLogout = async () => {
-    const currentUser = await AuthLogOut();
-    if (currentUser === null) {
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: 'AuthStack', params: { screen: 'SignIn' } }],
-        }),
-      );
-    }
+    await AuthLogOut();
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{ name: 'AuthStack', params: { screen: 'SignIn' } }],
+      }),
+    );
   };
 
   return (

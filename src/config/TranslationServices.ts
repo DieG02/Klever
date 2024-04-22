@@ -6,15 +6,15 @@ import es from '../locales/es/common.json';
 i18n.use(initReactI18next).init({
   debug: false,
   compatibilityJSON: 'v3',
-  fallbackLng: 'en-US',
+  fallbackLng: 'en-GB',
   defaultNS: 'common',
   ns: ['common'],
-  supportedLngs: ['en-US', 'es-MX'],
+  supportedLngs: ['en-GB', 'es-MX'],
   interpolation: {
     escapeValue: false,
   },
   resources: {
-    'en-US': {
+    'en-GB': {
       common: en,
     },
     'es-MX': {

@@ -49,6 +49,10 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+  <string>Allow access to the microphone to enable dictating items to be added to your list quickly and conveniently</string>
+  <key>NSSpeechRecognitionUsageDescription</key>
+  <string>Requires access to speech recognition so you can add items to your list simply by speaking</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Poppins-Regular.ttf</string>

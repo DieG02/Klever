@@ -35,6 +35,7 @@ export default function TextInputHome() {
           placeholder={t('home.new_item')}
           value={value}
           onChangeText={setValue}
+          placeholderTextColor='#858585'
         />
         <TouchableOpacity
           style={styles.button}

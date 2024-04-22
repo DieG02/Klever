@@ -1,19 +1,18 @@
 import React, { createContext, useContext, useState } from 'react';
+import { UserModel } from '../types/models';
 
 interface AuthContextProps {
   user: any;
-  login: (value: any) => void;
-  logout: () => void;
-};
+  setUser: (value: UserModel | null) => void;
+}
 interface AuthProviderProps {
   children: React.ReactNode;
-};
+}
 
 const defaultValue: AuthContextProps = {
-  user: {},
-  login: () => {},
-  logout: () => {}
-}
+  user: null,
+  setUser: () => {},
+};
 const AuthContext = createContext<AuthContextProps>(defaultValue);
 
 export const useAuth = () => {
@@ -21,18 +20,10 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<any>(null);
-
-  const login = (userData: any): void => {
-    setUser(userData);
-  };
-
-  const logout = (): void => {
-    setUser(null);
-  };
+  const [user, setUser] = useState<UserModel | null>(null);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );

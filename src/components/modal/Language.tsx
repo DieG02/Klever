@@ -15,7 +15,7 @@ export default function LanguageModal({
 }: LanguageModalProps) {
   const { t, i18n } = useTranslation();
   const options = {
-    en: 'en-US',
+    en: 'en-GB',
     es: 'es-MX',
   };
 

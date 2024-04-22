@@ -134,7 +134,8 @@
       "title": "Oops! Nothing to see here",
       "label": "Add new items with a tap or talk!"
     },
-    "new_item": "Add new items..."
+    "new_item": "Add new items...",
+    "recording": "Listening for your voice..."
   },
   "settings": {
     "nav": {

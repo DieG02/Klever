@@ -134,7 +134,8 @@
       "title": "¡Ups! Nada que ver aquí",
       "label": "¡Agrega nuevos elementos con un toque o hablando!"
     },
-    "new_item": "Agregar nuevos elementos..."
+    "new_item": "Agregar nuevos elementos...",
+    "recording": "Escuchando tu voz..."
   },
   "settings": {
     "nav": {

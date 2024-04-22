@@ -17,7 +17,7 @@ export const getDeviceLocale = () => {
     return 'es-MX';
   } else {
     // Set english by default
-    return 'en-US';
+    return 'en-GB';
   }
 };
 
