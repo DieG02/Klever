@@ -93,7 +93,7 @@ export default function SignUp({ navigation }: SignUpProps) {
           </View>
         )}
 
-        <Heading type='Semibold' style={styles.header}>
+        <Heading size={20} type='Semibold' style={styles.header}>
           <Text>{t('sign_up.header')}</Text>
           <Text style={styles.hightlight}>{t('app.name')}</Text>
         </Heading>

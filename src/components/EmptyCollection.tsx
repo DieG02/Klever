@@ -14,10 +14,10 @@ export default function EmptyCollection({}: EmptyCollectionProps) {
         <CollectionBanner height={150} width={150} />
       </View>
       <View style={styles.center}>
-        <Heading type='Semibold' size={14} color='Placeholder'>
+        <Heading type='Semibold' size={16} color='Placeholder'>
           {t('collection.empty.title')}
         </Heading>
-        <Heading color='Placeholder' size={10}>
+        <Heading type='Medium' size={12} color='Placeholder'>
           {t('collection.empty.label')}
         </Heading>
       </View>

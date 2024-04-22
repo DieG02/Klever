@@ -58,7 +58,7 @@ export default function PasswordField(props: PasswordFieldProps): JSX.Element {
       borderColor: Colors.Light,
       borderWidth: 1,
       borderRadius: 10,
-      height: 45,
+      height: 48,
       paddingHorizontal: 14, // + 1px border
       flexDirection: 'row',
       justifyContent: 'space-between',

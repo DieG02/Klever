@@ -1,6 +1,6 @@
 export enum Colors {
   Primary = '#4378FE',
-  Light = '#F2F8FF',
+  Light = '#F1F8FF',
 
   Danger = '#F35F5F',
   Pastel = '#FFEBEB',
@@ -13,7 +13,7 @@ export enum Colors {
 
   Text = '#444444',
   Label = '#666666',
-  Background = '#FBFBFB',
+  Background = '#FAFAFA',
   Placeholder = '#858585',
 
   White = '#FFFFFF',

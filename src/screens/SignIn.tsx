@@ -90,7 +90,7 @@ export default function SignIn({ navigation }: SignInProps) {
           </>
         )}
 
-        <Heading type='Semibold' style={styles.header}>
+        <Heading size={20} type='Semibold' style={styles.header}>
           <Text>{t('sign_in.header')}</Text>
           <Text style={styles.hightlight}>{t('app.name')}</Text>
         </Heading>

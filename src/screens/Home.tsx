@@ -38,7 +38,7 @@ export default function Home({ navigation }: HomeProps) {
         style={styles.wrapper}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <View style={styles.header}>
-          <Heading type='Semibold' size={16}>
+          <Heading type='Semibold' size={18}>
             <Text>{t('home.grettings')}</Text>
             <Text style={styles.hightlight}>{user?.display_name || ''}</Text>
           </Heading>
@@ -46,7 +46,7 @@ export default function Home({ navigation }: HomeProps) {
             {user?.avatar ? (
               <Image source={{ uri: user?.avatar }} style={styles.avatar} />
             ) : (
-              <AvatarSVG width={35} height={35} />
+              <AvatarSVG width={40} height={40} />
             )}
           </TouchableOpacity>
         </View>

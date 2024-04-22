@@ -56,8 +56,8 @@ export default function Card({ item }: { item: BoardModel }) {
                 backgroundColor: Colors.Amber,
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: 35,
-                width: 35,
+                height: 40,
+                width: 40,
                 borderRadius: 20,
               }}>
               <PencilIcon color={Colors.Gold} />
@@ -76,8 +76,8 @@ export default function Card({ item }: { item: BoardModel }) {
                 backgroundColor: Colors.Pastel,
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: 35,
-                width: 35,
+                height: 40,
+                width: 40,
                 borderRadius: 20,
               }}>
               <TrashIcon color={Colors.Danger} />
@@ -99,13 +99,13 @@ export default function Card({ item }: { item: BoardModel }) {
             numberOfLines={1}
             ellipsizeMode='tail'
             type='Semibold'
-            size={13}
+            size={14}
             color={completed ? 'White' : 'Text'}>
             {title}
           </Heading>
 
           <Heading
-            size={10}
+            size={11}
             type='Medium'
             color={completed ? 'White' : 'Label'}>
             {completed ? 'Completed!' : `${current}/${total}`}

@@ -38,10 +38,10 @@ export default function Summary(): JSX.Element {
         strokeCap='round'
       />
       <View style={styles.content}>
-        <Heading type='Semibold' style={styles.spacing}>
+        <Heading size={15} type='Semibold' style={styles.spacing}>
           {t(`home.summary.${key}.title`)}
         </Heading>
-        <Heading size={10}>
+        <Heading size={11}>
           {t(`home.summary.${key}.message`, { percent: `${progress}%` })}
         </Heading>
       </View>

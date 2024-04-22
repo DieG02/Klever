@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
   },
   header: {
     marginVertical: 20,
-    fontSize: 18,
   },
   footer: {
     marginTop: 'auto',

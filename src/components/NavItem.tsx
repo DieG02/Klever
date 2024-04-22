@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     backgroundColor: Colors.Light,
-    height: 35,
-    width: 35,
+    height: 40,
+    width: 40,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,

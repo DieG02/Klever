@@ -44,7 +44,7 @@ export default function InputField(props: InputFieldProps): JSX.Element {
       borderColor: Colors.Light,
       borderWidth: 1,
       borderRadius: 10,
-      height: 45,
+      height: 48,
       fontFamily: Poppins.Regular,
       color: Colors.Text,
       fontSize: 12,

@@ -35,8 +35,8 @@ export default function Item({ item }: { item: ItemModel }) {
               backgroundColor: Colors.Pastel,
               justifyContent: 'center',
               alignItems: 'center',
-              height: 35,
-              width: 35,
+              height: 40,
+              width: 40,
               borderRadius: 20,
             }}>
             <TrashIcon color={Colors.Danger} />
@@ -58,6 +58,7 @@ export default function Item({ item }: { item: ItemModel }) {
         <Heading
           numberOfLines={2}
           ellipsizeMode='tail'
+          type='Medium'
           size={13}
           style={[
             styles.itemLabel,
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: Colors.White,
-    height: 50,
+    height: 55,
   },
   itemLabel: {
     flex: 1,

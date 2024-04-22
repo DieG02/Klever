@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
   },
   icon: {
-    width: 35,
-    height: 35,
+    width: 40,
+    height: 40,
     marginHorizontal: 10,
     borderRadius: 20,
     alignItems: 'center',

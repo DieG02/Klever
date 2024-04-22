@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   locale: {
-    height: 35,
-    width: 35,
+    height: 40,
+    width: 40,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
   },
   header: {
     marginVertical: 20,
-    fontSize: 18,
   },
   password: {
     fontSize: 10,
