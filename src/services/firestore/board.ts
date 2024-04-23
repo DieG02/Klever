@@ -22,7 +22,7 @@ export const getBoards = async () => {
   return boards;
 };
 
-export const addBoard = async (board: Partial<BoardModel>) => {
+export const addBoard = (board: Partial<BoardModel>) => {
   const user_id = auth().currentUser!.uid;
   const boardRef = firestore().collection('boards').doc();
   const board_id = boardRef.id;
@@ -37,8 +37,8 @@ export const addBoard = async (board: Partial<BoardModel>) => {
     created_at: firestore.FieldValue.serverTimestamp(),
     updated_at: firestore.FieldValue.serverTimestamp(),
   };
-  await boardRef.set(boardData);
-  return boardRef;
+  boardRef.set(boardData);
+  return board_id;
 };
 
 export const removeBoard = async (id: string | string[]) => {

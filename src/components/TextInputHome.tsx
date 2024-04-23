@@ -12,17 +12,17 @@ export default function TextInputHome() {
   const { t } = useTranslation();
   const navigation = useNavigation<AppNavigationProps>();
 
-  const handleOnPress = async () => {
+  const handleOnPress = () => {
     const title = value.trim();
     if (!title) return;
-    const cardRef = await addBoard({
+    setValue(''); // TODO: Loading screen
+    const board_id = addBoard({
       title,
       description: '',
       category: 'none',
     });
-    setValue('');
     navigation.navigate('Collection', {
-      id: cardRef.id,
+      id: board_id,
       title: value,
     });
   };
