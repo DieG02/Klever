@@ -69,7 +69,6 @@ export default function TextInputCollection({
 
   // const services = await Voice.getSpeechRecognitionServices();
   const onSpeechStart = (e: any) => {
-    console.log('onSpeechStart: ', e);
     setVoice((prevState: any) => ({
       ...prevState,
       started: '√',
@@ -77,7 +76,6 @@ export default function TextInputCollection({
     }));
   };
   const onSpeechEnd = async (e: any) => {
-    console.log('onSpeechEnd: ', e);
     setVoice((prevState: any) => ({
       ...prevState,
       end: '√',
@@ -85,11 +83,9 @@ export default function TextInputCollection({
     }));
   };
   const onSpeechError = (e: SpeechErrorEvent) => {
-    console.log('onSpeechError: ', e);
     _destroyRecognizer();
   };
   const onSpeechResults = (e: SpeechResultsEvent) => {
-    console.log('onSpeechResults: ', e);
     setVoice((prevState: any) => ({
       ...prevState,
       results: e.value,
@@ -97,7 +93,6 @@ export default function TextInputCollection({
     }));
   };
   const onSpeechPartialResults = (e: SpeechResultsEvent) => {
-    console.log('onSpeechPartialResults: ', e);
     setVoice((prevState: any) => ({
       ...prevState,
       partialResults: e.value,
@@ -139,8 +134,6 @@ export default function TextInputCollection({
       Voice.destroy().then(Voice.removeAllListeners);
     };
   }, []);
-
-  // console.log(voice);
   return (
     <View style={styles.container}>
       <View style={styles.footer}>

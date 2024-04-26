@@ -34,7 +34,7 @@ export default function Card({ item }: { item: BoardModel }) {
   };
 
   const handleEdit = () => {
-    console.log({ card: item.title });
+    // console.log({ card: item.title });
   };
 
   const RightSideActions = (progress: any, dragX: any) => {
