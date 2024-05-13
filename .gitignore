@@ -64,4 +64,5 @@ buck-out/
 /vendor/bundle/
 
 # Manage .env files
-.env.*
+/.env
+/.env.*
