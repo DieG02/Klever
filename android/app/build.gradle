@@ -1,6 +1,12 @@
 apply plugin: "com.android.application"
 apply plugin: "com.google.gms.google-services"
 
+project.ext.envConfigFiles = [
+    prod: ".env",
+    dev: ".env.dev",
+]
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
 import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 
@@ -141,6 +147,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 2 // Update here before publish an update on playstore
         versionName "1.0"
+        resValue "string", "build_config_package", "com.klever" // Allow multiple .envs with flavors
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
         if (isNewArchitectureEnabled()) {
@@ -222,6 +229,7 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+            matchingFallbacks = ['debug', 'release']
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -229,6 +237,16 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            resValue "string", "app_name", "Klever Dev"
+            applicationIdSuffix ".dev"
+        }
+        prod {
+            resValue "string", "app_name", "Klever"
         }
     }
 
@@ -254,6 +272,7 @@ dependencies {
 
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation project(':react-native-config')
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
     implementation "com.google.firebase:firebase-analytics:17.3.0"

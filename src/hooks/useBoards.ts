@@ -18,14 +18,17 @@ const useBoards = () => {
         .collection('boards')
         .where('user_id', '==', user_id)
         .orderBy('created_at', 'desc')
-        .onSnapshot(snapshot => {
-          const updatedBoards: BoardModel[] = [];
-          snapshot.forEach(doc => {
-            const boardData = doc.data() as BoardModel;
-            updatedBoards.push(boardData);
-          });
-          setBoards(updatedBoards);
-        });
+        .onSnapshot(
+          snapshot => {
+            const updatedBoards: BoardModel[] = [];
+            snapshot.forEach(doc => {
+              const boardData = doc.data() as BoardModel;
+              updatedBoards.push(boardData);
+            });
+            setBoards(updatedBoards);
+          },
+          e => console.error(e),
+        );
 
       return () => unsubscribe();
     } catch (error) {

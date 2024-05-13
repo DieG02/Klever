@@ -10,15 +10,18 @@ const useCollection = (parent_id: string) => {
       .collection('items')
       .where('parent_id', '==', parent_id)
       .orderBy('created_at', 'desc')
-      .onSnapshot(snapshot => {
-        const updatedItems: ItemModel[] = [];
-        snapshot.forEach(doc => {
-          const itemData = doc.data() as ItemModel;
-          updatedItems.push(itemData);
-        });
+      .onSnapshot(
+        snapshot => {
+          const updatedItems: ItemModel[] = [];
+          snapshot.forEach(doc => {
+            const itemData = doc.data() as ItemModel;
+            updatedItems.push(itemData);
+          });
 
-        setItems(updatedItems);
-      });
+          setItems(updatedItems);
+        },
+        e => console.error(e),
+      );
 
     return () => unsubscribe();
   }, [parent_id]);

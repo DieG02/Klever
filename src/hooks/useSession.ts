@@ -16,10 +16,13 @@ const useSession = () => {
       const unsubscribeUser = firestore()
         .collection('users')
         .doc(id)
-        .onSnapshot(userSnapshot => {
-          const userData = userSnapshot.data() as any;
-          setSession({ user: userData, ref: userSnapshot.ref });
-        });
+        .onSnapshot(
+          userSnapshot => {
+            const userData = userSnapshot.data() as any;
+            setSession({ user: userData, ref: userSnapshot.ref });
+          },
+          e => console.error(e),
+        );
 
       return () => unsubscribeUser();
     } catch (error) {
