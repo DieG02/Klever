@@ -52,3 +52,47 @@ export const updateLocale = async (locale: string) => {
     console.error('Error updating user locale:', error);
   }
 };
+
+export const deleteUserData = async (user_id: string) => {
+  const userRef = firestore().collection('users').doc(user_id);
+  const boardsRef = firestore().collection('boards');
+  const itemsRef = firestore().collection('items');
+
+  try {
+    // Find all boards of the user
+    const boardsSnapshot = await boardsRef
+      .where('user_id', '==', user_id)
+      .get();
+    const boardIds: string[] = [];
+
+    if (!boardsSnapshot.empty) {
+      for (const boardDoc of boardsSnapshot.docs) {
+        const boardId = boardDoc.id;
+        boardIds.push(boardId);
+
+        // Find all items of the board
+        const itemsSnapshot = await itemsRef
+          .where('parent_id', '==', boardId)
+          .get();
+
+        // Delete all items associated with the board
+        if (!itemsSnapshot.empty) {
+          for (const itemDoc of itemsSnapshot.docs) {
+            await itemsRef.doc(itemDoc.id).delete();
+          }
+        }
+
+        // Delete the board
+        await boardsRef.doc(boardId).delete();
+      }
+    }
+
+    // Delete the user profile
+    await userRef.delete();
+    console.log(
+      `User data and associated boards and items for UID ${user_id} have been deleted successfully.`,
+    );
+  } catch (error) {
+    console.error('Error deleting user data:', error);
+  }
+};

@@ -141,7 +141,36 @@
     "nav": {
       "language": "Language",
       "rate": "Rate app",
+      "delete": "Delete account",
       "log_out": "Log out"
+    }
+  },
+
+  "account": {
+    "offboarding": {
+      "delete": {
+        "title": ["Are you sure to ", "delete", " your account?"],
+        "access_data": "You will lose access to your account and will not be able to log in again.",
+        "stored_data": "All your information will be permanently deleted.",
+        "shared_data": "Any list you have created that has been shared with others also will be deleted.",
+        "warning": "I understand that my account and all associated data will be permanently deleted.",
+        "password": "To continue, please enter your password in the section below",
+        "placeholder": "Enter your password"
+      },
+      "feedback": {
+        "title": "We're sorry to see you go!",
+        "description": "We'd love to hear why you're leaving. Your feedback will help us improve.",
+        "reasons": [
+          "Found a better alternative",
+          "No longer need the service",
+          "User experience issues",
+          "Privacy concerns",
+          "Other"
+        ],
+        "placeholder": "Please take a moment to share your thoughts with us."
+      },
+      "cancel": "Cancel",
+      "confirm": "Delete account"
     }
   }
 }

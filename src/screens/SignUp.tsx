@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Keyboard, Pressable, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { CommonActions } from '@react-navigation/native';
 import SignUpBanner from '../assets/app/SignUpBanner';
 import {
   Heading,
@@ -9,13 +11,13 @@ import {
   Spacing,
   Layout,
 } from '../components/common';
-import { AuthWithCredentials } from '../services/firestore/auth';
+import {
+  AuthWithCredentials,
+  VerifyCredentials,
+} from '../services/firestore/auth';
 import { createNewUser } from '../services/firestore/user';
-import { CommonActions } from '@react-navigation/native';
 import { AuthNavigationProps } from '../types/navigation';
-import { VerifyCredentials } from '../services/firestore/auth';
 import styles from '../styles/screens/signup';
-import { useTranslation } from 'react-i18next';
 
 interface CredentialsProps {
   email: string;

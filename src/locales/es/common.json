@@ -141,7 +141,36 @@
     "nav": {
       "language": "Idioma",
       "rate": "Calificar app",
+      "delete": "Eliminar cuenta",
       "log_out": "Cerrar sesión"
+    }
+  },
+
+  "account": {
+    "offboarding": {
+      "delete": {
+        "title": ["¿Estás seguro de ", "eliminar", " tu cuenta?"],
+        "access_data": "Perderás acceso a tu cuenta y no podrás volver a iniciar sesión.",
+        "stored_data": "Toda tu información será eliminada permanentemente.",
+        "shared_data": "Cualquier lista que hayas creado y compartido con otros también será eliminada.",
+        "warning": "Entiendo que mi cuenta y todos los datos asociados serán eliminados permanentemente.",
+        "password": "Para continuar, por favor ingresa tu contraseña en la sección de abajo",
+        "placeholder": "Ingresa tu contraseña"
+      },
+      "feedback": {
+        "title": "¡Lamentamos que te vayas!",
+        "description": "Antes de eliminar tu cuenta, nos encantaría saber sobre tu experiencia con nuestro servicio. Tu retroalimentación nos ayudará a mejorar nuestro servicio.",
+        "reasons": [
+          "Encontré una mejor alternativa",
+          "Ya no necesito el servicio",
+          "Problemas de experiencia de usuario",
+          "Preocupaciones de privacidad",
+          "Otro"
+        ],
+        "placeholder": "Por favor, tómate un momento para compartir tus pensamientos con nosotros."
+      },
+      "cancel": "Cancelar",
+      "confirm": "Eliminar cuenta"
     }
   }
 }

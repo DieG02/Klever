@@ -20,6 +20,7 @@ export type AppStackParamList = {
     title: string;
   };
   Settings: undefined;
+  DeleteAccount: undefined;
 };
 
 // Types of navigation

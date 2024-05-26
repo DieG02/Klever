@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Image, SafeAreaView, StatusBar, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { CommonActions } from '@react-navigation/native';
 import { Spacing, Heading } from '../components/common';
-import styles from '../styles/screens/settings';
-import { AppNavigationProps } from '../types/navigation';
 import AvatarSVG from '../assets/svg/Avatar';
 import { useSession } from '../hooks/';
 import {
@@ -12,22 +12,25 @@ import {
   LockClosedIcon,
   MoonIcon,
   UserIcon,
+  UserMinusIcon,
+  HeartIcon,
 } from 'react-native-heroicons/mini';
 import NavItem from '../components/NavItem';
-import { AuthLogOut } from '../utils/auth';
-import { CommonActions } from '@react-navigation/native';
-import LanguageModal from '../components/modal/Language';
-import { useTranslation } from 'react-i18next';
+import { AuthLogOut } from '../services/firestore/auth';
+import { LanguageModal } from '../components/modal/';
+import { AppNavigationProps } from '../types/navigation';
+import styles from '../styles/screens/settings';
 
 interface SettingsProps {
   navigation: AppNavigationProps;
 }
 export default function Settings({ navigation }: SettingsProps) {
-  const [visible, setVisible] = useState<boolean>(false);
+  const [localeModalVisible, setLocaleModalVisible] = useState<boolean>(false);
   const { user } = useSession();
   const { t } = useTranslation();
-  const show = () => setVisible(true);
-  const hide = () => setVisible(false);
+
+  const showLocaleModal = () => setLocaleModalVisible(true);
+  const hideLocaleModal = () => setLocaleModalVisible(false);
 
   const handleLogout = async () => {
     await AuthLogOut();
@@ -37,6 +40,10 @@ export default function Settings({ navigation }: SettingsProps) {
         routes: [{ name: 'AuthStack', params: { screen: 'SignIn' } }],
       }),
     );
+  };
+
+  const handleRedirect = () => {
+    navigation.navigate('DeleteAccount');
   };
 
   return (
@@ -68,10 +75,12 @@ export default function Settings({ navigation }: SettingsProps) {
       <NavItem
         icon={LanguageIcon}
         label={t('settings.nav.language')}
-        arrow
-        onPress={show}
+        onPress={showLocaleModal}
       />
-      <LanguageModal visible={visible} onRequestClose={hide} />
+      <LanguageModal
+        visible={localeModalVisible}
+        onRequestClose={hideLocaleModal}
+      />
 
       {/* TODO: Include in next version */}
       {/* <NavItem icon={MoonIcon} label='Dark mode' />
@@ -80,12 +89,19 @@ export default function Settings({ navigation }: SettingsProps) {
       )} */}
 
       {/* TODO: Redirect to the store*/}
-      <NavItem icon={StarIcon} label={t('settings.nav.rate')} arrow />
+      <NavItem icon={HeartIcon} label={t('settings.nav.rate')} arrow />
+
+      <NavItem
+        icon={UserMinusIcon}
+        label={t('settings.nav.delete')}
+        onPress={handleRedirect}
+        type='Danger'
+        arrow
+      />
 
       <NavItem
         icon={ArrowRightOnRectangleIcon}
         label={t('settings.nav.log_out')}
-        type='Danger'
         onPress={handleLogout}
       />
     </SafeAreaView>

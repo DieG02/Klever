@@ -7,6 +7,7 @@ import Collection from '../screens/Collection';
 import Settings from '../screens/Settings';
 import { Colors, Poppins } from '../styles/global';
 import { useTranslation } from 'react-i18next';
+import DeleteAccount from '../screens/DeleteAccount';
 
 const AppStack = createStackNavigator<AppStackParamList>();
 
@@ -47,6 +48,11 @@ export default function AppNavigator() {
         options={({ route }) => ({
           title: t('app.settings'),
         })}
+      />
+      <AppStack.Screen
+        name='DeleteAccount'
+        component={DeleteAccount}
+        options={{ headerShown: false }}
       />
     </AppStack.Navigator>
   );
