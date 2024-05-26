@@ -5,7 +5,7 @@ import { Heading, TouchableDebounce } from './common';
 import { NavigationProps } from '../types/navigation';
 import GoogleSVG from '../assets/svg/Google';
 import { Colors } from '../styles/global';
-import { AuthWithGoogle } from '../utils/auth';
+import { AuthWithGoogle } from '../services/firestore/auth';
 import { createNewUser } from '../services/firestore/user';
 
 interface GoogleAuthButtonProps {}

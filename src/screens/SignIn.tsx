@@ -13,7 +13,7 @@ import { AuthNavigationProps } from '../types/navigation';
 import styles from '../styles/screens/signin';
 import { Colors } from '../styles/global';
 import { GoogleAuthButton } from '../components';
-import { AuthWithCredentials } from '../utils/auth';
+import { AuthWithCredentials } from '../services/firestore/auth';
 import { CommonActions } from '@react-navigation/native';
 import LanguageModal from '../components/modal/Language';
 import { LanguageIcon } from 'react-native-heroicons/mini';

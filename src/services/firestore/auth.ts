@@ -132,3 +132,47 @@ export const VerifyCredentials = (credentials: CredentialsProps): boolean => {
   }
   return true;
 };
+
+export const RemoveAuthCredentials = async ({
+  provider,
+  email,
+  password,
+}: {
+  provider: 'email' | 'google';
+  email: string;
+  password: string;
+}) => {
+  const user = auth().currentUser;
+  if (!user) return null;
+
+  const user_id = user.uid;
+  try {
+    if (provider === 'google') {
+      await GoogleSignin.revokeAccess();
+    }
+    await user.delete();
+    return user_id;
+  } catch (error: any) {
+    if (error.code === 'auth/requires-recent-login') {
+      try {
+        if (provider === 'google') {
+          const { idToken } = await GoogleSignin.signIn();
+          const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+          await user.reauthenticateWithCredential(googleCredential);
+          await GoogleSignin.revokeAccess();
+        } else {
+          const credential = auth.EmailAuthProvider.credential(email, password);
+          await user.reauthenticateWithCredential(credential);
+        }
+
+        await user.delete();
+        return user_id;
+      } catch (reauthError) {
+        // console.error('Error reauthenticating with Credentials:', reauthError);
+        return false;
+      }
+    }
+    // console.error('Error deleting user account:', error);
+    return false;
+  }
+};

@@ -9,11 +9,11 @@ import {
   Spacing,
   Layout,
 } from '../components/common';
-import { AuthWithCredentials } from '../utils/auth';
+import { AuthWithCredentials } from '../services/firestore/auth';
 import { createNewUser } from '../services/firestore/user';
 import { CommonActions } from '@react-navigation/native';
 import { AuthNavigationProps } from '../types/navigation';
-import { VerifyCredentials } from '../utils/auth';
+import { VerifyCredentials } from '../services/firestore/auth';
 import styles from '../styles/screens/signup';
 import { useTranslation } from 'react-i18next';
 
