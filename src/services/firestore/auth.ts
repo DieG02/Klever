@@ -1,10 +1,11 @@
+import { t } from 'i18next';
+import Toast from 'react-native-toast-message';
 import auth from '@react-native-firebase/auth';
 import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
-import { t } from 'i18next';
-import Toast from 'react-native-toast-message';
+import { AuthProviders } from '../../types';
 
 export const AuthWithGoogle = async () => {
   try {
@@ -133,46 +134,55 @@ export const VerifyCredentials = (credentials: CredentialsProps): boolean => {
   return true;
 };
 
-export const RemoveAuthCredentials = async ({
+interface RemoveCredentialsProps {
+  success: boolean;
+  id?: string;
+  error?: any;
+}
+export const RemoveCredentials = async ({
   provider,
-  email,
   password,
 }: {
-  provider: 'email' | 'google';
-  email: string;
+  provider: AuthProviders;
   password: string;
-}) => {
-  const user = auth().currentUser;
-  if (!user) return null;
-
+}): Promise<RemoveCredentialsProps> => {
+  const user = auth().currentUser!;
   const user_id = user.uid;
+  const email = user.email!;
+
+  const reauthenticate = async () => {
+    if (provider === 'google') {
+      const { idToken } = await GoogleSignin.signIn();
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      await user.reauthenticateWithCredential(googleCredential);
+    } else {
+      const credential = auth.EmailAuthProvider.credential(email, password);
+      await user.reauthenticateWithCredential(credential);
+    }
+  };
+
   try {
+    await reauthenticate();
+    await user.delete();
     if (provider === 'google') {
       await GoogleSignin.revokeAccess();
+      await GoogleSignin.signOut();
     }
-    await user.delete();
-    return user_id;
+    return { success: true, id: user_id };
   } catch (error: any) {
-    if (error.code === 'auth/requires-recent-login') {
-      try {
-        if (provider === 'google') {
-          const { idToken } = await GoogleSignin.signIn();
-          const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-          await user.reauthenticateWithCredential(googleCredential);
-          await GoogleSignin.revokeAccess();
-        } else {
-          const credential = auth.EmailAuthProvider.credential(email, password);
-          await user.reauthenticateWithCredential(credential);
-        }
-
-        await user.delete();
-        return user_id;
-      } catch (reauthError) {
-        // console.error('Error reauthenticating with Credentials:', reauthError);
-        return false;
-      }
+    if (error.code === 'auth/invalid-credential') {
+      Toast.show({
+        text1: 'Error',
+        text2: t('toast.auth.email.auth/invalid-credential'),
+        type: 'error',
+      });
+    } else {
+      Toast.show({
+        text1: 'Error',
+        text2: t('toast.auth.email.DEFAULT'),
+        type: 'error',
+      });
     }
-    // console.error('Error deleting user account:', error);
-    return false;
+    return { success: false, error: error };
   }
 };

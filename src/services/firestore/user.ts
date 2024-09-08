@@ -1,9 +1,9 @@
+import i18next, { t, changeLanguage } from 'i18next';
+import Toast from 'react-native-toast-message';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { UserModel } from '../../types/models';
 import { AuthProviders } from '../../types';
-import i18next, { t, changeLanguage } from 'i18next';
-import Toast from 'react-native-toast-message';
 
 export const createNewUser = async (user: any, provider: AuthProviders) => {
   const userDocRef = firestore().collection('users').doc(user.uid);

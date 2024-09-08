@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import {
@@ -16,10 +16,11 @@ import {
 import { Colors } from '../styles/global';
 import styles from '../styles/screens/deleteaccount';
 import { AppNavigationProps, AppRouteProps } from '../types/navigation';
-import { RemoveAuthCredentials } from '../services/firestore/auth';
+import { RemoveCredentials } from '../services/firestore/auth';
 import { CommonActions } from '@react-navigation/native';
 import { useSession } from '../hooks';
 import { deleteUserData } from '../services/firestore/user';
+import { AuthProvidersState } from '../types';
 
 interface DeleteAccountProps {
   navigation: AppNavigationProps;
@@ -34,6 +35,7 @@ export default function DeleteAccount({
   const { user } = useSession();
   const [password, setPassword] = useState<string>('');
   const [isActive, setActive] = useState<boolean>(false);
+  const [provider, setProvider] = useState<AuthProvidersState>(null);
   const toogle = () => setActive(!isActive);
 
   const handleRedirect = () => {
@@ -46,24 +48,25 @@ export default function DeleteAccount({
 
   const handleDelete = async () => {
     // TODO: Add +1 to count in firebase > feedback
-    const success = await RemoveAuthCredentials({
+    const { success, id, error } = await RemoveCredentials({
       provider: user?.provider!,
-      email: user?.email!,
       password: password,
     });
 
-    if (typeof success === 'string') {
-      await deleteUserData(success);
+    if (success) {
+      await deleteUserData(id!);
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
           routes: [{ name: 'AuthStack', params: { screen: 'SignIn' } }],
         }),
       );
-    } else {
-      // TODO: Trigger a notification
     }
   };
+
+  useEffect(() => {
+    if (user) setProvider(user.provider);
+  }, [user]);
 
   return (
     <Layout backgroundColor='White' barStyle='dark-content'>
@@ -133,6 +136,7 @@ export default function DeleteAccount({
             </Heading>
           </TouchableDebounce>
           <TouchableDebounce
+            disabled={user?.provider === 'email' && !password}
             style={[styles.confirm, !isActive && styles.hide]}
             onPress={handleDelete}>
             <Heading type='Semibold' color='Danger'>
