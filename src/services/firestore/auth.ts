@@ -80,10 +80,17 @@ export const AuthWithCredentials = async (
 };
 
 export const AuthLogOut = async () => {
-  const user = auth().currentUser;
-  // Show popup or not before init new login
-  if (user?.displayName) GoogleSignin.revokeAccess();
-  return await auth().signOut();
+  try {
+    const user = auth().currentUser;
+    // Show popup or not before init new login
+    if (user?.providerData[0].providerId === 'google.com') {
+      await GoogleSignin.revokeAccess();
+    }
+    return auth().signOut();
+  } catch (error) {
+    console.error('Some error while logging out:', error);
+    throw error;
+  }
 };
 
 interface CredentialsProps {
