@@ -21,10 +21,6 @@ export default function GoogleAuthButton({}: GoogleAuthButtonProps) {
       await createNewUser(userCredentials.user, 'google');
       // TODO: Redirect to complete profile
     }
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'AppStack' }],
-    });
   };
 
   return (

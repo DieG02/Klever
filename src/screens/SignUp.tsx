@@ -63,13 +63,6 @@ export default function SignUp({ navigation }: SignUpProps) {
       await createNewUser(userCredentials.user, 'email');
       // TODO: Redirect to complete profile
     }
-
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{ name: 'AppStack', params: { screen: 'Home' } }],
-      }),
-    );
   };
 
   useEffect(() => {

@@ -55,12 +55,6 @@ export default function DeleteAccount({
 
     if (success) {
       await deleteUserData(id!);
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: 'AuthStack', params: { screen: 'SignIn' } }],
-        }),
-      );
     }
   };
 

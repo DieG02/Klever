@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Image, SafeAreaView, StatusBar, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { CommonActions } from '@react-navigation/native';
 import { Spacing, Heading } from '../components/common';
 import AvatarSVG from '../assets/svg/Avatar';
 import { useSession } from '../hooks/';
@@ -34,12 +33,6 @@ export default function Settings({ navigation }: SettingsProps) {
 
   const handleLogout = async () => {
     await AuthLogOut();
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{ name: 'AuthStack', params: { screen: 'SignIn' } }],
-      }),
-    );
   };
 
   const handleRedirect = () => {
