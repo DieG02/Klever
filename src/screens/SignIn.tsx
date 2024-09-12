@@ -50,12 +50,6 @@ export default function SignIn({ navigation }: SignInProps) {
   const handleSignIn = async () => {
     const userCredentials = await AuthWithCredentials(credentials, false);
     if (!userCredentials) return null;
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{ name: 'AppStack', params: { screen: 'Home' } }],
-      }),
-    );
   };
 
   useEffect(() => {
