@@ -20,8 +20,8 @@ export interface BoardModel {
   title: string;
   description?: string;
   category?: string; // TODO: Set categories enum
-  total: number;
-  current: number;
+  total?: number;
+  current?: number;
   created_at: FirebaseFirestoreTypes.DocumentFieldType;
   updated_at: FirebaseFirestoreTypes.DocumentFieldType;
 }
