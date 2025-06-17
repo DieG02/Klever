@@ -1,6 +1,7 @@
 import firestore from '@react-native-firebase/firestore';
 import { ItemModel } from '../../types/models';
 import Toast from 'react-native-toast-message';
+import { encryptData } from '../../config/CryptoServices';
 import { t } from 'i18next';
 
 export const addItem = async (parent_id: string, item: Partial<ItemModel>) => {
@@ -13,6 +14,7 @@ export const addItem = async (parent_id: string, item: Partial<ItemModel>) => {
     total: firestore.FieldValue.increment(1),
   };
 
+  // const encryptedLabel = await encryptData(item.label!);
   const itemData: ItemModel = {
     id: item_id,
     parent_id: parent_id,

@@ -20,10 +20,8 @@ const useBoards = () => {
         .orderBy('created_at', 'desc')
         .onSnapshot(
           snapshot => {
-            const updatedBoards: BoardModel[] = [];
-            snapshot.forEach(doc => {
-              const boardData = doc.data() as BoardModel;
-              updatedBoards.push(boardData);
+            const updatedBoards: BoardModel[] = snapshot.docs.map(doc => {
+              return doc.data() as BoardModel;
             });
             setBoards(updatedBoards);
           },
