@@ -13,7 +13,7 @@ export default function Item({ item }: { item: ItemModel }) {
   };
 
   const handleDelete = () => {
-    removeItem(parent_id, item);
+    removeItem(item);
   };
 
   const RightSideActions = (progress: any, dragX: any) => {

@@ -4,6 +4,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { UserModel } from '../../types/models';
 import { AuthProviders } from '../../types';
+import { removeBoard } from './board';
 
 export const createNewUser = async (user: any, provider: AuthProviders) => {
   const userDocRef = firestore().collection('users').doc(user.uid);
@@ -56,43 +57,24 @@ export const updateLocale = async (locale: string) => {
 export const deleteUserData = async (user_id: string) => {
   const userRef = firestore().collection('users').doc(user_id);
   const boardsRef = firestore().collection('boards');
-  const itemsRef = firestore().collection('items');
 
   try {
-    // Find all boards of the user
     const boardsSnapshot = await boardsRef
       .where('user_id', '==', user_id)
       .get();
-    const boardIds: string[] = [];
 
     if (!boardsSnapshot.empty) {
-      for (const boardDoc of boardsSnapshot.docs) {
-        const boardId = boardDoc.id;
-        boardIds.push(boardId);
-
-        // Find all items of the board
-        const itemsSnapshot = await itemsRef
-          .where('parent_id', '==', boardId)
-          .get();
-
-        // Delete all items associated with the board
-        if (!itemsSnapshot.empty) {
-          for (const itemDoc of itemsSnapshot.docs) {
-            await itemsRef.doc(itemDoc.id).delete();
-          }
-        }
-
-        // Delete the board
-        await boardsRef.doc(boardId).delete();
-      }
+      const boardIds = boardsSnapshot.docs.map(doc => doc.id);
+      await removeBoard(boardIds);
     }
 
-    // Delete the user profile
     await userRef.delete();
-    console.log(
-      `User data and associated boards and items for UID ${user_id} have been deleted successfully.`,
-    );
-  } catch (error) {
-    console.error('Error deleting user data:', error);
+    console.log(`Deleted user profile for UID: ${user_id}`);
+
+    const userSnapshot = await userRef.get();
+    console.log('User exists after deletion?', userSnapshot.exists);
+  } catch (err) {
+    console.error('Failed to delete user data:', err);
+    throw err;
   }
 };

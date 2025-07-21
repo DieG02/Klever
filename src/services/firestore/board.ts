@@ -41,16 +41,30 @@ export const addBoard = (board: Partial<BoardModel>) => {
   return board_id;
 };
 
-export const removeBoard = async (id: string | string[]) => {
-  const batch = firestore().batch();
-  const idsArray = typeof id === 'string' ? [id] : id;
+export const removeBoard = async (ids: string | string[]) => {
+  const idsArray = typeof ids === 'string' ? [ids] : ids;
+  const itemsRef = firestore().collection('items');
+  const boardsRef = firestore().collection('boards');
 
-  idsArray.forEach(id => {
-    const cardRef = firestore().collection('boards').doc(id);
-    batch.delete(cardRef);
-  });
+  for (const id of idsArray) {
+    try {
+      const itemsSnapshot = await itemsRef.where('parent_id', '==', id).get();
 
-  await batch.commit();
+      const batch = firestore().batch();
+      itemsSnapshot.forEach(itemDoc => {
+        const itemRef = itemsRef.doc(itemDoc.id);
+        batch.delete(itemRef);
+      });
+
+      const boardRef = boardsRef.doc(id);
+      batch.delete(boardRef);
+
+      await batch.commit();
+    } catch (error) {
+      console.error(`Error removing board ${id}:`, error);
+    }
+  }
+
   Toast.show({
     text1: t('toast.user.board.delete.title'),
     text2: t('toast.user.board.delete.message'),

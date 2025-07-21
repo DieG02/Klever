@@ -45,23 +45,30 @@ export const toogleItemStatus = async (parent_id: string, item: ItemModel) => {
   await batch.commit();
 };
 
-export const removeItem = async (parent_id: string, item: ItemModel) => {
-  const batch = firestore().batch();
-  const boardRef = firestore().collection('boards').doc(parent_id);
-  const itemRef = firestore().collection('items').doc(item.id);
-  const incrementValue = item.checked ? -1 : 0;
+export const removeItem = async (item: ItemModel) => {
+  try {
+    const batch = firestore().batch();
+    const itemRef = firestore().collection('items').doc(item.id);
+    const boardRef = firestore().collection('boards').doc(item.parent_id);
 
-  batch.delete(itemRef);
-  batch.update(boardRef, {
-    total: firestore.FieldValue.increment(-1),
-    current: firestore.FieldValue.increment(incrementValue),
-    updated_at: firestore.FieldValue.serverTimestamp(),
-  });
+    // Actualiza los contadores según si el ítem estaba "checked"
+    const incrementValue = item.checked ? -1 : 0;
 
-  await batch.commit();
-  Toast.show({
-    text1: t('toast.user.collection.delete.title'),
-    text2: t('toast.user.collection.delete.message'),
-    type: 'success',
-  });
+    batch.delete(itemRef);
+    batch.update(boardRef, {
+      total: firestore.FieldValue.increment(-1),
+      current: firestore.FieldValue.increment(incrementValue),
+      updated_at: firestore.FieldValue.serverTimestamp(),
+    });
+
+    await batch.commit();
+
+    Toast.show({
+      text1: t('toast.user.collection.delete.title'),
+      text2: t('toast.user.collection.delete.message'),
+      type: 'success',
+    });
+  } catch (error) {
+    console.error('Error removing item:', error);
+  }
 };

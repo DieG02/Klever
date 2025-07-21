@@ -1,6 +1,6 @@
 import { t } from 'i18next';
 import Toast from 'react-native-toast-message';
-import auth from '@react-native-firebase/auth';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import {
   GoogleSignin,
   statusCodes,
@@ -139,19 +139,15 @@ interface RemoveCredentialsProps {
   id?: string;
   error?: any;
 }
-export const RemoveCredentials = async ({
-  provider,
-  password,
-}: {
-  provider: AuthProviders;
-  password: string;
-}): Promise<RemoveCredentialsProps> => {
-  const user = auth().currentUser!;
-  const user_id = user.uid;
+export const ReauthenticateUser = async (
+  user: FirebaseAuthTypes.User,
+  provider: string,
+  password: string,
+): Promise<{ success: boolean; provider?: string; error?: any }> => {
   const email = user.email!;
 
-  const reauthenticate = async () => {
-    if (provider === 'google') {
+  try {
+    if (provider === 'google.com') {
       const { idToken } = await GoogleSignin.signIn();
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
       await user.reauthenticateWithCredential(googleCredential);
@@ -159,30 +155,8 @@ export const RemoveCredentials = async ({
       const credential = auth.EmailAuthProvider.credential(email, password);
       await user.reauthenticateWithCredential(credential);
     }
-  };
-
-  try {
-    await reauthenticate();
-    await user.delete();
-    if (provider === 'google') {
-      await GoogleSignin.revokeAccess();
-      await GoogleSignin.signOut();
-    }
-    return { success: true, id: user_id };
-  } catch (error: any) {
-    if (error.code === 'auth/invalid-credential') {
-      Toast.show({
-        text1: 'Error',
-        text2: t('toast.auth.email.auth/invalid-credential'),
-        type: 'error',
-      });
-    } else {
-      Toast.show({
-        text1: 'Error',
-        text2: t('toast.auth.email.DEFAULT'),
-        type: 'error',
-      });
-    }
-    return { success: false, error: error };
+    return { success: true, provider };
+  } catch (error) {
+    return { success: false, error };
   }
 };

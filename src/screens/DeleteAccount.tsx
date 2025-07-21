@@ -16,11 +16,14 @@ import {
 import { Colors } from '../styles/global';
 import styles from '../styles/screens/deleteaccount';
 import { AppNavigationProps, AppRouteProps } from '../types/navigation';
-import { RemoveCredentials } from '../services/firestore/auth';
+import { ReauthenticateUser } from '../services/firestore/auth';
 import { CommonActions } from '@react-navigation/native';
 import { useSession } from '../hooks';
 import { deleteUserData } from '../services/firestore/user';
 import { AuthProvidersState } from '../types';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
+import Toast from 'react-native-toast-message';
 
 interface DeleteAccountProps {
   navigation: AppNavigationProps;
@@ -47,20 +50,39 @@ export default function DeleteAccount({
   };
 
   const handleDelete = async () => {
-    // TODO: Add +1 to count in firebase > feedback
-    const { success, id, error } = await RemoveCredentials({
-      provider: user?.provider!,
-      password: password,
-    });
+    try {
+      const user = auth().currentUser;
+      const user_id = user?.uid;
+      if (!user || !user_id) throw new Error('User not logged in');
 
-    if (success) {
-      await deleteUserData(id!);
+      const reauthResult = await ReauthenticateUser(
+        user,
+        user?.providerData[0]?.providerId!,
+        password,
+      );
+      if (!reauthResult.success) throw reauthResult.error;
+
+      await deleteUserData(user_id);
+      await user.delete();
+
+      if (reauthResult.provider === 'google') {
+        await GoogleSignin.revokeAccess();
+        await GoogleSignin.signOut();
+      }
+
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
           routes: [{ name: 'AuthStack', params: { screen: 'SignIn' } }],
         }),
       );
+    } catch (error) {
+      console.error('Error deleting account:', error);
+      Toast.show({
+        text1: 'Error',
+        text2: 'Failed to delete account. Please try again.',
+        type: 'error',
+      });
     }
   };
 
