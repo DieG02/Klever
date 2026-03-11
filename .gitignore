@@ -38,6 +38,9 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+android/app/src/*/google-services.json
+ios/*/GoogleService-Info.plist
+
 # BUCK
 buck-out/
 \.buckd/
