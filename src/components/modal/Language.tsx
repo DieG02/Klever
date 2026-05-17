@@ -17,6 +17,8 @@ export default function LanguageModal({
   const options = {
     en: 'en-GB',
     es: 'es-MX',
+    it: 'it-IT',
+    pt: 'pt-BR',
   };
 
   const handleUpdate = async (locale: string) => {
@@ -63,6 +65,36 @@ export default function LanguageModal({
                 style={styles.center}
                 color={i18n.language === options['es'] ? 'Primary' : 'Label'}>
                 {t('modals.locale.options.es')}
+              </Heading>
+            </View>
+          </Pressable>
+
+          <Pressable onPress={() => handleUpdate(options['it'])}>
+            <View
+              style={[
+                styles.item,
+                i18n.language === options['it'] && styles.selected,
+              ]}>
+              <Heading
+                type='Medium'
+                style={styles.center}
+                color={i18n.language === options['it'] ? 'Primary' : 'Label'}>
+                {t('modals.locale.options.it')}
+              </Heading>
+            </View>
+          </Pressable>
+
+          <Pressable onPress={() => handleUpdate(options['pt'])}>
+            <View
+              style={[
+                styles.item,
+                i18n.language === options['pt'] && styles.selected,
+              ]}>
+              <Heading
+                type='Medium'
+                style={styles.center}
+                color={i18n.language === options['pt'] ? 'Primary' : 'Label'}>
+                {t('modals.locale.options.pt')}
               </Heading>
             </View>
           </Pressable>

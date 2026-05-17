@@ -1,0 +1,178 @@
+{
+  "app": {
+    "name": "Klever",
+    "settings": "Impostazioni"
+  },
+  "forms": {
+    "auth": {
+      "email": {
+        "label": "Email",
+        "placeholder": "Inserisci la tua email"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Inserisci la tua password"
+      },
+      "confirm": {
+        "label": "Conferma password",
+        "placeholder": "Conferma la tua password"
+      }
+    }
+  },
+  "modals": {
+    "locale": {
+      "label": "Seleziona lingua",
+      "options": {
+        "en": "Inglese",
+        "es": "Spagnolo",
+        "it": "Italiano",
+        "pt": "Portoghese"
+      }
+    }
+  },
+  "toast": {
+    "auth": {
+      "password": {
+        "PASSWORD_TOO_SHORT": "La password deve contenere almeno 8 caratteri",
+        "PASSWORDS_DO_NOT_MATCH": "Le password inserite non corrispondono",
+        "UNKNOWN_ERROR": "Qualcosa è andato storto"
+      },
+      "email": {
+        "auth/email-already-in-use": "Questo indirizzo email è già in uso",
+        "auth/invalid-email": "Questo indirizzo email non è valido",
+        "auth/invalid-credential": "Credenziali non valide, riprova",
+        "auth/network-request-failed": "Controlla la tua connessione di rete",
+        "DEFAULT": "Qualcosa è andato storto"
+      },
+      "google": {
+        "SIGN_IN_CANCELLED": "Il processo di accesso è stato annullato",
+        "IN_PROGRESS": "Un altro processo è in corso",
+        "PLAY_SERVICES_NOT_AVAILABLE": "I servizi Play non sono disponibili",
+        "DEFAULT": "Qualcosa è andato storto, controlla la tua connessione"
+      }
+    },
+    "user": {
+      "locale": {
+        "update": {
+          "title": "Successo",
+          "message": "La lingua dell'app è stata aggiornata"
+        }
+      },
+      "board": {
+        "delete": {
+          "title": "Successo",
+          "message": "Una raccolta è stata eliminata"
+        }
+      },
+      "collection": {
+        "delete": {
+          "title": "Successo",
+          "message": "Un elemento è stato eliminato dalla checklist"
+        }
+      }
+    }
+  },
+
+  "sign_in": {
+    "header": "Accedi a ",
+    "action": "Accedi",
+    "google": "Continua con Google",
+    "redirect": {
+      "label": "Non hai un account? ",
+      "to": "Registrati"
+    }
+  },
+  "sign_up": {
+    "header": "Registrati su ",
+    "action": "Registrati",
+    "redirect": {
+      "label": "Hai già un account? ",
+      "to": "Accedi"
+    }
+  },
+
+  "home": {
+    "grettings": "Ciao ",
+    "boards": "Tutte le raccolte",
+    "empty": {
+      "title": "Hmm, sembra vuoto",
+      "label": "Aggiungi nuove raccolte nella sezione qui sotto!"
+    },
+    "new_item": "Crea una nuova raccolta qui...",
+    
+    "summary": {
+      "0": {
+        "title": "Iniziamo!",
+        "message": "Sei partito alla grande! Inizia a completare le tue checklist e osserva i tuoi progressi crescere."
+      },
+      "15": {
+        "title": "Stai progredendo!",
+        "message": "Hai completato il {{percent}} delle tue checklist. Mantieni lo slancio e continua a spuntare le attività!"
+      },
+      "30": {
+        "title": "A metà strada!",
+        "message": "Hai raggiunto il {{percent}} delle tue checklist. Stai facendo progressi costanti, continua così!"
+      },
+      "50": {
+        "title": "A metà percorso!",
+        "message": "Congratulazioni! Hai completato il {{percent}} delle tue checklist. Sei a metà strada, continua ad andare avanti!"
+      },
+      "75": {
+        "title": "Quasi fatto!",
+        "message": "Ottimo lavoro! Hai completato il {{percent}} delle tue checklist. Sei quasi al traguardo, continua così!"
+      },
+      "90": {
+        "title": "Ultimo tratto!",
+        "message": "Ci sei quasi! Con il {{percent}} delle checklist completate, il traguardo è in vista. Continua il grande lavoro!"
+      },
+      "100": {
+        "title": "Congratulazioni!",
+        "message": "Ce l'hai fatta! Hai completato il 100% delle tue checklist. Che traguardo! Prenditi un momento per festeggiare il tuo successo!"
+      }
+    }
+  },
+  "collection": {
+    "empty": {
+      "title": "Ops! Niente da vedere qui",
+      "label": "Aggiungi nuovi elementi con un tocco o con la voce!"
+    },
+    "new_item": "Aggiungi nuovi elementi...",
+    "recording": "In ascolto della tua voce..."
+  },
+  "settings": {
+    "nav": {
+      "language": "Lingua",
+      "rate": "Valuta l'app",
+      "delete": "Elimina account",
+      "log_out": "Esci"
+    }
+  },
+
+  "account": {
+    "offboarding": {
+      "delete": {
+        "title": ["Sei sicuro di voler ", "eliminare", " il tuo account?"],
+        "access_data": "Perderai l'accesso al tuo account e non potrai più effettuare l'accesso.",
+        "stored_data": "Tutte le tue informazioni verranno eliminate definitivamente.",
+        "shared_data": "Anche qualsiasi lista che hai creato e condiviso con altri verrà eliminata.",
+        "warning": "Capisco che il mio account e tutti i dati associati verranno eliminati definitivamente.",
+        "password": "Per continuare, inserisci la tua password nella sezione qui sotto",
+        "placeholder": "Inserisci la tua password"
+      },
+      "feedback": {
+        "title": "Ci dispiace vederti andare!",
+        "description": "Ci piacerebbe sapere perché te ne vai. Il tuo feedback ci aiuterà a migliorare.",
+        "reasons": [
+          "Ho trovato un'alternativa migliore",
+          "Non ho più bisogno del servizio",
+          "Problemi con l'esperienza utente",
+          "Preoccupazioni per la privacy",
+          "Altro"
+        ],
+        "placeholder": "Prenditi un momento per condividere i tuoi pensieri con noi."
+      },
+      "cancel": "Annulla",
+      "confirm": "Elimina account"
+    }
+  }
+}

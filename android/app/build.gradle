@@ -145,8 +145,8 @@ android {
         applicationId "com.klever"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2 // Update here before publish an update on playstore
-        versionName "1.0"
+        versionCode 3 // Update here before publish an update on playstore
+        versionName "1.1"
         resValue "string", "build_config_package", "com.klever" // Allow multiple .envs with flavors
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 

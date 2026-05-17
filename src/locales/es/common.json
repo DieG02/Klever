@@ -24,7 +24,9 @@
       "label": "Seleccionar idioma",
       "options": {
         "en": "Inglés",
-        "es": "Español"
+        "es": "Español",
+        "it": "Italiano",
+        "pt": "Portugués"
       }
     }
   },
